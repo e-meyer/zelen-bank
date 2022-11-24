@@ -4,9 +4,8 @@ class TransactionEntity {
   final double amount;
   final String transactionType;
   final String description;
+  final String targetName;
   final String? bankName;
-  final String? from;
-  final String? to;
 
   TransactionEntity({
     required this.id,
@@ -14,8 +13,7 @@ class TransactionEntity {
     required this.amount,
     required this.transactionType,
     required this.description,
+    required this.targetName,
     this.bankName,
-    this.from,
-    this.to,
   });
 }
