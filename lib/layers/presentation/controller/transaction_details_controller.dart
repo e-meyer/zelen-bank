@@ -1,12 +1,12 @@
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
-import 'package:zelenbank/layers/domain/usecases/get_transaction_list/get_transaction_list_usecase.dart';
+import '../../domain/usecases/get_transaction_by_id/get_transaction_by_id_usecase_impl.dart';
 
 class TransactionController {
-  final GetTrasactionListUsecase _getTrasactionListUsecase;
+  final GetTransactionByIdUsecaseImpl _getTransactionById;
   List<TransactionEntity> tasksList = [];
 
   TransactionController(
-    this._getTrasactionListUsecase,
+    this._getTransactionById,
   );
 
   bool isReceived(TransactionEntity transaction) {
@@ -15,7 +15,6 @@ class TransactionController {
   }
 
   Future<TransactionEntity> getById(String id) async {
-    throw UnimplementedError();
-    //return await _getTransactionById(id);
+    return await _getTransactionById.call(id);
   }
 }

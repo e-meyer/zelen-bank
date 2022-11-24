@@ -1,8 +1,8 @@
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
-import 'package:zelenbank/layers/domain/usecases/get_transaction_list/get_transaction_list_usecase.dart';
+import 'package:zelenbank/layers/domain/usecases/get_transaction_list/get_transaction_list_usecase_impl.dart';
 
 class AllTransactionsController {
-  final GetTrasactionListUsecase _getTrasactionListUsecase;
+  final GetTransactionListUsecaseImpl _getTrasactionListUsecase;
   List<TransactionEntity> tasksList = [];
 
   AllTransactionsController(
@@ -10,6 +10,6 @@ class AllTransactionsController {
   );
 
   Future<List> getAllTransactions(int pageNumber) async {
-    return await _getTrasactionListUsecase(pageNumber);
+    return await _getTrasactionListUsecase.call(pageNumber);
   }
 }
