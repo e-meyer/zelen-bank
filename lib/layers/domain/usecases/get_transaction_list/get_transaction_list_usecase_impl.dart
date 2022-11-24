@@ -3,9 +3,9 @@ import 'package:zelenbank/layers/domain/usecases/get_transaction_list/get_transa
 
 import '../../repositories/get_transaction_list_repository.dart';
 
-class GetTrasactionListUsecaseImpl implements GetTrasactionListUsecase {
-  final GetTrasactionListRepository _getTrasactionListRepository;
-  GetTrasactionListUsecaseImpl(this._getTrasactionListRepository);
+class GetTransactionListUsecaseImpl implements GetTransactionListUsecase {
+  final GetTransactionListRepository _getTrasactionListRepository;
+  GetTransactionListUsecaseImpl(this._getTrasactionListRepository);
 
   @override
   Future<List<TransactionEntity>> call(int pageNumber) {
