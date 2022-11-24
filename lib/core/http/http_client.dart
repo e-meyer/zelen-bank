@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:zelenbank/core/utils/constants/api_endpoints_constants.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
@@ -47,13 +46,22 @@ class HttpClientModel {
     }
     return list;
   }
-  Future<TransactionEntity> getTransactionById(String id)async{
+
+  Future<TransactionEntity> getTransactionById(String id) async {
     final header = {'Token': apiToken};
     final response = await http.get(
       Uri.parse('$apiUrl/$myDtStatement/$id'),
       headers: header,
     );
     Map data = jsonDecode(response.body);
-    TransactionEntity transactionEntity = TransactionEntity(id: id, createdAt: createdAt, amount: amount, transactionType: transactionType, description: description, targetName: targetName)
+    TransactionEntity transactionEntity = TransactionEntity(
+      id: data['id'] as String,
+      createdAt: data['createdAt'] as DateTime,
+      amount: data['amount'] as double,
+      transactionType: data['tType'] as String,
+      description: data['description'] as String,
+      targetName: data['from'] ?? data['to'],
+    );
+    return transactionEntity;
   }
 }
