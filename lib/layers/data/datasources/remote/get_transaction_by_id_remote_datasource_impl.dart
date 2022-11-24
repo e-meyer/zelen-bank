@@ -15,6 +15,5 @@ class GetTransactionByIdRemoteDatasourceImpl
     final transaction = TransactionDto.fromJson(json);
 
     return transaction;
-    // return await _httpClientModel.getTransactionById(id);
   }
 }

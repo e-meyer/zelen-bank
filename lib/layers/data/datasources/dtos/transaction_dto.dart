@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
@@ -33,9 +32,9 @@ class TransactionDto extends TransactionEntity {
   factory TransactionDto.fromMap(Map<String, dynamic> map) {
     return TransactionDto(
       id: map['id'] as String,
-      createdAt: map['createdAt'] as DateTime,
-      amount: map['amount'] as double,
-      transactionType: map['transactionType'] as String,
+      createdAt: DateTime.parse(map['createdAt']),
+      amount: map['amount'].toDouble(),
+      transactionType: map['tType'] as String,
       description: map['description'] as String,
       targetName: map['from'] ?? map['to'],
       bankName: map['bankName'] != null ? map['bankName'] as String : null,

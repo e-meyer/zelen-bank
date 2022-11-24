@@ -3,7 +3,8 @@ import 'package:zelenbank/layers/data/datasources/dtos/transaction_dto.dart';
 import '../../../../core/http/http_client.dart';
 import '../get_transaction_list_datasource.dart';
 
-class GetTransactionListRemoteDatasourceImpl implements GetTransactionListDatasource {
+class GetTransactionListRemoteDatasourceImpl
+    implements GetTransactionListDatasource {
   final HttpClientModel _httpClient;
   GetTransactionListRemoteDatasourceImpl(this._httpClient);
 
