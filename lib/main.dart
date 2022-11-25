@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Zelen Bank',
       debugShowCheckedModeBanner: false,
-      theme: CustomTheme.getTheme(),
+      theme: CustomTheme.customtheme[Tema.lightTema],
       home: const ExtractScreen(),
     );
   }
