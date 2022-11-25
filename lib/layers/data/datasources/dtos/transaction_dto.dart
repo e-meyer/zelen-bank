@@ -29,7 +29,7 @@ class TransactionDto extends TransactionEntity {
           bankName: bankName,
         );
 
-  factory TransactionDto.fromMap(Map<String, dynamic> map) {
+  factory TransactionDto.fromMap(Map<dynamic, dynamic> map) {
     return TransactionDto(
       id: map['id'] as String,
       createdAt: DateTime.parse(map['createdAt']),

@@ -12,7 +12,7 @@ class GetTransactionByIdRemoteDatasourceImpl
   Future<TransactionDto> call(String id) async {
     final json = await _httpClient.getTransactionById(id);
 
-    final transaction = TransactionDto.fromJson(json);
+    final transaction = TransactionDto.fromMap(json);
 
     return transaction;
   }
