@@ -14,45 +14,43 @@ class TransactionDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: FutureBuilder<TransactionEntity>(
-            future: _transactionController.getById(id),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Column(children: [
-                  Text('Comprovante'),
-                  Divider(),
-                  Column(children: [
-                    Text('Tipo de Movimentação'),
-                    Text(snapshot.data!.transactionType),
-                    Text('Valor'),
-                    Text(snapshot.data!.amount.toString()),
-                    Text(_transactionController.isReceived(snapshot.data!)
-                        ? 'Recebedor'
-                        : 'Pagador'),
-                    Text(snapshot.data!.targetName),
-                    snapshot.data!.bankName != null
-                        ? Text('Instituição bancária')
-                        : Container(),
-                    snapshot.data!.bankName != null
-                        ? Text(snapshot.data!.bankName!)
-                        : Container(),
-                    Text('Data/Hora'),
-                    Text(snapshot.data!.createdAt.toString()),
-                    Text('Autenticação'),
-                    snapshot.data!.authentication != null
-                        ? Text(snapshot.data!.authentication!)
-                        : Container()
-                  ]),
-                  ElevatedButton(onPressed: () {}, child: Text('Compartilhar'))
-                ]);
-              } else {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            }),
-      ),
+      body: FutureBuilder<TransactionEntity>(
+          future: _transactionController.getById(id),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Column(children: [
+                Text('Comprovante'),
+                Divider(),
+                Column(children: [
+                  Text('Tipo de Movimentação'),
+                  Text(snapshot.data!.transactionType),
+                  Text('Valor'),
+                  Text(snapshot.data!.amount.toString()),
+                  Text(_transactionController.isReceived(snapshot.data!)
+                      ? 'Recebedor'
+                      : 'Pagador'),
+                  Text(snapshot.data!.targetName),
+                  snapshot.data!.bankName != null
+                      ? Text('Instituição bancária')
+                      : Container(),
+                  snapshot.data!.bankName != null
+                      ? Text(snapshot.data!.bankName!)
+                      : Container(),
+                  Text('Data/Hora'),
+                  Text(snapshot.data!.createdAt.toString()),
+                  Text('Autenticação'),
+                  snapshot.data!.authentication != null
+                      ? Text(snapshot.data!.authentication!)
+                      : Container()
+                ]),
+                ElevatedButton(onPressed: () {}, child: Text('Compartilhar'))
+              ]);
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
     );
   }
 }
