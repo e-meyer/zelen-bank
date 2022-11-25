@@ -13,18 +13,15 @@ class HttpClientModel {
   final String myStatement = kMyStatement;
   final String myDtStatement = kMyDtStatement;
 
-  Future<double> getCurrentBalance() async {
+  Future<Map<dynamic, dynamic>> getCurrentBalance() async {
     final header = {'Token': apiToken};
 
     final response = await client.get(
       Uri.parse('$apiUrl/$myBalance'),
       headers: header,
     );
-
     Map data = jsonDecode(response.body);
-    final balanceAmount = data['amount'].toDouble();
-
-    return balanceAmount;
+    return data;
   }
 
   Future<Map<dynamic, dynamic>> getTransactionsList(int pageNumber) async {
