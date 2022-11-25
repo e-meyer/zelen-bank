@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 
 enum Tema {
-  lightTema,
+  lightTheme,
 }
 
 class CustomTheme {
   static final customtheme = {
-    Tema.lightTema: ThemeData(
+    Tema.lightTheme: ThemeData(
       brightness: Brightness.light,
       primaryColor: kAquaGreen,
       backgroundColor: kLightGrey,
