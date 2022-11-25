@@ -8,16 +8,17 @@ class TransactionEntity extends Equatable {
   final String description;
   final String targetName;
   final String? bankName;
+  final String? authentication;
 
-  const TransactionEntity({
-    required this.id,
-    required this.createdAt,
-    required this.amount,
-    required this.transactionType,
-    required this.description,
-    required this.targetName,
-    this.bankName,
-  });
+  const TransactionEntity(
+      {required this.id,
+      required this.createdAt,
+      required this.amount,
+      required this.transactionType,
+      required this.description,
+      required this.targetName,
+      this.bankName,
+      this.authentication});
 
   @override
   List<Object?> get props => [
