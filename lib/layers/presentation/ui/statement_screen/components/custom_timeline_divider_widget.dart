@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/constants/colors_constants.dart';
 
 class CustomTimelineDividerWidget extends StatelessWidget {
-  const CustomTimelineDividerWidget({super.key, required this.screenSize});
-
-  final Size screenSize;
+  const CustomTimelineDividerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
     return SizedBox(
       width: screenSize.width,
       height: 20,
       child: Row(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 16),
             child: Column(
               children: [
                 Container(

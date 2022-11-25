@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/app_bar_method.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/custom_timeline_divider_widget.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/custom_timeline_widget.dart';
@@ -52,9 +53,27 @@ class StatementScreen extends StatelessWidget {
             ),
             child: Text('Suas movimentações'),
           ),
-          CustomTimelineWidget(screenSize: screenSize),
-          CustomTimelineDividerWidget(screenSize: screenSize),
-          CustomTimelineWidget(screenSize: screenSize),
+          CustomTimelineWidget(
+            transactionEntity: TransactionEntity(
+              id: 'ABC',
+              amount: 1000,
+              createdAt: DateTime.now(),
+              transactionType: 'IN',
+              description: 'ALALA',
+              targetName: 'ALALALALA',
+            ),
+          ),
+          CustomTimelineDividerWidget(),
+          CustomTimelineWidget(
+            transactionEntity: TransactionEntity(
+              id: 'ABC',
+              amount: 1000,
+              createdAt: DateTime.now(),
+              transactionType: 'PIXCASHIN',
+              description: 'Transferência PIX recebida',
+              targetName: 'ALALALALA',
+            ),
+          ),
         ],
       ),
     );
