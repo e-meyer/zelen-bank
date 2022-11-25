@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 import 'package:zelenbank/layers/presentation/ui/common/back_button.dart';
-import 'package:zelenbank/layers/presentation/controller/transaction_details_controller.dart';
+import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
+import '../../../../../core/injector/injector.dart';
 
 class TransactionDetails extends StatelessWidget {
   final TransactionController _transactionController =
