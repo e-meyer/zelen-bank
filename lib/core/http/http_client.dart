@@ -4,6 +4,7 @@ import 'package:zelenbank/core/utils/constants/api_endpoints_constants.dart';
 class HttpClientModel {
   HttpClientModel(this.client);
 
+  // ignore: prefer_typing_uninitialized_variables
   final client;
 
   final String apiUrl = kApiUrl;
