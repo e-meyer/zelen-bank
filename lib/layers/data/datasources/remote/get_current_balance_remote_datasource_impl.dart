@@ -1,15 +1,23 @@
-import 'package:zelenbank/layers/data/datasources/get_current_balance_datasource.dart';
+import 'dart:convert';
 
-import '../../../../core/http/http_client.dart';
+import 'package:zelenbank/core/http_client/http_client_interface.dart';
+import 'package:zelenbank/core/utils/constants/api_endpoints_constants.dart';
+import 'package:zelenbank/layers/data/datasources/get_current_balance_datasource.dart';
 
 class GetCurrentBalanceRemoteDatasourceImpl
     implements GetCurrentBalanceDatasource {
-  final HttpClientModel _httpClient;
+  final IHttpClient _httpClient;
   GetCurrentBalanceRemoteDatasourceImpl(this._httpClient);
 
   @override
   Future<double> call() async {
-    final json = await _httpClient.getCurrentBalance();
+    final response = await _httpClient.get(
+      url: '$kApiUrl/$kMyBalance',
+      header: {'Token': kApiToken},
+    );
+
+    final json = jsonDecode(response.body);
+
     final currentBalance = json['amount'].toDouble();
 
     return currentBalance;

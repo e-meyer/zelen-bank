@@ -1,5 +1,5 @@
-import 'dtos/transaction_dto.dart';
+import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 
 abstract class GetTransactionByIdDatasource {
-  Future<TransactionDto> call(String id);
+  Future<TransactionEntity> call(String id);
 }
