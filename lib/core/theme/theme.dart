@@ -11,6 +11,7 @@ class CustomTheme {
       brightness: Brightness.light,
       primaryColor: kAquaGreen,
       backgroundColor: kLightGrey,
+      scaffoldBackgroundColor: kPlainWhite,
       primarySwatch: white,
       textTheme: const TextTheme(
         headline1: TextStyle(color: kPlainBlack),
