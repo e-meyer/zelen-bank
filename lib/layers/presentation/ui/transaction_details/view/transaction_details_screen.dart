@@ -6,6 +6,8 @@ import 'package:zelenbank/layers/presentation/ui/common/back_button.dart';
 import '../../../../../core/injector/injector.dart';
 import '../components/BankName.dart';
 import '../components/TransactionType.dart';
+import '../../../../../core/utils/constants/transaction_type_constants.dart'
+    as constants;
 
 class TransactionDetails extends StatelessWidget {
   final TransactionController _transactionController =
@@ -20,6 +22,7 @@ class TransactionDetails extends StatelessWidget {
           future: _transactionController.getById(id),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+              TransactionEntity data = snapshot.data!;
               return Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -33,20 +36,20 @@ class TransactionDetails extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text('Tipo de Movimentação'),
-                          Text(snapshot.data!.transactionType),
+                          Text(constants.Constants[data.transactionType]),
                           Text('Valor'),
-                          Text(snapshot.data!.amount.toString()),
+                          Text('R\$${data.amount.toString()}'),
                           TransactionType(
                             transactionController: _transactionController,
-                            data: snapshot.data!,
+                            data: data,
                           ),
-                          Text(snapshot.data!.targetName),
-                          BankName(snapshot.data!.bankName),
+                          Text(data.targetName),
+                          BankName(data.bankName),
                           Text('Data/Hora'),
-                          Text(snapshot.data!.createdAt.toString()),
+                          Text(data.createdAt.toString()),
                           Text('Autenticação'),
-                          snapshot.data!.authentication != null
-                              ? Text(snapshot.data!.authentication!)
+                          data.authentication != null
+                              ? Text(data.authentication!)
                               : Container()
                         ]),
                     ElevatedButton(
