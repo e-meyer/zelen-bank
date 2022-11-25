@@ -19,7 +19,7 @@ void main() {
 
   final double tNumber = 1;
 
-  test('should get a double number from the repository', () async {
+  test('Should get a double number from the repository', () async {
     // arrange
     when(() => mockGetCurrentBalanceRepository())
         .thenAnswer((_) async => tNumber);
@@ -27,7 +27,7 @@ void main() {
     // act
     final result = await getCurrentBalanceUsecase();
 
-    // assets
+    // assert
     expect(result, isA<double>());
     verify(() => mockGetCurrentBalanceRepository()).called(1);
   });
