@@ -5,6 +5,8 @@ const Color kLightGrey = Color(0xFFF8F8F8);
 const Color kDarkGrey = Color(0xFF828282);
 const Color kPlainWhite = Color(0xFFFFFFFF);
 const Color kPlainBlack = Color(0xFF202021);
+const Color kTimelineColor = Color(0xFFBDBDBD);
+
 const MaterialColor white = MaterialColor(
   0xFFFFFFFF,
   <int, Color>{
