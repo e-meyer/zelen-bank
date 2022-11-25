@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/app_bar_method.dart';
+import 'package:zelenbank/layers/presentation/ui/statement_screen/components/custom_timeline_divider_widget.dart';
+import 'package:zelenbank/layers/presentation/ui/statement_screen/components/custom_timeline_widget.dart';
 
 class StatementScreen extends StatelessWidget {
   const StatementScreen({super.key});
@@ -29,7 +30,7 @@ class StatementScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'Seu saldo',
                         style: TextStyle(fontSize: 16),
                       ),
@@ -44,97 +45,16 @@ class StatementScreen extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
+          const Padding(
+            padding: EdgeInsets.symmetric(
               horizontal: 14.0,
               vertical: 20,
             ),
             child: Text('Suas movimentações'),
           ),
-          customTimelineWidget(screenSize),
-          customDivider(screenSize),
-          customTimelineWidget(screenSize),
-        ],
-      ),
-    );
-  }
-
-  Widget customTimelineWidget(screenSize) {
-    return Container(
-      color: kLightGrey,
-      width: screenSize.width,
-      height: 100,
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Column(
-              children: [
-                Container(
-                  color: kTimelineColor,
-                  height: 45,
-                  width: 1,
-                ),
-                Center(
-                  child: Container(
-                    height: 10,
-                    width: 10,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        color: kAquaGreen,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  color: kTimelineColor,
-                  height: 45,
-                  width: 1,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget customDivider(screenSize) {
-    return SizedBox(
-      width: screenSize.width,
-      height: 20,
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Column(
-              children: [
-                Container(
-                  color: kTimelineColor,
-                  height: 10,
-                  width: 1,
-                ),
-                Center(
-                  child: Container(
-                    height: 0,
-                    width: 10,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        color: Colors.transparent,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  color: kTimelineColor,
-                  height: 10,
-                  width: 1,
-                ),
-              ],
-            ),
-          ),
+          CustomTimelineWidget(screenSize: screenSize),
+          CustomTimelineDividerWidget(screenSize: screenSize),
+          CustomTimelineWidget(screenSize: screenSize),
         ],
       ),
     );
