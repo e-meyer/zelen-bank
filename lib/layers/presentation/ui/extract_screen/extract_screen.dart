@@ -5,6 +5,12 @@ class ExtractScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Extrato'),
+        centerTitle: true,
+        elevation: 0.0,
+      ),
+    );
   }
 }
