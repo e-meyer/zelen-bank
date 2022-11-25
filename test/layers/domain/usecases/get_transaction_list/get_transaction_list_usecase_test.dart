@@ -20,7 +20,7 @@ void main() {
 
   final List<TransactionEntity> list = [];
 
-  final int tPageNumber = 0;
+  const int tPageNumber = 0;
 
   test('Should get a List of TransactionEntity from repository', () async {
     // arrange

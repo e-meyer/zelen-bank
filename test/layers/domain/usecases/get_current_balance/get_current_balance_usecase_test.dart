@@ -17,7 +17,7 @@ void main() {
         GetCurrentBalanceUsecaseImpl(mockGetCurrentBalanceRepository);
   });
 
-  final double tNumber = 1;
+  const double tNumber = 1;
 
   test('Should get a double number from the repository', () async {
     // arrange

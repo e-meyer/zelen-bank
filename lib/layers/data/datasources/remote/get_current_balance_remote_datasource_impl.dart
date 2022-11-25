@@ -1,4 +1,3 @@
-import 'package:zelenbank/layers/data/datasources/dtos/transaction_dto.dart';
 import 'package:zelenbank/layers/data/datasources/get_current_balance_datasource.dart';
 
 import '../../../../core/http/http_client.dart';

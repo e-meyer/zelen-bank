@@ -1,11 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:zelenbank/core/http/http_client.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:zelenbank/core/utils/constants/api_endpoints_constants.dart';
-import 'package:zelenbank/layers/data/datasources/dtos/transaction_dto.dart';
 import 'package:zelenbank/layers/data/datasources/remote/get_current_balance_remote_datasource_impl.dart';
 
 import '../../../../fixtures/fixture_reader.dart';

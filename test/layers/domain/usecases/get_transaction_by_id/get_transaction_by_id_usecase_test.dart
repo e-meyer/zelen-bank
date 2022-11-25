@@ -29,7 +29,7 @@ void main() {
     targetName: 'Luisa Sacura',
   );
 
-  final String tTransactionId = 'ABC123';
+  const String tTransactionId = 'ABC123';
 
   test('Should get a TransactionEntity from repository', () async {
     // arrange

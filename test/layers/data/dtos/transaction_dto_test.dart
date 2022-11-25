@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:zelenbank/core/http/http_client.dart';
 import 'package:zelenbank/layers/data/datasources/dtos/transaction_dto.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 

@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'package:zelenbank/core/utils/constants/api_endpoints_constants.dart';
-import 'package:zelenbank/layers/data/datasources/dtos/transaction_dto.dart';
-import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 
 class HttpClientModel {
   HttpClientModel(this.client);
+
   final client;
 
   final String apiUrl = kApiUrl;
