@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zelenbank/layers/presentation/ui/extract_screen/extract_screen.dart';
+import 'package:zelenbank/layers/presentation/ui/statement_screen/view/statement_screen.dart';
 
 import 'core/injector/injector.dart';
 import 'core/theme/theme.dart';
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Zelen Bank',
       debugShowCheckedModeBanner: false,
       theme: CustomTheme.customtheme[Tema.lightTheme],
-      home: const ExtractScreen(),
+      home: const StatementScreen(),
     );
   }
 }

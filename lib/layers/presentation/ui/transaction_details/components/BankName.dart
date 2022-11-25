@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class BankName extends StatelessWidget {
   String? bankName;
   BankName(this.bankName, {Key? key}) : super(key: key);

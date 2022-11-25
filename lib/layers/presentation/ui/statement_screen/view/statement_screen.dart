@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
-import 'package:zelenbank/layers/presentation/ui/common/app_bar_method.dart';
+import 'package:zelenbank/layers/presentation/ui/statement_screen/components/app_bar_method.dart';
 
-import '../../../../core/utils/constants/colors_constants.dart';
-
-class ExtractScreen extends StatelessWidget {
-  const ExtractScreen({super.key});
+class StatementScreen extends StatelessWidget {
+  const StatementScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
