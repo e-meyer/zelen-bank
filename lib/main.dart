@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:zelenbank/layers/presentation/ui/extract_screen/extract_screen.dart';
 
+import 'core/injector/injector.dart';
 import 'core/theme/theme.dart';
 
 void main() {
+  setupLocator();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
