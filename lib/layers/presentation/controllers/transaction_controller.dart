@@ -14,7 +14,10 @@ class TransactionController extends ChangeNotifier {
   TransactionController(this._getAllTransactions, this._getCurrentBalance,
       this._getTransactionById);
 
-  void getBalance() async {
+  double get balance => _balance;
+  List<TransactionEntity> get transactionList => _transactionList;
+
+  void fetchBalance() async {
     _balance = await _getCurrentBalance();
     notifyListeners();
   }
