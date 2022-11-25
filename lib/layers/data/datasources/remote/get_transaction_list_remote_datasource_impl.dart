@@ -15,8 +15,7 @@ class GetTransactionListRemoteDatasourceImpl
     List<TransactionDto> list = [];
 
     for (var item in json['items']) {
-      final transaction = TransactionDto.fromJson(item);
-
+      final transaction = TransactionDto.fromMap(item);
       list.add(transaction);
     }
 
