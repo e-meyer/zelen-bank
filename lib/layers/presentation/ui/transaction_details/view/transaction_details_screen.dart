@@ -112,9 +112,12 @@ class TransactionDetails extends StatelessWidget {
                               data.authentication != null
                                   ? Text(data.authentication!)
                                   : Container(),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.25,
+                              ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 80, bottom: 20),
+                                padding: const EdgeInsets.only(bottom: 20),
                                 child: ElevatedButton(
                                     onPressed: () =>
                                         shareImage(previewContainer),
