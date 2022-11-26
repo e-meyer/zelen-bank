@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/custom_timeline_widget.dart';
+import 'package:zelenbank/layers/presentation/ui/transaction_details/view/transaction_details_screen.dart';
 
 import '../../../../../core/utils/constants/colors_constants.dart';
 
@@ -18,7 +19,10 @@ class TransactionCardWidget extends StatelessWidget {
     final theme = Theme.of(context);
 
     return InkWell(
-      onTap: () {},
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => TransactionDetails(transactionEntity.id))),
       child: Container(
         color: isTransactionTypePix() ? kLightGrey : kPlainWhite,
         width: screenSize.width,
@@ -27,7 +31,7 @@ class TransactionCardWidget extends StatelessWidget {
           children: [
             Row(
               children: [
-                CustomTimelineWidget(),
+                const CustomTimelineWidget(),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -43,12 +47,12 @@ class TransactionCardWidget extends StatelessWidget {
                                 transactionEntity.description,
                                 style: theme.textTheme.headline1,
                               ),
-                              SizedBox(height: 6),
+                              const SizedBox(height: 6),
                               Text(
                                 transactionEntity.targetName,
                                 style: theme.textTheme.subtitle1,
                               ),
-                              SizedBox(height: 6),
+                              const SizedBox(height: 6),
                               Text(
                                 isTransactionSent()
                                     ? '- ${transactionFormattedValue()}'

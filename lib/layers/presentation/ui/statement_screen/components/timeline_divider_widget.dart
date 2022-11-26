@@ -24,7 +24,7 @@ class TimelineDividerWidget extends StatelessWidget {
                   width: 1,
                 ),
                 Center(
-                  child: Container(
+                  child: SizedBox(
                     height: 0,
                     width: 10,
                     child: ClipRRect(

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:zelenbank/core/injector/injector.dart';
-import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/app_bar_method.dart';
-import 'package:zelenbank/layers/presentation/ui/statement_screen/components/timeline_divider_widget.dart';
-import 'package:zelenbank/layers/presentation/ui/statement_screen/components/transaction_card_widget.dart';
+import 'package:zelenbank/layers/presentation/ui/statement_screen/components/current_balance_section.dart';
+import 'package:zelenbank/layers/presentation/ui/statement_screen/components/transaction_list_builder.dart';
 
 class StatementScreen extends StatefulWidget {
-  StatementScreen({super.key});
+  const StatementScreen({super.key});
 
   @override
   State<StatementScreen> createState() => _StatementScreenState();
@@ -17,12 +16,24 @@ class _StatementScreenState extends State<StatementScreen> {
   final TransactionController transactionController =
       serviceLocator.get<TransactionController>();
 
-  final int pageController = 0;
+  final ScrollController _scrollController = ScrollController();
+
+  int pageController = 0;
 
   @override
   void initState() {
     super.initState();
-    transactionController.getAllTransactions(pageController);
+    transactionController.getTransactionsList(pageController);
+    transactionController.fetchBalance();
+    _scrollController.addListener(() {
+      if (_scrollController.position.atEdge) {
+        bool isBottom = _scrollController.position.pixels != 0;
+        if (isBottom) {
+          pageController++;
+          transactionController.getTransactionsList(pageController);
+        }
+      }
+    });
   }
 
   @override
@@ -32,40 +43,14 @@ class _StatementScreenState extends State<StatementScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      appBar: appBarMetod(),
+      appBar: appBarMethod(titulo: 'Extrato'),
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+        controller: _scrollController,
+        physics: const PageScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: screenSize.height * .135,
-              color: theme.backgroundColor,
-              width: double.infinity,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: screenSize.width * 0.4,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Seu saldo',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Icon(
-                          Icons.visibility_off,
-                          color: theme.primaryColor,
-                          size: 26,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            const CurrentBalanceSection(),
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 14.0,
@@ -76,25 +61,7 @@ class _StatementScreenState extends State<StatementScreen> {
                 style: theme.textTheme.headline2,
               ),
             ),
-            AnimatedBuilder(
-              animation: transactionController,
-              builder: (context, child) {
-                final List<TransactionEntity> transactionsList =
-                    transactionController.transactionList;
-                return ListView.separated(
-                  physics: BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: transactionsList.length,
-                  itemBuilder: (context, index) {
-                    return TransactionCardWidget(
-                        transactionEntity: transactionsList[index]);
-                  },
-                  separatorBuilder: (context, index) {
-                    return TimelineDividerWidget();
-                  },
-                );
-              },
-            ),
+            const TransactionListBuilder(),
           ],
         ),
       ),

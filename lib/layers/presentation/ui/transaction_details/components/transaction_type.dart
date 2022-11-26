@@ -5,10 +5,11 @@ import '../../../controllers/transaction_controller.dart';
 class TransactionType extends StatelessWidget {
   final TransactionEntity data;
   final TransactionController transactionController;
-  TransactionType({
+
+  const TransactionType({
+    super.key,
     required this.data,
     required this.transactionController,
-    Key? key,
   });
 
   @override
