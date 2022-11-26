@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:zelenbank/core/http_client/http_client_interface.dart';
 import 'package:zelenbank/core/http_client/http_response_entity.dart';
 import 'package:http/http.dart' as http;

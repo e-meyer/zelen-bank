@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Zelen Bank',
       debugShowCheckedModeBanner: false,
       theme: CustomTheme.customtheme[Tema.lightTheme],
-      home: StatementScreen(),
+      home: const StatementScreen(),
     );
   }
 }

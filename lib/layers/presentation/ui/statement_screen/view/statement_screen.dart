@@ -38,12 +38,11 @@ class _StatementScreenState extends State<StatementScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     final theme = Theme.of(context);
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      appBar: appBarMetod(),
+      appBar: appBarMethod(),
       body: SingleChildScrollView(
         controller: _scrollController,
         physics: const PageScrollPhysics(),

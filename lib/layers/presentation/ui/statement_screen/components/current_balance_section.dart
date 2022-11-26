@@ -29,7 +29,7 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               width: screenSize.width * 0.35,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

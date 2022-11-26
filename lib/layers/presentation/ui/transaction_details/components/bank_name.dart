@@ -9,7 +9,7 @@ class BankName extends StatelessWidget {
     if (bankName != null) {
       return Expanded(
           child: Column(children: [
-        Text("Instituição bancária"),
+        const Text("Instituição bancária"),
         Text(bankName!),
       ]));
     } else {

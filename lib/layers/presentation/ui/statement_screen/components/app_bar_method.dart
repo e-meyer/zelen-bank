@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 
-AppBar appBarMetod() {
+AppBar appBarMethod({Widget? leading, String? titulo}) {
   return AppBar(
     systemOverlayStyle: const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ),
-    title: const Text(
-      'Extrato',
-      style: TextStyle(
+    leading: leading,
+    title: Text(
+      titulo!,
+      style: const TextStyle(
         color: kPlainBlack,
         fontWeight: FontWeight.w600,
         fontSize: 18,
