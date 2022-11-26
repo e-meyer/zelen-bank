@@ -76,9 +76,14 @@ class TransactionDetails extends StatelessWidget {
                                       ? Text(data.authentication!)
                                       : Container()
                                 ])),
-                        ElevatedButton(
-                            onPressed: () => shareImage(previewContainer),
-                            child: Text('Compartilhar'))
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.25,
+                        ),
+                        Padding(
+                            padding: const EdgeInsets.only(bottom: 20),
+                            child: ElevatedButton(
+                                onPressed: () => shareImage(previewContainer),
+                                child: Text('Compartilhar')))
                       ]));
             } else {
               return const Center(
