@@ -17,12 +17,23 @@ class _StatementScreenState extends State<StatementScreen> {
   final TransactionController transactionController =
       serviceLocator.get<TransactionController>();
 
-  final int pageController = 0;
+  final ScrollController _scrollController = ScrollController();
+
+  int pageController = 0;
 
   @override
   void initState() {
     super.initState();
-    transactionController.getAllTransactions(pageController);
+    transactionController.getTransactionsList(pageController);
+    _scrollController.addListener(() {
+      if (_scrollController.position.atEdge) {
+        bool isTop = _scrollController.position.pixels == 0;
+        if (!isTop) {
+          pageController++;
+          transactionController.getTransactionsList(pageController);
+        }
+      }
+    });
   }
 
   @override
@@ -34,7 +45,8 @@ class _StatementScreenState extends State<StatementScreen> {
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: appBarMetod(),
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+        controller: _scrollController,
+        physics: const PageScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

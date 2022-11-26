@@ -5,28 +5,31 @@ import 'package:zelenbank/layers/domain/usecases/get_current_balance_usecase/get
 import 'package:zelenbank/layers/domain/usecases/get_transaction_by_id/get_transaction_by_id_usecase.dart';
 
 class TransactionController extends ChangeNotifier {
-  final GetTransactionListUsecase _getAllTransactions;
-  final GetCurrentBalanceUsecase _getCurrentBalance;
-  final GetTransactionByIdUsecase _getTransactionById;
+  final GetTransactionListUsecase _getTransactionListUsecase;
+  final GetCurrentBalanceUsecase _getCurrentBalanceUsecase;
+  final GetTransactionByIdUsecase _getTransactionByIdUsecase;
   List<TransactionEntity> _transactionList = [];
   late double _balance;
 
   TransactionController(
-    this._getAllTransactions,
-    this._getCurrentBalance,
-    this._getTransactionById,
+    this._getTransactionListUsecase,
+    this._getCurrentBalanceUsecase,
+    this._getTransactionByIdUsecase,
   );
 
   double get balance => _balance;
   List<TransactionEntity> get transactionList => _transactionList;
 
   void fetchBalance() async {
-    _balance = await _getCurrentBalance();
+    _balance = await _getCurrentBalanceUsecase();
     notifyListeners();
   }
 
-  void getAllTransactions(int pageNumber) async {
-    _transactionList = await _getAllTransactions(pageNumber);
+  void getTransactionsList(int pageNumber) async {
+    final list = await _getTransactionListUsecase(pageNumber);
+    for (var transaction in list) {
+      _transactionList.add(transaction);
+    }
     notifyListeners();
   }
 
@@ -36,6 +39,6 @@ class TransactionController extends ChangeNotifier {
   }
 
   Future<TransactionEntity> getById(String id) async {
-    return await _getTransactionById(id);
+    return await _getTransactionByIdUsecase(id);
   }
 }
