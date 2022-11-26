@@ -9,6 +9,8 @@ import '../components/bank_name.dart';
 import '../components/transaction_type.dart';
 import '../../../../../core/utils/constants/transaction_type_constants.dart'
     show transactionTypeMap;
+import 'package:zelenbank/core/utils/constants/colors_constants.dart'
+    as color_constants;
 
 class TransactionDetails extends StatelessWidget {
   final TransactionController _transactionController =
@@ -20,6 +22,7 @@ class TransactionDetails extends StatelessWidget {
   // TODO: CORRIGIR ESPAÇAMENTOS APÓS CONCLUIR PARTE DE DADOS
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       body: FutureBuilder<TransactionEntity>(
           future: _transactionController.getById(id),
@@ -33,16 +36,23 @@ class TransactionDetails extends StatelessWidget {
                         padding: EdgeInsets.only(
                             right: MediaQuery.of(context).size.width * .8),
                         child: CustomBackButton()),
-                    Divider(),
+                    Divider(color: color_constants.kDarkGrey),
                     RepaintBoundary(
                         key: previewContainer,
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Text('Comprovante'),
-                              Text('Tipo de Movimentação'),
+                              Text('Comprovante',
+                                  style: theme.textTheme.headline2),
+                              Text(
+                                'Tipo de Movimentação',
+                                style: theme.textTheme.headline2,
+                              ),
                               Text(transactionTypeMap[data.transactionType]!),
-                              Text('Valor'),
+                              Text(
+                                'Valor',
+                                style: theme.textTheme.headline2,
+                              ),
                               Text('R\$${data.amount.toString()}'),
                               TransactionType(
                                 transactionController: _transactionController,
@@ -50,12 +60,12 @@ class TransactionDetails extends StatelessWidget {
                               ),
                               Text(data.targetName),
                               BankName(data.bankName),
-                              Text('Data/Hora'),
+                              Text(
+                                'Data/Hora',
+                                style: theme.textTheme.headline2,
+                              ),
                               Text(data.createdAt.toString()),
-                              Authentication(),
-                              data.authentication != null
-                                  ? Text(data.authentication!)
-                                  : Container()
+                              Authentication(data),
                             ])),
                     ElevatedButton(
                         onPressed: () => shareImage(previewContainer),
