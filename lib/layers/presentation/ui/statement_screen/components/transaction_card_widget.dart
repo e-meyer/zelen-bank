@@ -9,9 +9,11 @@ class TransactionCardWidget extends StatelessWidget {
   const TransactionCardWidget({
     super.key,
     required this.transactionEntity,
+    required this.isFirstWidget,
   });
 
   final TransactionEntity transactionEntity;
+  final bool isFirstWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +28,14 @@ class TransactionCardWidget extends StatelessWidget {
       child: Container(
         color: isTransactionTypePix() ? kLightGrey : kPlainWhite,
         width: screenSize.width,
-        height: 100,
+        height: isFirstWidget ? 76 : 90,
         child: Stack(
           children: [
             Row(
               children: [
-                const CustomTimelineWidget(),
+                CustomTimelineWidget(
+                  isFirstWidget: isFirstWidget,
+                ),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),

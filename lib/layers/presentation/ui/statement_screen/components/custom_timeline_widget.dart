@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/constants/colors_constants.dart';
 
 class CustomTimelineWidget extends StatelessWidget {
-  const CustomTimelineWidget({super.key});
+  const CustomTimelineWidget({
+    super.key,
+    required this.isFirstWidget,
+  });
+
+  final bool isFirstWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +18,7 @@ class CustomTimelineWidget extends StatelessWidget {
         children: [
           Container(
             color: kTimelineColor,
-            height: 45,
+            height: isFirstWidget ? 33 : 40,
             width: 1,
           ),
           Center(
@@ -30,7 +35,7 @@ class CustomTimelineWidget extends StatelessWidget {
           ),
           Container(
             color: kTimelineColor,
-            height: 45,
+            height: isFirstWidget ? 33 : 40,
             width: 1,
           ),
         ],

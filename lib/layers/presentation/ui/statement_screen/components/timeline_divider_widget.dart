@@ -11,7 +11,7 @@ class TimelineDividerWidget extends StatelessWidget {
 
     return SizedBox(
       width: screenSize.width,
-      height: 20,
+      height: 16,
       child: Row(
         children: [
           Padding(
@@ -20,7 +20,7 @@ class TimelineDividerWidget extends StatelessWidget {
               children: [
                 Container(
                   color: kTimelineColor,
-                  height: 10,
+                  height: 8,
                   width: 1,
                 ),
                 Center(
@@ -37,7 +37,7 @@ class TimelineDividerWidget extends StatelessWidget {
                 ),
                 Container(
                   color: kTimelineColor,
-                  height: 10,
+                  height: 8,
                   width: 1,
                 ),
               ],

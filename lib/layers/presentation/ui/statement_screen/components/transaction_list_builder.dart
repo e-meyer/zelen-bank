@@ -31,8 +31,11 @@ class _TransactionListBuilderState extends State<TransactionListBuilder> {
             shrinkWrap: true,
             itemCount: transactionsList.length,
             itemBuilder: (context, index) {
+              bool isFirstTransaction = index == 0;
               return TransactionCardWidget(
-                  transactionEntity: transactionsList[index]);
+                transactionEntity: transactionsList[index],
+                isFirstWidget: isFirstTransaction,
+              );
             },
             separatorBuilder: (context, index) {
               return const TimelineDividerWidget();
