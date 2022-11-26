@@ -43,7 +43,7 @@ class TransactionDetails extends StatelessWidget {
                             size: 16),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 13, right: 13),
+                        padding: const EdgeInsets.symmetric(horizontal: 13),
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
