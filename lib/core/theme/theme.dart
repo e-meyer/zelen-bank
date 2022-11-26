@@ -9,8 +9,8 @@ class CustomTheme {
   static final customtheme = {
     Tema.lightTema: ThemeData(
       brightness: Brightness.light,
-      primaryColor: kPlainWhite,
-      backgroundColor: kPlainWhite,
+      primaryColor: kAquaGreen,
+      backgroundColor: kLightGrey,
       primarySwatch: white,
       textTheme: const TextTheme(
         headline1: TextStyle(color: kPlainBlack),
