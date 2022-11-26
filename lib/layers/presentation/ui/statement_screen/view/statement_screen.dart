@@ -3,8 +3,8 @@ import 'package:zelenbank/core/injector/injector.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/app_bar_method.dart';
-import 'package:zelenbank/layers/presentation/ui/statement_screen/components/custom_timeline_divider_widget.dart';
-import 'package:zelenbank/layers/presentation/ui/statement_screen/components/custom_timeline_widget.dart';
+import 'package:zelenbank/layers/presentation/ui/statement_screen/components/timeline_divider_widget.dart';
+import 'package:zelenbank/layers/presentation/ui/statement_screen/components/transaction_card_widget.dart';
 
 class StatementScreen extends StatefulWidget {
   StatementScreen({super.key});
@@ -86,48 +86,15 @@ class _StatementScreenState extends State<StatementScreen> {
                   shrinkWrap: true,
                   itemCount: transactionsList.length,
                   itemBuilder: (context, index) {
-                    return CustomTimelineWidget(
+                    return TransactionCardWidget(
                         transactionEntity: transactionsList[index]);
                   },
                   separatorBuilder: (context, index) {
-                    return CustomTimelineDividerWidget();
+                    return TimelineDividerWidget();
                   },
                 );
               },
             ),
-            // CustomTimelineWidget(
-            //   transactionEntity: TransactionEntity(
-            //     id: 'ABC',
-            //     amount: 1000,
-            //     createdAt: DateTime.now(),
-            //     transactionType: 'IN',
-            //     description: 'Transferência realizada',
-            //     targetName: 'David Bond',
-            //   ),
-            // ),
-            // CustomTimelineDividerWidget(),
-            // CustomTimelineWidget(
-            //   transactionEntity: TransactionEntity(
-            //     id: 'ABC',
-            //     amount: 1000,
-            //     createdAt: DateTime.now(),
-            //     transactionType: 'PIXCASHIN',
-            //     description: 'Transferência PIX recebida',
-            //     targetName: 'Laura Caspari',
-            //   ),
-            // ),
-            // CustomTimelineDividerWidget(),
-            // CustomTimelineWidget(
-            //   transactionEntity: TransactionEntity(
-            //     id: 'ABC',
-            //     amount: 1000,
-            //     createdAt: DateTime.now(),
-            //     transactionType: 'PIXCASHOUT',
-            //     description: 'Transferência PIX recebida',
-            //     targetName: 'Laura Caspari',
-            //   ),
-            // ),
-            // CustomTimelineDividerWidget(),
           ],
         ),
       ),
