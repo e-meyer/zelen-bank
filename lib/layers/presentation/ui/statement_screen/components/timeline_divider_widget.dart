@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/constants/colors_constants.dart';
 
-class CustomTimelineDividerWidget extends StatelessWidget {
-  const CustomTimelineDividerWidget({super.key});
+class TimelineDividerWidget extends StatelessWidget {
+  const TimelineDividerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
