@@ -27,7 +27,7 @@ class _TransactionListBuilderState extends State<TransactionListBuilder> {
             transactionController.transactionList;
         if (transactionsList.isNotEmpty) {
           return ListView.separated(
-            physics: const BouncingScrollPhysics(),
+            physics: BouncingScrollPhysics(),
             shrinkWrap: true,
             itemCount: transactionsList.length,
             itemBuilder: (context, index) {
@@ -35,13 +35,13 @@ class _TransactionListBuilderState extends State<TransactionListBuilder> {
                   transactionEntity: transactionsList[index]);
             },
             separatorBuilder: (context, index) {
-              return const TimelineDividerWidget();
+              return TimelineDividerWidget();
             },
           );
         }
         return ListView.separated(
           shrinkWrap: true,
-          itemBuilder: (context, index) => const TransactionLoadingWidget(),
+          itemBuilder: (context, index) => TransactionLoadingWidget(),
           separatorBuilder: (context, index) => const SizedBox(height: 20),
           itemCount: 6,
         );

@@ -10,7 +10,7 @@ class TransactionController extends ChangeNotifier {
   final GetTransactionListUsecase _getTransactionListUsecase;
   final GetCurrentBalanceUsecase _getCurrentBalanceUsecase;
   final GetTransactionByIdUsecase _getTransactionByIdUsecase;
-  final List<TransactionEntity> _transactionList = [];
+  List<TransactionEntity> _transactionList = [];
   double _balance = 0;
 
   TransactionController(
@@ -36,7 +36,7 @@ class TransactionController extends ChangeNotifier {
   }
 
   bool isReceived(TransactionEntity transaction) {
-    String transactionType = transaction.transactionType;
+    String transactioType = transaction.transactionType;
     return transferInTypes.contains(transaction);
   }
 
