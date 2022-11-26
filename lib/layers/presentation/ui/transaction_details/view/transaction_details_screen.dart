@@ -34,50 +34,52 @@ class TransactionDetails extends StatelessWidget {
               return RepaintBoundary(
                   key: previewContainer,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 9, top: 5),
-                        child: Text(
-                          'Comprovante',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 9, top: 5),
+                          child: Text(
+                            'Comprovante',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 13, right: 13),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Comprovante'),
-                              Text('Tipo de Movimentação'),
-                              Text(transactionTypeMap[data.transactionType]!),
-                              Text('Valor'),
-                              Text('R\$${data.amount.toString()}'),
-                              TransactionType(
-                                transactionController: _transactionController,
-                                data: data,
-                              ),
-                              Text(
-                                data.targetName,
-                                style: const TextStyle(
-                                  height: 2,
-                                ),
-                              ),
-                              BankName(data.bankName),
-                              Text('Data/Hora'),
-                              Text(data.createdAt.toString()),
-                              Authentication(),
-                              data.authentication != null
-                                  ? Text(data.authentication!)
-                                  : Container()
-                            ])),
-                    ElevatedButton(
-                        onPressed: () => shareImage(previewContainer),
-                        child: Text('Compartilhar'))
-                  ]);
+                        Padding(
+                            padding: const EdgeInsets.only(left: 13, right: 13),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Comprovante'),
+                                  Text('Tipo de Movimentação'),
+                                  Text(transactionTypeMap[
+                                      data.transactionType]!),
+                                  Text('Valor'),
+                                  Text('R\$${data.amount.toString()}'),
+                                  TransactionType(
+                                    transactionController:
+                                        _transactionController,
+                                    data: data,
+                                  ),
+                                  Text(
+                                    data.targetName,
+                                    style: const TextStyle(
+                                      height: 2,
+                                    ),
+                                  ),
+                                  BankName(data.bankName),
+                                  Text('Data/Hora'),
+                                  Text(data.createdAt.toString()),
+                                  Authentication(snapshot.data!),
+                                  data.authentication != null
+                                      ? Text(data.authentication!)
+                                      : Container()
+                                ])),
+                        ElevatedButton(
+                            onPressed: () => shareImage(previewContainer),
+                            child: Text('Compartilhar'))
+                      ]));
             } else {
               return const Center(
                 child: CircularProgressIndicator(),
