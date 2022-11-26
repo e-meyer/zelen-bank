@@ -3,13 +3,12 @@ import 'package:zelenbank/core/share_image/share_image.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 import 'package:zelenbank/layers/presentation/ui/common/back_button.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
-import 'package:zelenbank/layers/presentation/ui/common/back_button.dart';
 import '../../../../../core/injector/injector.dart';
 import '../components/authentication.dart';
 import '../components/bank_name.dart';
 import '../components/transaction_type.dart';
 import '../../../../../core/utils/constants/transaction_type_constants.dart'
-    as constants;
+    show transactionTypeMap;
 
 class TransactionDetails extends StatelessWidget {
   final TransactionController _transactionController =
@@ -42,7 +41,7 @@ class TransactionDetails extends StatelessWidget {
                             children: [
                               Text('Comprovante'),
                               Text('Tipo de Movimentação'),
-                              Text(constants.Constants[data.transactionType]!),
+                              Text(transactionTypeMap[data.transactionType]!),
                               Text('Valor'),
                               Text('R\$${data.amount.toString()}'),
                               TransactionType(
