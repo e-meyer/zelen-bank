@@ -11,8 +11,11 @@ class TransactionController extends ChangeNotifier {
   List<TransactionEntity> _transactionList = [];
   late double _balance;
 
-  TransactionController(this._getAllTransactions, this._getCurrentBalance,
-      this._getTransactionById);
+  TransactionController(
+    this._getAllTransactions,
+    this._getCurrentBalance,
+    this._getTransactionById,
+  );
 
   double get balance => _balance;
   List<TransactionEntity> get transactionList => _transactionList;
