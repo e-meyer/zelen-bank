@@ -18,7 +18,10 @@ class TransactionCardWidget extends StatelessWidget {
     final theme = Theme.of(context);
 
     return InkWell(
-      onTap: () {},
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => TransactionDetails(transactionEntity.id))),,
       child: Container(
         color: isTransactionTypePix() ? kLightGrey : kPlainWhite,
         width: screenSize.width,
