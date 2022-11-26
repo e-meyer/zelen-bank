@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:zelenbank/core/injector/injector.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
+import 'package:zelenbank/layers/presentation/ui/common/loading_skeleton.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/app_bar_method.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/timeline_divider_widget.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/transaction_card_widget.dart';
+
+import '../components/transaction_loading_widget.dart';
 
 class StatementScreen extends StatefulWidget {
   StatementScreen({super.key});
@@ -93,17 +96,26 @@ class _StatementScreenState extends State<StatementScreen> {
               builder: (context, child) {
                 final List<TransactionEntity> transactionsList =
                     transactionController.transactionList;
+                if (transactionsList.isNotEmpty) {
+                  return ListView.separated(
+                    physics: BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: transactionsList.length,
+                    itemBuilder: (context, index) {
+                      return TransactionCardWidget(
+                          transactionEntity: transactionsList[index]);
+                    },
+                    separatorBuilder: (context, index) {
+                      return TimelineDividerWidget();
+                    },
+                  );
+                }
                 return ListView.separated(
-                  physics: BouncingScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: transactionsList.length,
-                  itemBuilder: (context, index) {
-                    return TransactionCardWidget(
-                        transactionEntity: transactionsList[index]);
-                  },
-                  separatorBuilder: (context, index) {
-                    return TimelineDividerWidget();
-                  },
+                  itemBuilder: (context, index) => TransactionLoadingWidget(),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 20),
+                  itemCount: 6,
                 );
               },
             ),
