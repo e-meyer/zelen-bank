@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:zelenbank/core/share_image/share_image.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 import 'package:zelenbank/layers/presentation/ui/common/back_button.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
@@ -8,6 +7,7 @@ import 'package:zelenbank/layers/presentation/ui/statement_screen/components/app
 import '../../../../../core/injector/injector.dart';
 import '../components/authentication.dart';
 import '../components/bank_name.dart';
+import '../components/custom_elevated_butom.dart';
 import '../components/transaction_type.dart';
 import '../../../../../core/utils/constants/transaction_type_constants.dart'
     show transactionTypeMap;
@@ -117,22 +117,8 @@ class TransactionDetails extends StatelessWidget {
                               Padding(
                                 padding:
                                     const EdgeInsets.only(top: 80, bottom: 20),
-                                child: ElevatedButton(
-                                    onPressed: () =>
-                                        shareImage(previewContainer),
-                                    style: ElevatedButton.styleFrom(
-                                        shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.zero,
-                                        ),
-                                        backgroundColor:
-                                            Theme.of(context).primaryColor,
-                                        foregroundColor: Theme.of(context)
-                                            .scaffoldBackgroundColor,
-                                        fixedSize: Size(
-                                            MediaQuery.of(context).size.width,
-                                            50),
-                                        shadowColor: Colors.transparent),
-                                    child: const Text('Compartilhar')),
+                                child: customElevatedButtom(
+                                    context, previewContainer),
                               ),
                             ]),
                       ),

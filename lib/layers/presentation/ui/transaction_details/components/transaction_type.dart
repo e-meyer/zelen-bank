@@ -16,6 +16,11 @@ class TransactionType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-        transactionController.isReceived(data) ? 'Recebedor' : 'Pagador');
+      transactionController.isReceived(data) ? 'Recebedor' : 'Pagador',
+      style: const TextStyle(
+        height: 3.5,
+        fontWeight: FontWeight.bold,
+      ),
+    );
   }
 }

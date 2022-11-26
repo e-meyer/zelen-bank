@@ -7,6 +7,12 @@ class Authentication extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text('Autenticação');
+    return const Text(
+      'Autenticação',
+      style: TextStyle(
+        height: 3.5,
+        fontWeight: FontWeight.bold,
+      ),
+    );
   }
 }
