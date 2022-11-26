@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:zelenbank/core/share_image/share_image.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 import 'package:zelenbank/layers/presentation/ui/common/back_button.dart';
@@ -100,7 +101,8 @@ class TransactionDetails extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                data.createdAt.toString(),
+                                DateFormat('d MMM yyyy - HH:mm:ss')
+                                    .format(data.createdAt),
                                 style: const TextStyle(
                                   height: 1.7,
                                 ),
