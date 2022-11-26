@@ -46,12 +46,15 @@ class StatementScreen extends StatelessWidget {
               ],
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(
               horizontal: 14.0,
               vertical: 20,
             ),
-            child: Text('Suas movimentações'),
+            child: Text(
+              'Suas movimentações',
+              style: theme.textTheme.headline2,
+            ),
           ),
           CustomTimelineWidget(
             transactionEntity: TransactionEntity(
@@ -59,8 +62,8 @@ class StatementScreen extends StatelessWidget {
               amount: 1000,
               createdAt: DateTime.now(),
               transactionType: 'IN',
-              description: 'ALALA',
-              targetName: 'ALALALALA',
+              description: 'Transferência realizada',
+              targetName: 'David Bond',
             ),
           ),
           CustomTimelineDividerWidget(),
@@ -71,9 +74,21 @@ class StatementScreen extends StatelessWidget {
               createdAt: DateTime.now(),
               transactionType: 'PIXCASHIN',
               description: 'Transferência PIX recebida',
-              targetName: 'ALALALALA',
+              targetName: 'Laura Caspari',
             ),
           ),
+          CustomTimelineDividerWidget(),
+          CustomTimelineWidget(
+            transactionEntity: TransactionEntity(
+              id: 'ABC',
+              amount: 1000,
+              createdAt: DateTime.now(),
+              transactionType: 'PIXCASHOUT',
+              description: 'Transferência PIX recebida',
+              targetName: 'Laura Caspari',
+            ),
+          ),
+          CustomTimelineDividerWidget(),
         ],
       ),
     );

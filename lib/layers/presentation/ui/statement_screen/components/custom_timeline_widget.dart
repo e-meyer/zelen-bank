@@ -66,14 +66,28 @@ class CustomTimelineWidget extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(transactionEntity.description),
-                              Text(transactionEntity.targetName),
-                              Text('R\$ ${transactionEntity.amount}')
+                              Text(
+                                transactionEntity.description,
+                                style: theme.textTheme.headline1,
+                              ),
+                              SizedBox(height: 6),
+                              Text(
+                                transactionEntity.targetName,
+                                style: theme.textTheme.subtitle1,
+                              ),
+                              SizedBox(height: 6),
+                              Text(
+                                isTransactionSent()
+                                    ? '- ${transactionFormattedValue()}'
+                                    : transactionFormattedValue(),
+                                style: theme.textTheme.caption,
+                              )
                             ],
                           ),
                         ),
                         Text(
                           '${transactionEntity.createdAt.day}/${transactionEntity.createdAt.month}',
+                          style: theme.textTheme.subtitle2,
                         ),
                       ],
                     ),
@@ -83,14 +97,14 @@ class CustomTimelineWidget extends StatelessWidget {
             ),
             isTransactionTypePix()
                 ? Padding(
-                    padding: const EdgeInsets.only(top: 12, right: 10),
+                    padding: const EdgeInsets.only(top: 12, right: 12),
                     child: Align(
                       alignment: Alignment.topRight,
                       child: Container(
                         height: 22,
                         width: 50,
                         color: theme.primaryColor,
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'Pix',
                             style: TextStyle(
@@ -110,7 +124,15 @@ class CustomTimelineWidget extends StatelessWidget {
     );
   }
 
+  String transactionFormattedValue() {
+    return 'R\$ ${transactionEntity.amount.toStringAsFixed(2).replaceAll('.', ',')}';
+  }
+
+  bool isTransactionSent() {
+    return transactionEntity.transactionType.contains('OUT');
+  }
+
   bool isTransactionTypePix() {
-    return transactionEntity.transactionType.contains('PIXCASHIN');
+    return transactionEntity.transactionType.contains('PIX');
   }
 }
