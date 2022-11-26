@@ -8,6 +8,8 @@ import '../../../../../core/injector/injector.dart';
 import '../components/authentication.dart';
 import '../components/bank_name.dart';
 import '../components/transaction_type.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import '../../../../../core/utils/constants/transaction_type_constants.dart'
     show transactionTypeMap;
 import 'package:zelenbank/core/utils/constants/colors_constants.dart'
@@ -70,7 +72,8 @@ class TransactionDetails extends StatelessWidget {
                                   ),
                                   BankName(data.bankName),
                                   Text('Data/Hora'),
-                                  Text(data.createdAt.toString()),
+                                  Text(DateFormat('d MMM yyyy - HH:mm:ss')
+                                      .format(data.createdAt)),
                                   Authentication(snapshot.data!),
                                   data.authentication != null
                                       ? Text(data.authentication!)
