@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zelenbank/core/injector/injector.dart';
+import 'package:zelenbank/layers/presentation/controllers/balance_controller.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/app_bar_method.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/current_balance_section.dart';
@@ -15,6 +16,8 @@ class StatementScreen extends StatefulWidget {
 class _StatementScreenState extends State<StatementScreen> {
   final TransactionController transactionController =
       serviceLocator.get<TransactionController>();
+  final BalanceController balanceController =
+      serviceLocator.get<BalanceController>();
 
   final ScrollController _scrollController = ScrollController();
 
@@ -24,7 +27,7 @@ class _StatementScreenState extends State<StatementScreen> {
   void initState() {
     super.initState();
     transactionController.getTransactionsList(pageController);
-    transactionController.fetchBalance();
+    balanceController.fetchBalance();
     _scrollController.addListener(() {
       if (_scrollController.position.atEdge) {
         bool isBottom = _scrollController.position.pixels != 0;

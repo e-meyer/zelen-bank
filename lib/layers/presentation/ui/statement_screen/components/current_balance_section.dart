@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zelenbank/core/injector/injector.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
-import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
+import 'package:zelenbank/layers/presentation/controllers/balance_controller.dart';
 
 class CurrentBalanceSection extends StatefulWidget {
   const CurrentBalanceSection({super.key});
@@ -12,8 +12,8 @@ class CurrentBalanceSection extends StatefulWidget {
 
 class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
   final ValueNotifier<bool> balance = ValueNotifier<bool>(true);
-  final TransactionController _transactionController =
-      serviceLocator.get<TransactionController>();
+  final BalanceController balanceController =
+      serviceLocator.get<BalanceController>();
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +60,11 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
                 ),
               ),
               AnimatedBuilder(
-                animation: _transactionController,
+                animation: balanceController,
                 builder: (context, child) {
                   return Text(balance.value
-                      ? _transactionController.balance.toString()
-                      : '      ');
+                      ? balanceController.balance.toString()
+                      : '');
                 },
               )
             ],

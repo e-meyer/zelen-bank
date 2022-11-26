@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 
-// ignore: must_be_immutable
 class TransactionDto extends TransactionEntity {
   String id;
   DateTime createdAt;
