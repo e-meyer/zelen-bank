@@ -24,10 +24,11 @@ class _StatementScreenState extends State<StatementScreen> {
   void initState() {
     super.initState();
     transactionController.getTransactionsList(pageController);
+    transactionController.fetchBalance();
     _scrollController.addListener(() {
       if (_scrollController.position.atEdge) {
-        bool isTop = _scrollController.position.pixels == 0;
-        if (!isTop) {
+        bool isBottom = _scrollController.position.pixels != 0;
+        if (isBottom) {
           pageController++;
           transactionController.getTransactionsList(pageController);
         }

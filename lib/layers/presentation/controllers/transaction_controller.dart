@@ -11,7 +11,7 @@ class TransactionController extends ChangeNotifier {
   final GetCurrentBalanceUsecase _getCurrentBalanceUsecase;
   final GetTransactionByIdUsecase _getTransactionByIdUsecase;
   List<TransactionEntity> _transactionList = [];
-  late double _balance;
+  double _balance = 0;
 
   TransactionController(
     this._getTransactionListUsecase,
