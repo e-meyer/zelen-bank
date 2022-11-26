@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class BankName extends StatelessWidget {
   String? bankName;
   BankName(this.bankName, {Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class BankName extends StatelessWidget {
     if (bankName != null) {
       return Expanded(
           child: Column(children: [
-        Text("Instituição bancária"),
+        const Text("Instituição bancária"),
         Text(bankName!),
       ]));
     } else {

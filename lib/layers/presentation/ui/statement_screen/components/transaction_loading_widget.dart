@@ -15,7 +15,7 @@ class TransactionLoadingWidget extends StatelessWidget {
             width: 16,
             radius: 30,
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Expanded(
             child: Row(
               children: [
@@ -59,7 +59,7 @@ class TransactionLoadingWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                LoadingSkeleton(
+                const LoadingSkeleton(
                   height: 16,
                   width: 40,
                   radius: 30,
