@@ -27,8 +27,8 @@ final GetIt serviceLocator = GetIt.I;
 
 Future<void> setupLocator() async {
   // Usecases
-  serviceLocator.registerLazySingletonAsync<GetCurrentBalanceUsecase>(
-      () => Future<GetCurrentBalanceUsecaseImpl>(serviceLocator()));
+  serviceLocator.registerLazySingleton<GetCurrentBalanceUsecase>(
+      () => GetCurrentBalanceUsecaseImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<GetTransactionByIdUsecase>(
       () => GetTransactionByIdUsecaseImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<GetTransactionListUsecase>(
