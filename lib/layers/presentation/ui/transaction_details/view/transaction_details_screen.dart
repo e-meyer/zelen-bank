@@ -36,58 +36,70 @@ class TransactionDetails extends StatelessWidget {
               return RepaintBoundary(
                   key: previewContainer,
                   child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(left: 9, top: 5),
-                          child: Text(
-                            'Comprovante',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 9, top: 5),
+                        child: Text(
+                          'Comprovante',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Padding(
-                            padding: const EdgeInsets.only(left: 13, right: 13),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Comprovante'),
-                                  Text('Tipo de Movimentação'),
-                                  Text(transactionTypeMap[
-                                      data.transactionType]!),
-                                  Text('Valor'),
-                                  Text('R\$${data.amount.toString()}'),
-                                  TransactionType(
-                                    transactionController:
-                                        _transactionController,
-                                    data: data,
-                                  ),
-                                  Text(
-                                    data.targetName,
-                                    style: const TextStyle(
-                                      height: 2,
-                                    ),
-                                  ),
-                                  BankName(data.bankName),
-                                  Text('Data/Hora'),
-                                  Text(DateFormat('d MMM yyyy - HH:mm:ss')
-                                      .format(data.createdAt)),
-                                  Authentication(snapshot.data!),
-                                  data.authentication != null
-                                      ? Text(data.authentication!)
-                                      : Container()
-                                ])),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.25,
-                        ),
-                        Padding(
-                            padding: const EdgeInsets.only(bottom: 20),
-                            child: ElevatedButton(
-                                onPressed: () => shareImage(previewContainer),
-                                child: Text('Compartilhar')))
-                      ]));
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 13, right: 13),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Comprovante'),
+                              Text('Tipo de Movimentação'),
+                              Text(transactionTypeMap[data.transactionType]!),
+                              Text('Valor'),
+                              Text('R\$${data.amount.toString()}'),
+                              TransactionType(
+                                transactionController: _transactionController,
+                                data: data,
+                              ),
+                              Text(
+                                data.targetName,
+                                style: const TextStyle(
+                                  height: 2,
+                                ),
+                              ),
+                              BankName(data.bankName),
+                              Text('Data/Hora'),
+                              Text(DateFormat('d MMM yyyy - HH:mm:ss')
+                                  .format(data.createdAt)),
+                              Authentication(snapshot.data!),
+                              data.authentication != null
+                                  ? Text(data.authentication!)
+                                  : Container(),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 80, bottom: 20),
+                                child: ElevatedButton(
+                                    onPressed: () =>
+                                        shareImage(previewContainer),
+                                    style: ElevatedButton.styleFrom(
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.zero,
+                                        ),
+                                        backgroundColor:
+                                            Theme.of(context).primaryColor,
+                                        foregroundColor: Theme.of(context)
+                                            .scaffoldBackgroundColor,
+                                        fixedSize: Size(
+                                            MediaQuery.of(context).size.width,
+                                            50),
+                                        shadowColor: Colors.transparent),
+                                    child: const Text('Compartilhar')),
+                              ),
+                            ]),
+                      ),
+                    ],
+                  ));
             } else {
               return const Center(
                 child: CircularProgressIndicator(),
