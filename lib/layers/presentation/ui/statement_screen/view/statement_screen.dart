@@ -42,7 +42,7 @@ class _StatementScreenState extends State<StatementScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      appBar: appBarMethod(),
+      appBar: appBarMethod(titulo: 'Extratos'),
       body: SingleChildScrollView(
         controller: _scrollController,
         physics: const PageScrollPhysics(),
