@@ -1,5 +1,5 @@
-import 'package:zelenbank/layers/data/datasources/dtos/transaction_dto.dart';
+import '../../domain/entities/transaction_entity.dart';
 
 abstract class GetTransactionListDatasource {
-  Future<List<TransactionDto>> call(int pageNumber);
+  Future<List<TransactionEntity>> call(int pageNumber);
 }

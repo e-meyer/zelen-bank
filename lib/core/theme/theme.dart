@@ -2,21 +2,45 @@ import 'package:flutter/material.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 
 enum Tema {
-  lightTema,
+  lightTheme,
 }
 
 class CustomTheme {
   static final customtheme = {
-    Tema.lightTema: ThemeData(
+    Tema.lightTheme: ThemeData(
       brightness: Brightness.light,
       primaryColor: kAquaGreen,
       backgroundColor: kLightGrey,
+      scaffoldBackgroundColor: kPlainWhite,
       primarySwatch: white,
       textTheme: const TextTheme(
-        headline1: TextStyle(color: kPlainBlack),
-        headline2: TextStyle(color: kPlainBlack),
-        bodyText2: TextStyle(color: kPlainBlack),
-        subtitle1: TextStyle(color: kPlainBlack),
+        headline1: TextStyle(
+          fontWeight: FontWeight.w500,
+          color: kPlainBlack,
+          fontSize: 15,
+        ),
+        headline2: TextStyle(
+          letterSpacing: -0.5,
+          color: kPlainBlack,
+          fontWeight: FontWeight.w600,
+          fontSize: 15,
+        ),
+        caption: TextStyle(
+          letterSpacing: -0.5,
+          color: kPlainBlack,
+          fontWeight: FontWeight.w600,
+          fontSize: 16,
+        ),
+        subtitle1: TextStyle(
+          color: kSubtitleColor,
+          fontSize: 14,
+        ),
+        subtitle2: TextStyle(
+          letterSpacing: -0.5,
+          fontSize: 15,
+          color: kSubtitleColor,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     ),
   };
