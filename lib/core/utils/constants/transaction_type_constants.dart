@@ -6,4 +6,4 @@ Map<String, String> transactionTypeMap = const {
   'BANKSLIPCASHIN': 'Depósito via boleto',
 };
 
-Set transferInTypes = {'TRANFERIN', 'PIXCASHIN'};
+Set transferInTypes = {'TRANSFERIN', 'PIXCASHIN'};
