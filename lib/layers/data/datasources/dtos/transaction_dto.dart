@@ -10,6 +10,7 @@ class TransactionDto extends TransactionEntity {
   String description;
   String targetName;
   String? bankName;
+  String? authentication;
 
   TransactionDto({
     required this.id,
@@ -19,6 +20,7 @@ class TransactionDto extends TransactionEntity {
     required this.description,
     required this.targetName,
     this.bankName,
+    this.authentication,
   }) : super(
           id: id,
           createdAt: createdAt,
@@ -27,6 +29,7 @@ class TransactionDto extends TransactionEntity {
           description: description,
           targetName: targetName,
           bankName: bankName,
+          authentication: authentication,
         );
 
   factory TransactionDto.fromMap(Map<dynamic, dynamic> map) {
@@ -38,6 +41,9 @@ class TransactionDto extends TransactionEntity {
       description: map['description'] as String,
       targetName: map['from'] ?? map['to'],
       bankName: map['bankName'] != null ? map['bankName'] as String : null,
+      authentication: map['authentication'] != null
+          ? map['authentication'] as String
+          : null,
     );
   }
 
