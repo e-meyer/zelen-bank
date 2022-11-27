@@ -2,18 +2,30 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zelenbank/core/http_client/http_client.dart';
 import 'package:zelenbank/core/http_client/http_client_interface.dart';
+import 'package:zelenbank/layers/data/datasources/change_balance_visibility_datasource.dart';
+import 'package:zelenbank/layers/data/datasources/get_balance_visibility_datasource.dart';
 import 'package:zelenbank/layers/data/datasources/get_current_balance_datasource.dart';
 import 'package:zelenbank/layers/data/datasources/get_transaction_by_id_datasource.dart';
 import 'package:zelenbank/layers/data/datasources/get_transaction_list_datasource.dart';
+import 'package:zelenbank/layers/data/datasources/local/change_balance_visibility_datasource_impl.dart';
+import 'package:zelenbank/layers/data/datasources/local/get_balance_visibility_datasource_impl.dart';
 import 'package:zelenbank/layers/data/datasources/remote/get_current_balance_remote_datasource_impl.dart';
 import 'package:zelenbank/layers/data/datasources/remote/get_transaction_by_id_remote_datasource_impl.dart';
 import 'package:zelenbank/layers/data/datasources/remote/get_transaction_list_remote_datasource_impl.dart';
+import 'package:zelenbank/layers/data/repositories/change_balance_visibility_repository_impl.dart';
+import 'package:zelenbank/layers/data/repositories/get_balance_visibility_resository_impl.dart';
 import 'package:zelenbank/layers/data/repositories/get_current_balance_repository_impl.dart';
 import 'package:zelenbank/layers/data/repositories/get_transaction_by_id_repository_impl.dart';
 import 'package:zelenbank/layers/data/repositories/get_transaction_list_repository_impl.dart';
+import 'package:zelenbank/layers/domain/repositories/change_balance_visibility_repository.dart';
+import 'package:zelenbank/layers/domain/repositories/get_balance_visibility_resository.dart';
 import 'package:zelenbank/layers/domain/repositories/get_current_balance_repository.dart';
 import 'package:zelenbank/layers/domain/repositories/get_transaction_by_id_repository.dart';
 import 'package:zelenbank/layers/domain/repositories/get_transaction_list_repository.dart';
+import 'package:zelenbank/layers/domain/usecases/change_balance_visibility/change_balance_visibility_usecase.dart';
+import 'package:zelenbank/layers/domain/usecases/change_balance_visibility/change_balance_visibility_usecase_impl.dart';
+import 'package:zelenbank/layers/domain/usecases/get_balance_visibility/get_balance_visibility_usecase.dart';
+import 'package:zelenbank/layers/domain/usecases/get_balance_visibility/get_balance_visibility_usecase_impl.dart';
 import 'package:zelenbank/layers/domain/usecases/get_current_balance_usecase/get_current_balance_usecase.dart';
 import 'package:zelenbank/layers/domain/usecases/get_current_balance_usecase/get_current_balance_usecase_impl.dart';
 import 'package:zelenbank/layers/domain/usecases/get_transaction_by_id/get_transaction_by_id_usecase.dart';
@@ -34,6 +46,10 @@ Future<void> setupLocator() async {
       () => GetTransactionByIdUsecaseImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<GetTransactionListUsecase>(
       () => GetTransactionListUsecaseImpl(serviceLocator()));
+  serviceLocator.registerLazySingleton<ChangeBalanceVisibilityUsecase>(
+      () => ChangeBalanceVisibilityUsecaseImpl(serviceLocator()));
+  serviceLocator.registerLazySingleton<GetBalanceVisibilityUsecase>(
+      () => GetBalanceVisibilityUsecaseImpl(serviceLocator()));
 
   // Repositories
   serviceLocator.registerLazySingleton<GetCurrentBalanceRepository>(
@@ -42,6 +58,10 @@ Future<void> setupLocator() async {
       () => GetTransactionByIdRepositoryImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<GetTransactionListRepository>(
       () => GetTransactionListRepositoryImpl(serviceLocator()));
+  serviceLocator.registerLazySingleton<ChangeBalanceVisibilityRepository>(
+      () => ChangeBalanceVisibilityRepositoryImpl(serviceLocator()));
+  serviceLocator.registerLazySingleton<GetBalanceVisibilityRepository>(
+      () => GetBalanceVisibilityRepositoryImpl(serviceLocator()));
 
   // Datasources
   serviceLocator.registerLazySingleton<GetCurrentBalanceDatasource>(
@@ -50,10 +70,16 @@ Future<void> setupLocator() async {
       () => GetTransactionByIdRemoteDatasourceImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<GetTransactionListDatasource>(
       () => GetTransactionListRemoteDatasourceImpl(serviceLocator()));
+  serviceLocator.registerLazySingleton<ChangeBalanceVisibilityDatasource>(
+      () => ChangeBalanceVisibilityDatasourceImpl(serviceLocator()));
+  serviceLocator.registerLazySingleton<GetBalanceVisibilityDatasource>(
+      () => GetBalanceVisibilityDatasourceImpl(serviceLocator()));
 
   // Controllers
   serviceLocator.registerLazySingleton<BalanceController>(
     () => BalanceController(
+      serviceLocator(),
+      serviceLocator(),
       serviceLocator(),
     ),
   );
@@ -64,10 +90,6 @@ Future<void> setupLocator() async {
     ),
   );
 
-  // Local
-  serviceLocator.registerLazySingletonAsync<SharedPreferences>(
-      () => SharedPreferences.getInstance());
-
   // Remote
   serviceLocator.registerLazySingleton<http.Client>(
     () => http.Client(),
@@ -75,4 +97,9 @@ Future<void> setupLocator() async {
   serviceLocator.registerLazySingleton<IHttpClient>(
     () => HttpClient(serviceLocator()),
   );
+
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  // Local
+  serviceLocator
+      .registerLazySingleton<SharedPreferences>(() => sharedPreferences);
 }

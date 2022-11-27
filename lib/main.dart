@@ -4,9 +4,10 @@ import 'package:zelenbank/layers/presentation/ui/statement_screen/view/statement
 import 'core/injector/injector.dart';
 import 'core/theme/theme.dart';
 
-void main() {
-  setupLocator();
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await setupLocator();
+
   runApp(const MyApp());
 }
 
