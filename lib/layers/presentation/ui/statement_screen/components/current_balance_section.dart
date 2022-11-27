@@ -51,10 +51,7 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
                   ),
                   IconButton(
                     onPressed: () {
-                      // balance.value = !balance.value;
-                      // print(balanceController.isBalanceVisible);
                       balanceController.changeBalanceVisibility();
-                      // print(balanceController.isBalanceVisible);
                     },
                     icon: AnimatedBuilder(
                       animation: balanceController,
@@ -75,14 +72,41 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
             AnimatedBuilder(
               animation: balanceController,
               builder: (context, child) {
-                return Text(balanceController.isBalanceVisible
-                    ? balanceController.balance.toString()
-                    : '');
+                return balanceController.isBalanceVisible
+                    ? SizedBox(
+                        height: 40,
+                        child: RichText(
+                          text: TextSpan(
+                            text: 'R\$ ',
+                            style: theme.textTheme.caption,
+                            children: [
+                              TextSpan(
+                                text: transactionFormattedValue(),
+                                style: theme.textTheme.headline4,
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    : SizedBox(
+                        height: 40,
+                        width: screenSize.width * 0.31,
+                        child: Center(
+                          child: Container(
+                            height: 2,
+                            color: theme.primaryColor,
+                          ),
+                        ),
+                      );
               },
             )
           ],
         ),
       ),
     );
+  }
+
+  String transactionFormattedValue() {
+    return balanceController.balance.toStringAsFixed(2).replaceAll('.', ',');
   }
 }
