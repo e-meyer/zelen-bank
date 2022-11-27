@@ -10,8 +10,6 @@ class GetBalanceVisibilityDatasourceImpl
   @override
   Future<bool> call() async {
     if (sharedPreferences.containsKey(kSharedPreferencesKey)) {
-      print('fdp');
-      print(sharedPreferences.getBool(kSharedPreferencesKey)!);
       return await sharedPreferences.getBool(kSharedPreferencesKey)!;
     }
     await sharedPreferences.setBool(kSharedPreferencesKey, true);
