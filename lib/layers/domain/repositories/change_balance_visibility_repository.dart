@@ -1,3 +1,3 @@
 abstract class ChangeBalanceVisibilityRepository {
-  Future<void> call();
+  Future<bool> call(bool isBalanceVisible);
 }

@@ -9,7 +9,7 @@ class ChangeBalanceVisibilityRepositoryImpl
       this._changeBalanceVisibilityDatasource);
 
   @override
-  Future<void> call() async {
-    await _changeBalanceVisibilityDatasource();
+  Future<bool> call(bool isBalanceVisible) async {
+    return await _changeBalanceVisibilityDatasource(isBalanceVisible);
   }
 }
