@@ -1,19 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 import 'package:zelenbank/core/utils/constants/route_constants.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/view/statement_screen.dart';
 import 'package:zelenbank/layers/presentation/ui/transaction_details/view/transaction_details_screen.dart';
 
 class RouteGenerator {
-  Route? onGenerateRoute(RouteSettings routeSettings) {
-    switch (routeSettings.name) {
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    final args = settings.arguments;
+    switch (settings.name) {
       case kStatementScreen:
         return MaterialPageRoute(builder: (_) => const StatementScreen());
       case kTransactionDetailsScreen:
         return MaterialPageRoute(
-            builder: (_) =>
-                TransactionDetails(routeSettings.arguments.toString()));
+            builder: (_) => TransactionDetails(args.toString()));
+
       default:
-        return null;
+        return _errorRoute();
     }
+  }
+
+  static Route<dynamic> _errorRoute() {
+    return MaterialPageRoute(builder: (_) {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: kAquaGreen,
+          title: const Text('Error'),
+        ),
+        body: const Center(
+          child: Text('ERROR'),
+        ),
+      );
+    });
   }
 }

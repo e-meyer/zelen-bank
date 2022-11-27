@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:zelenbank/core/injector/injector.dart';
-import 'package:zelenbank/layers/presentation/controllers/balance_controller.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/app_bar_method.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/current_balance_section.dart';

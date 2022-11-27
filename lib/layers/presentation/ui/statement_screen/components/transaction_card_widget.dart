@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:zelenbank/core/utils/constants/route_constants.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/custom_timeline_widget.dart';
-import 'package:zelenbank/layers/presentation/ui/transaction_details/view/transaction_details_screen.dart';
 
 import '../../../../../core/utils/constants/colors_constants.dart';
 
@@ -21,10 +21,11 @@ class TransactionCardWidget extends StatelessWidget {
     final theme = Theme.of(context);
 
     return InkWell(
-      onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => TransactionDetails(transactionEntity.id))),
+      onTap: () => Navigator.pushNamed(
+        context,
+        kTransactionDetailsScreen,
+        arguments: transactionEntity.id,
+      ),
       child: Container(
         color: isTransactionTypePix() ? kLightGrey : kPlainWhite,
         width: screenSize.width,
