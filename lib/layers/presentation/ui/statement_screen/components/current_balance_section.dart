@@ -11,9 +11,15 @@ class CurrentBalanceSection extends StatefulWidget {
 }
 
 class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
-  final ValueNotifier<bool> balance = ValueNotifier<bool>(true);
   final BalanceController balanceController =
       serviceLocator.get<BalanceController>();
+
+  @override
+  void initState() {
+    balanceController.getBalanceVisibility();
+    super.initState();
+    balanceController.fetchBalance();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,49 +32,55 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
       width: double.infinity,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: ValueListenableBuilder(
-          valueListenable: balance,
-          builder: (context, value, _) => Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: screenSize.width * 0.35,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Seu saldo',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: kPlainBlack,
-                        fontWeight: FontWeight.w500,
-                      ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: screenSize.width * 0.35,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Seu saldo',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: kPlainBlack,
+                      fontWeight: FontWeight.w500,
                     ),
-                    IconButton(
-                      onPressed: () {
-                        balance.value = !balance.value;
-                      },
-                      icon: Icon(
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      // balance.value = !balance.value;
+                      // print(balanceController.isBalanceVisible);
+                      balanceController.changeBalanceVisibility();
+                      // print(balanceController.isBalanceVisible);
+                    },
+                    icon: AnimatedBuilder(
+                      animation: balanceController,
+                      builder: (context, child) {
+                        return Icon(
+                          balanceController.isBalanceVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
                           color: theme.primaryColor,
                           size: 20,
-                          balance.value
-                              ? Icons.visibility
-                              : Icons.visibility_off),
+                        );
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              AnimatedBuilder(
-                animation: balanceController,
-                builder: (context, child) {
-                  return Text(balance.value
-                      ? balanceController.balance.toString()
-                      : '');
-                },
-              )
-            ],
-          ),
+            ),
+            AnimatedBuilder(
+              animation: balanceController,
+              builder: (context, child) {
+                return Text(balanceController.isBalanceVisible
+                    ? balanceController.balance.toString()
+                    : '');
+              },
+            )
+          ],
         ),
       ),
     );

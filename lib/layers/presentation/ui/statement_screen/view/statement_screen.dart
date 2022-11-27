@@ -16,8 +16,6 @@ class StatementScreen extends StatefulWidget {
 class _StatementScreenState extends State<StatementScreen> {
   final TransactionController transactionController =
       serviceLocator.get<TransactionController>();
-  final BalanceController balanceController =
-      serviceLocator.get<BalanceController>();
 
   final ScrollController _scrollController = ScrollController();
 
@@ -27,7 +25,6 @@ class _StatementScreenState extends State<StatementScreen> {
   void initState() {
     super.initState();
     transactionController.getTransactionsList(pageController);
-    balanceController.fetchBalance();
     _scrollController.addListener(() {
       if (_scrollController.position.atEdge) {
         bool isBottom = _scrollController.position.pixels != 0;
