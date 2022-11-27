@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 import 'package:zelenbank/layers/presentation/ui/common/back_button.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/app_bar_method.dart';
 import '../../../../../core/injector/injector.dart';
-import '../../statement_screen/components/text_modificad.dart';
-import '../components/authentication.dart';
-import '../components/bank_name.dart';
-import '../components/custom_elevated_butom.dart';
-import '../components/transaction_type.dart';
+import '../components/share_button_widget.dart';
+import '../components/transaction_details_field_widget.dart';
 import '../../../../../core/utils/constants/transaction_type_constants.dart'
     show transactionTypeMap;
 
@@ -26,86 +24,103 @@ class TransactionDetails extends StatelessWidget {
     return Scaffold(
       appBar: appBarMethod(titulo: '', leading: const CustomBackButton()),
       body: FutureBuilder<TransactionEntity>(
-          future: _transactionController.getById(id),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              TransactionEntity data = snapshot.data!;
-              return RepaintBoundary(
-                  key: previewContainer,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 9, top: 5),
-                        child: textModificad(
-                            texto: 'Comprovante',
-                            bold: FontWeight.bold,
-                            size: 16),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 13),
-                        child: Column(
+        future: _transactionController.getById(id),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            TransactionEntity data = snapshot.data!;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RepaintBoundary(
+                      key: previewContainer,
+                      child: Container(
+                        color: kPlainWhite,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              const Text(
+                                'Comprovante',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                               const Divider(
                                 thickness: 2.2,
                                 height: 25,
                               ),
-                              textModificad(
-                                  texto: 'Tipo de Movimentação',
-                                  bold: FontWeight.bold,
-                                  height: 2),
-                              textModificad(
-                                  texto:
-                                      transactionTypeMap[data.transactionType]!,
-                                  height: 1.7),
-                              textModificad(
-                                  texto: 'Valor',
-                                  bold: FontWeight.bold,
-                                  height: 3.5),
-                              textModificad(
-                                  texto: 'R\$${data.amount.toString()}',
-                                  height: 1.7),
-                              const SizedBox(
-                                height: 20,
+                              TransactionDetailsFieldWidget(
+                                fieldTitle: 'Tipo de movimentação',
+                                fieldDescription:
+                                    transactionTypeMap[data.transactionType]!,
                               ),
-                              TransactionType(
-                                transactionController: _transactionController,
-                                data: data,
+                              TransactionDetailsFieldWidget(
+                                fieldTitle: 'Valor',
+                                fieldDescription:
+                                    'R\$ ${transactionFormattedValue(data.amount)}',
                               ),
-                              textModificad(texto: data.targetName, height: 2),
-                              BankName(data.bankName),
-                              textModificad(
-                                  texto: 'Data/Hora',
-                                  bold: FontWeight.bold,
-                                  height: 3.5),
-                              textModificad(
-                                  texto: DateFormat('d MMM yyyy - HH:mm:ss')
-                                      .format(data.createdAt),
-                                  height: 1.7),
-                              const SizedBox(
-                                height: 20,
+                              TransactionDetailsFieldWidget(
+                                fieldTitle:
+                                    _transactionController.isReceived(data)
+                                        ? 'Pagador'
+                                        : 'Recebedor',
+                                fieldDescription: data.targetName,
                               ),
-                              const Authentication(),
-                              data.authentication != null
-                                  ? Text(data.authentication!)
+                              data.bankName != null
+                                  ? TransactionDetailsFieldWidget(
+                                      fieldTitle: 'Instituição bancária',
+                                      fieldDescription: data.bankName!,
+                                    )
                                   : Container(),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 80, bottom: 20),
-                                child: customElevatedButtom(
-                                    context, previewContainer),
+                              TransactionDetailsFieldWidget(
+                                fieldTitle: 'Data/Hora',
+                                fieldDescription:
+                                    DateFormat('d/MM/yyyy - HH:mm:ss')
+                                        .format(data.createdAt),
                               ),
-                            ]),
-                      )
-                    ],
-                  ));
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          }),
+                              TransactionDetailsFieldWidget(
+                                fieldTitle: 'Autenticação',
+                                fieldDescription: data.authentication!,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 8,
+                      ),
+                      child: ShareButtonWidget(
+                        previewContainer: previewContainer,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
     );
+  }
+
+  String transactionFormattedValue(double value) {
+    return value.toStringAsFixed(2).replaceAll('.', ',');
   }
 }
