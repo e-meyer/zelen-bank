@@ -27,7 +27,7 @@ class TransactionController extends ChangeNotifier {
 
   bool isReceived(TransactionEntity transaction) {
     String transactionType = transaction.transactionType;
-    return transferInTypes.contains(transaction);
+    return transferInTypes.contains(transactionType);
   }
 
   Future<TransactionEntity> getById(String id) async {
