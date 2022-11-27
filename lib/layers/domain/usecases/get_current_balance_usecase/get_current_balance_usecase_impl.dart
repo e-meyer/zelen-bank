@@ -7,7 +7,7 @@ class GetCurrentBalanceUsecaseImpl implements GetCurrentBalanceUsecase {
   GetCurrentBalanceUsecaseImpl(this._getCurrentBalanceRepository);
 
   @override
-  Future<double> call() {
-    return _getCurrentBalanceRepository();
+  Future<double> call() async {
+    return await _getCurrentBalanceRepository();
   }
 }
