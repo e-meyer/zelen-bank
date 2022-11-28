@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:zelenbank/layers/domain/repositories/get_current_balance_repository.dart';
@@ -22,7 +23,7 @@ void main() {
   test('Should get a double number from the repository', () async {
     // arrange
     when(() => mockGetCurrentBalanceRepository())
-        .thenAnswer((_) async => tNumber);
+        .thenAnswer((_) async => Right(tNumber));
 
     // act
     final result = await getCurrentBalanceUsecase();
