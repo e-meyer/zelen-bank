@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zelenbank/core/injector/injector.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
-import 'package:zelenbank/layers/presentation/controllers/balance_controller.dart';
+import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
 
 class CurrentBalanceSection extends StatefulWidget {
   const CurrentBalanceSection({super.key});
@@ -11,14 +11,14 @@ class CurrentBalanceSection extends StatefulWidget {
 }
 
 class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
-  final BalanceController balanceController =
-      serviceLocator.get<BalanceController>();
+  final TransactionController balanceController =
+      serviceLocator.get<TransactionController>();
 
   @override
   void initState() {
     balanceController.getBalanceVisibility();
     super.initState();
-    balanceController.fetchBalance();
+    balanceController.getCurrentBalance();
   }
 
   @override

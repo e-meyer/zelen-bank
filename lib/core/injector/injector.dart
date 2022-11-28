@@ -76,15 +76,11 @@ Future<void> setupLocator() async {
       () => GetBalanceVisibilityDatasourceImpl(serviceLocator()));
 
   // Controllers
-  serviceLocator.registerLazySingleton<BalanceController>(
-    () => BalanceController(
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-    ),
-  );
   serviceLocator.registerLazySingleton<TransactionController>(
     () => TransactionController(
+      serviceLocator(),
+      serviceLocator(),
+      serviceLocator(),
       serviceLocator(),
       serviceLocator(),
     ),
