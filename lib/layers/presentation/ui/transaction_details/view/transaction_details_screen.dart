@@ -57,8 +57,7 @@ class TransactionDetails extends StatelessWidget {
                               ),
                               TransactionDetailsFieldWidget(
                                 fieldTitle: 'Tipo de movimentação',
-                                fieldDescription:
-                                    transactionTypeMap[data.transactionType]!,
+                                fieldDescription: data.description,
                               ),
                               TransactionDetailsFieldWidget(
                                 fieldTitle: 'Valor',
