@@ -9,8 +9,6 @@ import 'package:zelenbank/layers/presentation/ui/statement_screen/components/app
 import '../../../../../core/injector/injector.dart';
 import '../components/custon_button_widget.dart';
 import '../components/transaction_details_field_widget.dart';
-import '../../../../../core/utils/constants/transaction_type_constants.dart'
-    show transactionTypeMap;
 
 // ignore: must_be_immutable
 class TransactionDetails extends StatelessWidget {
