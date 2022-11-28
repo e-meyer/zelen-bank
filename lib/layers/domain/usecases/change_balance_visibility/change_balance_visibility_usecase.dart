@@ -1,3 +1,3 @@
 abstract class ChangeBalanceVisibilityUsecase {
-  Future<bool> call(bool isBalanceVisible);
+  Future<void> call(bool isBalanceVisible);
 }

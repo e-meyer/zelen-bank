@@ -8,8 +8,7 @@ class ChangeBalanceVisibilityDatasourceImpl
   ChangeBalanceVisibilityDatasourceImpl(this.sharedPreferences);
 
   @override
-  Future<bool> call(bool isBalanceVisible) async {
+  Future<void> call(bool isBalanceVisible) async {
     await sharedPreferences.setBool(kSharedPreferencesKey, !isBalanceVisible);
-    return !isBalanceVisible;
   }
 }

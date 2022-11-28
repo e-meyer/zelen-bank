@@ -8,7 +8,7 @@ class ChangeBalanceVisibilityUsecaseImpl
   ChangeBalanceVisibilityUsecaseImpl(this._changeBalanceVisibilityRepository);
 
   @override
-  Future<bool> call(bool isBalanceVisible) async {
-    return await _changeBalanceVisibilityRepository(isBalanceVisible);
+  Future<void> call(bool isBalanceVisible) async {
+    await _changeBalanceVisibilityRepository(isBalanceVisible);
   }
 }

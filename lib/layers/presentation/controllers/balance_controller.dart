@@ -30,7 +30,8 @@ class BalanceController extends ChangeNotifier {
   }
 
   void changeBalanceVisibility() async {
-    isBalanceVisible = await _changeBalanceVisibilityUsecase(isBalanceVisible);
+    await _changeBalanceVisibilityUsecase(isBalanceVisible);
+    isBalanceVisible = !isBalanceVisible;
     notifyListeners();
   }
 }
