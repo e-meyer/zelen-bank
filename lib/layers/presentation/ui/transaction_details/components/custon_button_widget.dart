@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 class CustonButtonWidget extends StatelessWidget {
   final GlobalKey<State<StatefulWidget>> previewContainer;
   final Function()? onTap;
+  final String label;
   const CustonButtonWidget(
-      {super.key, required this.previewContainer, this.onTap});
+      {super.key,
+      required this.previewContainer,
+      this.onTap,
+      required this.label});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +23,7 @@ class CustonButtonWidget extends StatelessWidget {
           foregroundColor: Theme.of(context).scaffoldBackgroundColor,
           fixedSize: Size(MediaQuery.of(context).size.width, 50),
           shadowColor: Colors.transparent),
-      child: Text('Compartilhar', style: Theme.of(context).textTheme.button),
+      child: Text(label, style: Theme.of(context).textTheme.button),
     );
   }
 }
