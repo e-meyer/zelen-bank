@@ -7,7 +7,7 @@ import 'package:zelenbank/layers/presentation/ui/common/back_button.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/app_bar_method.dart';
 import '../../../../../core/injector/injector.dart';
-import '../components/share_button_widget.dart';
+import '../components/custon_button_widget.dart';
 import '../components/transaction_details_field_widget.dart';
 import '../../../../../core/utils/constants/transaction_type_constants.dart'
     show transactionTypeMap;
@@ -103,7 +103,8 @@ class TransactionDetails extends StatelessWidget {
                         horizontal: 15,
                         vertical: 8,
                       ),
-                      child: ShareButtonWidget(
+                      child: CustonButtonWidget(
+                        label: 'Compartilhar',
                         previewContainer: previewContainer,
                         onTap: () {
                           return shareImage(previewContainer);
