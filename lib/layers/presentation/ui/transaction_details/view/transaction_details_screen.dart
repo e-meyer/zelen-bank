@@ -27,7 +27,7 @@ class TransactionDetails extends StatelessWidget {
     return Scaffold(
       appBar: appBarMethod(titulo: '', leading: const CustomBackButton()),
       body: FutureBuilder<TransactionEntity>(
-        future: _transactionController.getById(id),
+        future: _transactionController.getTransactionById(id),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             switch (snapshot.connectionState) {

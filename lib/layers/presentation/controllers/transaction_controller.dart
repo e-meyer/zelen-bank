@@ -43,7 +43,7 @@ class TransactionController extends ChangeNotifier {
     return transferInTypes.contains(transactionType);
   }
 
-  Future<TransactionEntity> getById(String id) async {
+  Future<TransactionEntity> getTransactionById(String id) async {
     return await _getTransactionByIdUsecase(id);
   }
 
