@@ -45,7 +45,7 @@ class _TransactionListBuilderState extends State<TransactionListBuilder> {
         return ListView.separated(
           shrinkWrap: true,
           itemBuilder: (context, index) => const TransactionLoadingWidget(),
-          separatorBuilder: (context, index) => const SizedBox(height: 20),
+          separatorBuilder: (context, index) => const SizedBox(height: 22),
           itemCount: 6,
         );
       },
