@@ -1,11 +1,12 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class TransactionDetailsFieldWidget extends StatelessWidget {
   const TransactionDetailsFieldWidget({
-    super.key,
-    this.fieldTitle = '',
-    this.fieldDescription = '',
-  });
+    Key? key,
+    required this.fieldTitle,
+    required this.fieldDescription,
+  }) : super(key: key);
 
   final String fieldTitle;
   final String fieldDescription;

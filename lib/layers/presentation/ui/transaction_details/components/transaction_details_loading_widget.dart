@@ -10,16 +10,16 @@ class TransactionDetailsLoadingWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const LoadingSkeleton(
+        children: const [
+          LoadingSkeleton(
             height: 16,
             width: 180,
             radius: 30,
           ),
-          const SizedBox(
+          SizedBox(
             height: 12,
           ),
-          const LoadingSkeleton(
+          LoadingSkeleton(
             height: 16,
             width: 150,
             radius: 30,
