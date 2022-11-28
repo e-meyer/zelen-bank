@@ -32,7 +32,6 @@ import 'package:zelenbank/layers/domain/usecases/get_transaction_by_id/get_trans
 import 'package:zelenbank/layers/domain/usecases/get_transaction_by_id/get_transaction_by_id_usecase_impl.dart';
 import 'package:zelenbank/layers/domain/usecases/get_transaction_list/get_transaction_list_usecase.dart';
 import 'package:zelenbank/layers/domain/usecases/get_transaction_list/get_transaction_list_usecase_impl.dart';
-import 'package:zelenbank/layers/presentation/controllers/balance_controller.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
 import 'package:http/http.dart' as http;
 
