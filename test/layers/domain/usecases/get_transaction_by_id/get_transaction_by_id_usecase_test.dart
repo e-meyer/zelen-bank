@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:zelenbank/core/errors/failures/generic_failure.dart';
 import 'package:zelenbank/layers/data/repositories/get_transaction_by_id_repository_impl.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
+import 'package:zelenbank/layers/domain/repositories/get_transaction_by_id_repository.dart';
 import 'package:zelenbank/layers/domain/usecases/get_transaction_by_id/get_transaction_by_id_usecase.dart';
 import 'package:zelenbank/layers/domain/usecases/get_transaction_by_id/get_transaction_by_id_usecase_impl.dart';
 
@@ -32,16 +34,31 @@ void main() {
 
   const String tTransactionId = 'ABC123';
 
-  test('Should get a TransactionEntity from repository', () async {
-    // arrange
-    when(() => mockGetTransactionByIdRepository(any()))
-        .thenAnswer((_) async => Right(tTransactionDto));
+  group('get_transaction_by_id_usecase', () {
+    test('Should get a TransactionEntity from repository', () async {
+      // arrange
+      when(() => mockGetTransactionByIdRepository(any()))
+          .thenAnswer((_) async => Right(tTransactionDto));
 
-    // act
-    final result = await getTransactionByIdUsecase(tTransactionId);
+      // act
+      final result = await getTransactionByIdUsecase(tTransactionId);
 
-    // assert
-    expect(result, isA<Right>());
-    verify(() => mockGetTransactionByIdRepository(tTransactionId)).called(1);
+      // assert
+      expect(result, isA<Right>());
+      verify(() => mockGetTransactionByIdRepository(tTransactionId)).called(1);
+    });
+
+    test('Should get a Failure from repository', () async {
+      // arrange
+      when(() => mockGetTransactionByIdRepository(any()))
+          .thenAnswer((_) async => Left(GeneralFailure('')));
+
+      // act
+      final result = await getTransactionByIdUsecase(tTransactionId);
+
+      // assert
+      expect(result, isA<Left>());
+      verify(() => mockGetTransactionByIdRepository(tTransactionId)).called(1);
+    });
   });
 }

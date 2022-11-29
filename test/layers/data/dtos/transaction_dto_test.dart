@@ -16,26 +16,30 @@ void main() {
     transactionType: 'TRANSFEROUT',
     description: 'Transferência realizada',
     targetName: 'Luisa Sacura',
+    bankName: 'BANK',
+    authentication: 'ABC123',
   );
 
-  test(
-    'Should be a subclass of TransactionEntity',
-    () async {
-      // assert
-      expect(tTransactionDto, isA<TransactionEntity>());
-    },
-  );
-
-  test('Should return a parsed TransactionDto object when sending a json',
+  group('transaction_dto', () {
+    test(
+      'Should be a subclass of TransactionEntity',
       () async {
-    // arrange
-    final Map<String, dynamic> jsonMap =
-        json.decode(fixture('transaction.json'));
+        // assert
+        expect(tTransactionDto, isA<TransactionEntity>());
+      },
+    );
 
-    // act
-    final result = TransactionDto.fromMap(jsonMap);
+    test('Should return a parsed TransactionDto object when sending a json',
+        () async {
+      // arrange
+      final Map<String, dynamic> jsonMap =
+          json.decode(fixture('transaction.json'));
 
-    // assert
-    expect(result, tTransactionDto);
+      // act
+      final result = TransactionDto.fromMap(jsonMap);
+
+      // assert
+      expect(result, tTransactionDto);
+    });
   });
 }

@@ -22,17 +22,50 @@ void main() {
         GetCurrentBalanceRemoteDatasourceImpl(httpClientModel);
   });
 
-  test('Should return a double number if the response is 200', () async {
-    // arrange
-    when(
-      () => mockHttpClient.get(Uri.parse('$kApiUrl/$kMyBalance'),
-          headers: {'Token': kApiToken}),
-    ).thenAnswer((_) async => http.Response(fixture('transaction.json'), 200));
+  group('get_current_balance_remote_datasource', () {
+    test('Should return a double number if the response is 200', () async {
+      // arrange
+      when(
+        () => mockHttpClient.get(Uri.parse('$kApiUrl/$kMyBalance'),
+            headers: {'Token': kApiToken}),
+      ).thenAnswer(
+          (_) async => http.Response(fixture('transaction.json'), 200));
 
-    // act
-    final result = await getCurrentBalanceDatasource();
+      // act
+      final result = await getCurrentBalanceDatasource();
 
-    // assert
-    expect(result, isA<Right>());
+      // assert
+      expect(result, isA<Right>());
+    });
+
+    test('Should return a Failure if the response is different than 200',
+        () async {
+      // arrange
+      when(
+        () => mockHttpClient.get(Uri.parse('$kApiUrl/$kMyBalance'),
+            headers: {'Token': kApiToken}),
+      ).thenAnswer(
+          (_) async => http.Response(fixture('transaction.json'), 404));
+
+      // act
+      final result = await getCurrentBalanceDatasource();
+
+      // assert
+      expect(result, isA<Left>());
+    });
+
+    test('Should return a Failure if an Exception is thrown', () async {
+      // arrange
+      when(
+        () => mockHttpClient.get(Uri.parse('$kApiUrl/$kMyBalance'),
+            headers: {'Token': kApiToken}),
+      ).thenThrow(Exception());
+
+      // act
+      final result = await getCurrentBalanceDatasource();
+
+      // assert
+      expect(result, isA<Left>());
+    });
   });
 }

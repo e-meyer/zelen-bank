@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:zelenbank/core/errors/failures/generic_failure.dart';
 import 'package:zelenbank/layers/data/repositories/get_transaction_list_repository_impl.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 import 'package:zelenbank/layers/domain/usecases/get_transaction_list/get_transaction_list_usecase.dart';
@@ -23,16 +24,31 @@ void main() {
 
   const int tPageNumber = 0;
 
-  test('Should get a List of TransactionEntity from repository', () async {
-    // arrange
-    when(() => mockGetTransactionListRepository(any()))
-        .thenAnswer((_) async => Right(list));
+  group('get_transaction_list_usecase', () {
+    test('Should get a List of TransactionEntity from repository', () async {
+      // arrange
+      when(() => mockGetTransactionListRepository(any()))
+          .thenAnswer((_) async => Right(list));
 
-    // act
-    final result = await getTransactionListUsecase(tPageNumber);
+      // act
+      final result = await getTransactionListUsecase(tPageNumber);
 
-    // assert
-    expect(result, isA<Right>());
-    verify(() => mockGetTransactionListRepository(any())).called(1);
+      // assert
+      expect(result, isA<Right>());
+      verify(() => mockGetTransactionListRepository(any())).called(1);
+    });
+
+    test('Should get a Failure from repository', () async {
+      // arrange
+      when(() => mockGetTransactionListRepository(any()))
+          .thenAnswer((_) async => Left(GeneralFailure('')));
+
+      // act
+      final result = await getTransactionListUsecase(tPageNumber);
+
+      // assert
+      expect(result, isA<Left>());
+      verify(() => mockGetTransactionListRepository(any())).called(1);
+    });
   });
 }
