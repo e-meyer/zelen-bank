@@ -8,11 +8,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setupLocator();
 
-  runApp(const MyApp());
+  runApp(const ZelenBankApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ZelenBankApp extends StatelessWidget {
+  const ZelenBankApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
