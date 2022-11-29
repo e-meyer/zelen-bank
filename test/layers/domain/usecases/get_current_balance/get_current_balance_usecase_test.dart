@@ -23,7 +23,7 @@ void main() {
   test('Should get a double number from the repository', () async {
     // arrange
     when(() => mockGetCurrentBalanceRepository())
-        .thenAnswer((_) async => Right(tNumber));
+        .thenAnswer((_) async => const Right(tNumber));
 
     // act
     final result = await getCurrentBalanceUsecase();
