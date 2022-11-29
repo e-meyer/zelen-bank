@@ -5,18 +5,17 @@ import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 import 'package:zelenbank/layers/presentation/ui/common/back_button.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
-import 'package:zelenbank/layers/presentation/ui/statement_screen/components/app_bar_method.dart';
+import 'package:zelenbank/layers/presentation/ui/common/custom_app_bar_widget.dart';
 import '../../../../../core/injector/injector.dart';
 import '../../common/custom_alert_dialog.dart';
 import '../components/custom_button_widget.dart';
 import '../components/transaction_details_field_widget.dart';
 import '../components/transaction_details_loading_widget.dart';
 
-// ignore: must_be_immutable
 class TransactionDetails extends StatefulWidget {
   final String id;
 
-  TransactionDetails(this.id, {Key? key}) : super(key: key);
+  const TransactionDetails(this.id, {Key? key}) : super(key: key);
 
   @override
   State<TransactionDetails> createState() => _TransactionDetailsState();
@@ -40,7 +39,7 @@ class _TransactionDetailsState extends State<TransactionDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarMethod(titulo: '', leading: const CustomBackButton()),
+      appBar: const CustomAppBarWidget(leading: CustomBackButton()),
       body: AnimatedBuilder(
         animation: _transactionController,
         builder: (context, snapshot) {
