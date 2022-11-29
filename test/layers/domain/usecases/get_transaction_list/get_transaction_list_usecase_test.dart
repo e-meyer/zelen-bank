@@ -32,7 +32,7 @@ void main() {
     final result = await getTransactionListUsecase(tPageNumber);
 
     // assert
-    expect(result, isA<List<TransactionEntity>>());
+    expect(result, isA<Right>());
     verify(() => mockGetTransactionListRepository(any())).called(1);
   });
 }

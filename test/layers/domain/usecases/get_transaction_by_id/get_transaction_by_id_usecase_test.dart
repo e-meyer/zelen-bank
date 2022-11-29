@@ -41,7 +41,7 @@ void main() {
     final result = await getTransactionByIdUsecase(tTransactionId);
 
     // assert
-    expect(result, isA<TransactionEntity>());
+    expect(result, isA<Right>());
     verify(() => mockGetTransactionByIdRepository(tTransactionId)).called(1);
   });
 }

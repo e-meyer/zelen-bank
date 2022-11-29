@@ -29,7 +29,7 @@ void main() {
     final result = await getCurrentBalanceUsecase();
 
     // assert
-    expect(result, isA<double>());
+    expect(result, isA<Right>());
     verify(() => mockGetCurrentBalanceRepository()).called(1);
   });
 }

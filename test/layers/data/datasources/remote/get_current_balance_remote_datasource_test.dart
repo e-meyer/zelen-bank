@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:zelenbank/core/http_client/http_client.dart';
@@ -32,6 +33,6 @@ void main() {
     final result = await getCurrentBalanceDatasource();
 
     // assert
-    expect(result, isA<double>());
+    expect(result, isA<Right>());
   });
 }
