@@ -1,5 +1,8 @@
+import 'package:dartz/dartz.dart';
+
+import '../../../core/errors/failure.dart';
 import '../../domain/entities/transaction_entity.dart';
 
 abstract class GetTransactionListDatasource {
-  Future<List<TransactionEntity>> call(int pageNumber);
+  Future<Either<Failure, List<TransactionEntity>>> call(int pageNumber);
 }

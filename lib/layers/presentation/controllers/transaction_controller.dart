@@ -32,11 +32,15 @@ class TransactionController extends ChangeNotifier {
   double get balance => _balance;
 
   void getTransactionsList(int pageNumber) async {
-    final list = await _getTransactionListUsecase(pageNumber);
-    for (var transaction in list) {
-      _transactionList.add(transaction);
-    }
-    notifyListeners();
+    final _result = await _getTransactionListUsecase(pageNumber);
+
+    _result.fold((left) {}, (right) {
+      final list = right;
+      for (var transaction in list) {
+        _transactionList.add(transaction);
+      }
+      notifyListeners();
+    });
   }
 
   void getTransactionById(String id) async {
