@@ -5,7 +5,6 @@ import 'package:zelenbank/layers/presentation/ui/statement_screen/components/tra
 import 'package:zelenbank/layers/presentation/ui/common/custom_alert_dialog.dart';
 
 import '../../../../../core/injector/injector.dart';
-import '../../../../../core/utils/constants/colors_constants.dart';
 import '../../../../domain/entities/transaction_entity.dart';
 import '../../../controllers/transaction_controller.dart';
 
@@ -28,6 +27,13 @@ class _TransactionListBuilderState extends State<TransactionListBuilder> {
         if (transactionController.currentState == States.loading) {
           final List<TransactionEntity> transactionsList =
               transactionController.transactionList;
+          // if its loading and we only return a list with loading widgets,
+          // the items that are already in the list will disappear and also
+          // the scroll goes all the way to the top
+
+          // so we check if the list is not empty before returning in order
+          // to be able to display the items that are already in the list and
+          // and animated loading widgets list
           if (transactionsList.isNotEmpty) {
             return SingleChildScrollView(
               child: Column(
@@ -60,6 +66,9 @@ class _TransactionListBuilderState extends State<TransactionListBuilder> {
               ),
             );
           }
+
+          // if there isnt any items in the list, just return the loading widgets
+
           return ListView.separated(
             shrinkWrap: true,
             itemBuilder: (context, index) => const TransactionLoadingWidget(),
