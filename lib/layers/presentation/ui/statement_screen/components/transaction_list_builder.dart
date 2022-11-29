@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/timeline_divider_widget.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/transaction_card_widget.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/transaction_loading_widget.dart';
+import 'package:zelenbank/layers/presentation/ui/common/custom_alert_dialog.dart';
 
 import '../../../../../core/injector/injector.dart';
+import '../../../../../core/utils/constants/colors_constants.dart';
 import '../../../../domain/entities/transaction_entity.dart';
 import '../../../controllers/transaction_controller.dart';
 
@@ -23,9 +25,51 @@ class _TransactionListBuilderState extends State<TransactionListBuilder> {
     return AnimatedBuilder(
       animation: transactionController,
       builder: (context, child) {
-        final List<TransactionEntity> transactionsList =
-            transactionController.transactionList;
-        if (transactionsList.isNotEmpty) {
+        if (transactionController.currentState == States.loading) {
+          final List<TransactionEntity> transactionsList =
+              transactionController.transactionList;
+          if (transactionsList.isNotEmpty) {
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  ListView.separated(
+                    physics: const BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: transactionsList.length,
+                    itemBuilder: (context, index) {
+                      bool isFirstTransaction = index == 0;
+                      return TransactionCardWidget(
+                        transactionEntity: transactionsList[index],
+                        isFirstWidget: isFirstTransaction,
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return const TimelineDividerWidget();
+                    },
+                  ),
+                  ListView.separated(
+                    physics: const BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) =>
+                        const TransactionLoadingWidget(),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 22),
+                    itemCount: 3,
+                  ),
+                ],
+              ),
+            );
+          }
+          return ListView.separated(
+            shrinkWrap: true,
+            itemBuilder: (context, index) => const TransactionLoadingWidget(),
+            separatorBuilder: (context, index) => const SizedBox(height: 22),
+            itemCount: 6,
+          );
+        } else if (transactionController.currentState == States.success) {
+          final List<TransactionEntity> transactionsList =
+              transactionController.transactionList;
+
           return ListView.separated(
             physics: const BouncingScrollPhysics(),
             shrinkWrap: true,
@@ -41,13 +85,12 @@ class _TransactionListBuilderState extends State<TransactionListBuilder> {
               return const TimelineDividerWidget();
             },
           );
+        } else if (transactionController.currentState == States.error) {
+          Future.delayed(Duration.zero, () {
+            return showAlertDialog(context);
+          });
         }
-        return ListView.separated(
-          shrinkWrap: true,
-          itemBuilder: (context, index) => const TransactionLoadingWidget(),
-          separatorBuilder: (context, index) => const SizedBox(height: 22),
-          itemCount: 6,
-        );
+        return Container();
       },
     );
   }

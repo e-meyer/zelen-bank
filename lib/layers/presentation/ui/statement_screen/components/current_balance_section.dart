@@ -16,9 +16,11 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
 
   @override
   void initState() {
-    _transactionController.getBalanceVisibility();
     super.initState();
-    _transactionController.getCurrentBalance();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _transactionController.getBalanceVisibility();
+      _transactionController.getCurrentBalance();
+    });
   }
 
   @override
@@ -93,7 +95,7 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
                         width: screenSize.width * 0.31,
                         child: Center(
                           child: Container(
-                            height: 2,
+                            height: 3,
                             color: theme.primaryColor,
                           ),
                         ),

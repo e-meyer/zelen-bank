@@ -7,6 +7,7 @@ import 'package:zelenbank/layers/presentation/ui/common/back_button.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/app_bar_method.dart';
 import '../../../../../core/injector/injector.dart';
+import '../../common/custom_alert_dialog.dart';
 import '../components/custom_button_widget.dart';
 import '../components/transaction_details_field_widget.dart';
 import '../components/transaction_details_loading_widget.dart';
@@ -29,6 +30,7 @@ class _TransactionDetailsState extends State<TransactionDetails> {
 
   @override
   void initState() {
+    _transactionController.currentState = States.idle;
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _transactionController.getTransactionById(widget.id);
@@ -42,8 +44,19 @@ class _TransactionDetailsState extends State<TransactionDetails> {
       body: AnimatedBuilder(
         animation: _transactionController,
         builder: (context, snapshot) {
-          TransactionEntity? data = _transactionController.detailedTransaction;
-          if (data != null) {
+          if (_transactionController.currentState == States.loading) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 45),
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return const TransactionDetailsLoadingWidget();
+                },
+                itemCount: 8,
+              ),
+            );
+          } else if (_transactionController.currentState == States.success) {
+            TransactionEntity data =
+                _transactionController.detailedTransaction!;
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -129,16 +142,12 @@ class _TransactionDetailsState extends State<TransactionDetails> {
                 ),
               ],
             );
+          } else if (_transactionController.currentState == States.error) {
+            Future.delayed(Duration.zero, () {
+              return showAlertDialog(context);
+            });
           }
-          return Padding(
-            padding: const EdgeInsets.only(top: 45),
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                return const TransactionDetailsLoadingWidget();
-              },
-              itemCount: 8,
-            ),
-          );
+          return Container();
         },
       ),
     );

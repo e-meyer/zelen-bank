@@ -23,15 +23,17 @@ class _StatementScreenState extends State<StatementScreen> {
   @override
   void initState() {
     super.initState();
-    transactionController.getTransactionsList(pageController);
-    _scrollController.addListener(() {
-      if (_scrollController.position.atEdge) {
-        bool isBottom = _scrollController.position.pixels != 0;
-        if (isBottom) {
-          pageController++;
-          transactionController.getTransactionsList(pageController);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      transactionController.getTransactionsList(pageController);
+      _scrollController.addListener(() {
+        if (_scrollController.position.atEdge) {
+          bool isBottom = _scrollController.position.pixels != 0;
+          if (isBottom) {
+            pageController++;
+            transactionController.getTransactionsList(pageController);
+          }
         }
-      }
+      });
     });
   }
 
@@ -41,7 +43,7 @@ class _StatementScreenState extends State<StatementScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      appBar: appBarMethod(titulo: 'Extratos'),
+      appBar: appBarMethod(titulo: 'Extrato'),
       body: SingleChildScrollView(
         controller: _scrollController,
         physics: const PageScrollPhysics(),
