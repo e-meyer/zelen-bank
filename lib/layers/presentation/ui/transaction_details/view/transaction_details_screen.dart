@@ -30,7 +30,9 @@ class _TransactionDetailsState extends State<TransactionDetails> {
   @override
   void initState() {
     super.initState();
-    _transactionController.getTransactionById(widget.id);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _transactionController.getTransactionById(widget.id);
+    });
   }
 
   @override
