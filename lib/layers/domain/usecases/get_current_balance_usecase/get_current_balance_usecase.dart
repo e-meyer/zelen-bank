@@ -1,3 +1,6 @@
+import 'package:dartz/dartz.dart';
+import 'package:zelenbank/core/errors/failure.dart';
+
 abstract class GetCurrentBalanceUsecase {
-  Future<double> call();
+  Future<Either<Failure, double>> call();
 }

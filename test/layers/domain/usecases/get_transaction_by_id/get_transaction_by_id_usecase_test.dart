@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:zelenbank/layers/data/repositories/get_transaction_by_id_repository_impl.dart';
@@ -34,7 +35,7 @@ void main() {
   test('Should get a TransactionEntity from repository', () async {
     // arrange
     when(() => mockGetTransactionByIdRepository(any()))
-        .thenAnswer((_) async => tTransactionDto);
+        .thenAnswer((_) async => Right(tTransactionDto));
 
     // act
     final result = await getTransactionByIdUsecase(tTransactionId);

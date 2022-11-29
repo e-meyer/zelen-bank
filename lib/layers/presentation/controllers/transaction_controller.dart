@@ -15,6 +15,7 @@ class TransactionController extends ChangeNotifier {
   final ChangeBalanceVisibilityUsecase _changeBalanceVisibilityUsecase;
   final GetBalanceVisibilityUsecase _getBalanceVisibilityUsecase;
   final List<TransactionEntity> _transactionList = [];
+  TransactionEntity? _detailedTransaction;
   double _balance = 0;
   bool isBalanceVisible = true;
 
@@ -27,7 +28,7 @@ class TransactionController extends ChangeNotifier {
   );
 
   List<TransactionEntity> get transactionList => _transactionList;
-
+  TransactionEntity? get detailedTransaction => _detailedTransaction;
   double get balance => _balance;
 
   void getTransactionsList(int pageNumber) async {
@@ -38,18 +39,25 @@ class TransactionController extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool isReceived(TransactionEntity transaction) {
-    String transactionType = transaction.transactionType;
-    return transferInTypes.contains(transactionType);
-  }
+  void getTransactionById(String id) async {
+    _detailedTransaction = null;
+    notifyListeners();
+    final _result = await _getTransactionByIdUsecase(id);
 
-  Future<TransactionEntity> getTransactionById(String id) async {
-    return await _getTransactionByIdUsecase(id);
+    _result.fold((left) {}, (right) {
+      _detailedTransaction = right;
+
+      notifyListeners();
+    });
   }
 
   void getCurrentBalance() async {
-    _balance = await _getCurrentBalanceUsecase();
-    notifyListeners();
+    final _result = await _getCurrentBalanceUsecase();
+
+    _result.fold((left) {}, (right) {
+      _balance = right;
+      notifyListeners();
+    });
   }
 
   void getBalanceVisibility() async {
@@ -61,5 +69,10 @@ class TransactionController extends ChangeNotifier {
     await _changeBalanceVisibilityUsecase(isBalanceVisible);
     isBalanceVisible = !isBalanceVisible;
     notifyListeners();
+  }
+
+  bool isReceived(TransactionEntity transaction) {
+    String transactionType = transaction.transactionType;
+    return transferInTypes.contains(transactionType);
   }
 }

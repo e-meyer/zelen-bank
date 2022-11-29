@@ -1,8 +1,12 @@
 import 'dart:convert';
-
+import 'dart:io';
+import 'package:dartz/dartz.dart';
+import 'package:zelenbank/core/errors/failures/generic_failure.dart';
 import 'package:zelenbank/core/http_client/http_client_interface.dart';
 import 'package:zelenbank/core/utils/constants/api_endpoints_constants.dart';
 import 'package:zelenbank/layers/data/datasources/get_current_balance_datasource.dart';
+
+import '../../../../core/errors/failure.dart';
 
 class GetCurrentBalanceRemoteDatasourceImpl
     implements GetCurrentBalanceDatasource {
@@ -10,16 +14,23 @@ class GetCurrentBalanceRemoteDatasourceImpl
   GetCurrentBalanceRemoteDatasourceImpl(this._httpClient);
 
   @override
-  Future<double> call() async {
-    final response = await _httpClient.get(
-      url: '$kApiUrl/$kMyBalance',
-      header: {'Token': kApiToken},
-    );
+  Future<Either<Failure, double>> call() async {
+    try {
+      final response = await _httpClient.get(
+        url: '$kApiUrl/$kMyBalance',
+        header: {'Token': kApiToken},
+      );
 
-    final json = jsonDecode(response.body);
+      if (response.statusCode == HttpStatus.ok) {
+        final json = jsonDecode(response.body);
 
-    final currentBalance = json['amount'].toDouble();
+        final currentBalance = json['amount'].toDouble();
 
-    return currentBalance;
+        return Right(currentBalance);
+      }
+      return Left(GeneralFailure('Error'));
+    } on Exception catch (e) {
+      return Left(GeneralFailure('Error'));
+    }
   }
 }

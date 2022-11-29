@@ -1,5 +1,8 @@
+import 'package:dartz/dartz.dart';
+
+import '../../../core/errors/failure.dart';
 import '../entities/transaction_entity.dart';
 
 abstract class GetTransactionByIdRepository {
-  Future<TransactionEntity> call(String id);
+  Future<Either<Failure, TransactionEntity>> call(String id);
 }
