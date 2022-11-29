@@ -23,6 +23,7 @@ dependencies:
   intl: ^0.17.0
   flutter_native_splash: ^2.2.16
   dartz: ^0.10.1
+  test_coverage_badge: ^0.2.0
 
 flutter_native_splash:
   image: 'assets/logo.png'
