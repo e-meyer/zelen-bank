@@ -7,8 +7,8 @@ import 'package:zelenbank/layers/data/datasources/get_balance_visibility_datasou
 import 'package:zelenbank/layers/data/datasources/get_current_balance_datasource.dart';
 import 'package:zelenbank/layers/data/datasources/get_transaction_by_id_datasource.dart';
 import 'package:zelenbank/layers/data/datasources/get_transaction_list_datasource.dart';
-import 'package:zelenbank/layers/data/datasources/local/change_balance_visibility_datasource_impl.dart';
-import 'package:zelenbank/layers/data/datasources/local/get_balance_visibility_datasource_impl.dart';
+import 'package:zelenbank/layers/data/datasources/local/change_balance_visibility_local_datasource_impl.dart';
+import 'package:zelenbank/layers/data/datasources/local/get_balance_visibility_local_datasource_impl.dart';
 import 'package:zelenbank/layers/data/datasources/remote/get_current_balance_remote_datasource_impl.dart';
 import 'package:zelenbank/layers/data/datasources/remote/get_transaction_by_id_remote_datasource_impl.dart';
 import 'package:zelenbank/layers/data/datasources/remote/get_transaction_list_remote_datasource_impl.dart';
@@ -69,8 +69,8 @@ Future<void> setupLocator() async {
       () => GetTransactionByIdRemoteDatasourceImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<GetTransactionListDatasource>(
       () => GetTransactionListRemoteDatasourceImpl(serviceLocator()));
-  serviceLocator.registerLazySingleton<ChangeBalanceVisibilityDatasource>(
-      () => ChangeBalanceVisibilityDatasourceImpl(serviceLocator()));
+  serviceLocator.registerLazySingleton<ChangeBalanceVisibilityLocalDatasource>(
+      () => ChangeBalanceVisibilityLocalDatasourceImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<GetBalanceVisibilityDatasource>(
       () => GetBalanceVisibilityDatasourceImpl(serviceLocator()));
 

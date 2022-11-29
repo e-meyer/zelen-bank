@@ -4,7 +4,8 @@ import '../datasources/change_balance_visibility_datasource.dart';
 
 class ChangeBalanceVisibilityRepositoryImpl
     extends ChangeBalanceVisibilityRepository {
-  final ChangeBalanceVisibilityDatasource _changeBalanceVisibilityDatasource;
+  final ChangeBalanceVisibilityLocalDatasource
+      _changeBalanceVisibilityDatasource;
   ChangeBalanceVisibilityRepositoryImpl(
       this._changeBalanceVisibilityDatasource);
 

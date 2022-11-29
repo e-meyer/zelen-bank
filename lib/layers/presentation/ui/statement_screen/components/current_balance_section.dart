@@ -11,14 +11,14 @@ class CurrentBalanceSection extends StatefulWidget {
 }
 
 class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
-  final TransactionController balanceController =
+  final TransactionController _transactionController =
       serviceLocator.get<TransactionController>();
 
   @override
   void initState() {
-    balanceController.getBalanceVisibility();
+    _transactionController.getBalanceVisibility();
     super.initState();
-    balanceController.getCurrentBalance();
+    _transactionController.getCurrentBalance();
   }
 
   @override
@@ -51,13 +51,13 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
                   ),
                   IconButton(
                     onPressed: () {
-                      balanceController.changeBalanceVisibility();
+                      _transactionController.changeBalanceVisibility();
                     },
                     icon: AnimatedBuilder(
-                      animation: balanceController,
+                      animation: _transactionController,
                       builder: (context, child) {
                         return Icon(
-                          balanceController.isBalanceVisible
+                          _transactionController.isBalanceVisible
                               ? Icons.visibility
                               : Icons.visibility_off,
                           color: theme.primaryColor,
@@ -70,9 +70,9 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
               ),
             ),
             AnimatedBuilder(
-              animation: balanceController,
+              animation: _transactionController,
               builder: (context, child) {
-                return balanceController.isBalanceVisible
+                return _transactionController.isBalanceVisible
                     ? SizedBox(
                         height: 40,
                         child: RichText(
@@ -107,6 +107,8 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
   }
 
   String transactionFormattedValue() {
-    return balanceController.balance.toStringAsFixed(2).replaceAll('.', ',');
+    return _transactionController.balance
+        .toStringAsFixed(2)
+        .replaceAll('.', ',');
   }
 }
