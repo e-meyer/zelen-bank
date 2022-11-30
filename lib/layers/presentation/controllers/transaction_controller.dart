@@ -68,7 +68,6 @@ class TransactionController extends ChangeNotifier {
   }
 
   void getCurrentBalance() async {
-    print('fdp2');
     currentState = States.loading;
     notifyListeners();
     final _result = await _getCurrentBalanceUsecase();
