@@ -1,5 +1,3 @@
-// ignore_for_file: overridden_fields, annotate_overrides, must_be_immutable
-
 import 'dart:convert';
 
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
