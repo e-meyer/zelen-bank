@@ -12,14 +12,14 @@ class MockHttpClient extends Mock implements http.Client {}
 
 void main() {
   late MockHttpClient mockHttpClient;
-  late HttpClient httpClientModel;
+  late HttpClient httpClient;
   late GetCurrentBalanceRemoteDatasourceImpl getCurrentBalanceDatasource;
 
   setUp(() {
     mockHttpClient = MockHttpClient();
-    httpClientModel = HttpClient(mockHttpClient);
+    httpClient = HttpClient(mockHttpClient);
     getCurrentBalanceDatasource =
-        GetCurrentBalanceRemoteDatasourceImpl(httpClientModel);
+        GetCurrentBalanceRemoteDatasourceImpl(httpClient);
   });
 
   group('get_current_balance_remote_datasource', () {
