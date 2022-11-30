@@ -29,7 +29,7 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
     final Size screenSize = MediaQuery.of(context).size;
 
     return Container(
-      height: screenSize.height * .135,
+      height: 91,
       color: theme.backgroundColor,
       width: double.infinity,
       child: Padding(
