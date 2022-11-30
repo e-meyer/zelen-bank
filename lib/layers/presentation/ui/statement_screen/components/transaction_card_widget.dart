@@ -79,11 +79,11 @@ class TransactionCardWidget extends StatelessWidget {
             ),
             isTransactionTypePix()
                 ? Padding(
-                    padding: const EdgeInsets.only(top: 12, right: 12),
+                    padding: const EdgeInsets.only(top: 10, right: 12),
                     child: Align(
                       alignment: Alignment.topRight,
                       child: Container(
-                        height: 22,
+                        height: 20,
                         width: 50,
                         color: theme.primaryColor,
                         child: const Center(

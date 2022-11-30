@@ -26,7 +26,7 @@ class TimelineDividerWidget extends StatelessWidget {
                 Center(
                   child: SizedBox(
                     height: 0,
-                    width: 10,
+                    width: 14,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Container(

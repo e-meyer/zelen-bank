@@ -18,24 +18,37 @@ class CustomTimelineWidget extends StatelessWidget {
         children: [
           Container(
             color: kTimelineColor,
-            height: isFirstWidget ? 33 : 40,
+            height: isFirstWidget ? 30 : 38,
             width: 1,
           ),
           Center(
             child: SizedBox(
-              height: 10,
-              width: 10,
+              height: 14,
+              width: 14,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Container(
-                  color: kAquaGreen,
+                  color: kPlainWhite,
+                  child: SizedBox(
+                    height: 8,
+                    width: 8,
+                    child: Padding(
+                      padding: const EdgeInsets.all(1.8),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Container(
+                          color: kAquaGreen,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
           Container(
             color: kTimelineColor,
-            height: isFirstWidget ? 33 : 40,
+            height: isFirstWidget ? 32 : 38,
             width: 1,
           ),
         ],
