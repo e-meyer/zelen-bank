@@ -16,9 +16,9 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
 
   @override
   void initState() {
+    _transactionController.getBalanceVisibility();
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _transactionController.getBalanceVisibility();
       _transactionController.getCurrentBalance();
     });
   }
