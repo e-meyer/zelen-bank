@@ -46,7 +46,7 @@ class _StatementScreenState extends State<StatementScreen> {
       appBar: const CustomAppBarWidget(title: 'Extrato'),
       body: SingleChildScrollView(
         controller: _scrollController,
-        physics: const PageScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

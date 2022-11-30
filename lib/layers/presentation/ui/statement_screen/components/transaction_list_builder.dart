@@ -36,10 +36,11 @@ class _TransactionListBuilderState extends State<TransactionListBuilder> {
           // and animated loading widgets list
           if (transactionsList.isNotEmpty) {
             return SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
               child: Column(
                 children: [
                   ListView.separated(
-                    physics: const BouncingScrollPhysics(),
+                    physics: const ClampingScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: transactionsList.length,
                     itemBuilder: (context, index) {
