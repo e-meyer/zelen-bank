@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:zelenbank/layers/presentation/ui/transaction_details/components/custom_button_widget.dart';
+import 'package:zelenbank/layers/presentation/ui/common/custom_button_widget.dart';
 
 void main() {
   int count = 0;
