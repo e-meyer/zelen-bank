@@ -3,7 +3,7 @@ import 'package:zelenbank/core/utils/constants/local_storage_constants.dart';
 import 'package:zelenbank/layers/data/datasources/change_balance_visibility_datasource.dart';
 
 class ChangeBalanceVisibilityLocalDatasourceImpl
-    implements ChangeBalanceVisibilityLocalDatasource {
+    implements ChangeBalanceVisibilityDatasource {
   final SharedPreferences sharedPreferences;
   ChangeBalanceVisibilityLocalDatasourceImpl(this.sharedPreferences);
 

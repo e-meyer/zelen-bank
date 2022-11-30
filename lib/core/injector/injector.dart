@@ -69,7 +69,7 @@ Future<void> setupLocator() async {
       () => GetTransactionByIdRemoteDatasourceImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<GetTransactionListDatasource>(
       () => GetTransactionListRemoteDatasourceImpl(serviceLocator()));
-  serviceLocator.registerLazySingleton<ChangeBalanceVisibilityLocalDatasource>(
+  serviceLocator.registerLazySingleton<ChangeBalanceVisibilityDatasource>(
       () => ChangeBalanceVisibilityLocalDatasourceImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<GetBalanceVisibilityDatasource>(
       () => GetBalanceVisibilityDatasourceImpl(serviceLocator()));
