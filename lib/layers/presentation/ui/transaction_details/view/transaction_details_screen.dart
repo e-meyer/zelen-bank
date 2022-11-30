@@ -8,7 +8,7 @@ import 'package:zelenbank/layers/presentation/controllers/transaction_controller
 import 'package:zelenbank/layers/presentation/ui/common/custom_app_bar_widget.dart';
 import '../../../../../core/injector/injector.dart';
 import '../../common/custom_alert_dialog.dart';
-import '../components/custom_button_widget.dart';
+import '../../common/custom_button_widget.dart';
 import '../components/transaction_details_field_widget.dart';
 import '../components/transaction_details_loading_widget.dart';
 
