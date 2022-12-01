@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/timeline_divider_widget.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/transaction_card_widget.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/transaction_loading_widget.dart';
@@ -9,7 +10,12 @@ import '../../../../domain/entities/transaction_entity.dart';
 import '../../../controllers/transaction_controller.dart';
 
 class TransactionListBuilder extends StatefulWidget {
-  const TransactionListBuilder({super.key});
+  const TransactionListBuilder({
+    super.key,
+    required this.pageController,
+  });
+
+  final int pageController;
 
   @override
   State<TransactionListBuilder> createState() => _TransactionListBuilderState();
@@ -21,6 +27,8 @@ class _TransactionListBuilderState extends State<TransactionListBuilder> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return AnimatedBuilder(
       animation: transactionController,
       builder: (context, child) {
@@ -95,12 +103,28 @@ class _TransactionListBuilderState extends State<TransactionListBuilder> {
               return const TimelineDividerWidget();
             },
           );
-        } else if (transactionController.currentState == States.error) {
-          Future.delayed(Duration.zero, () {
-            return showAlertDialog(context);
-          });
         }
-        return Container();
+        return InkWell(
+          onTap: () async {
+            await transactionController
+                .getTransactionsList(widget.pageController);
+          },
+          child: SizedBox(
+            height: size.height * 0.5,
+            child: const Center(
+              child: Text(
+                'Algo errado aconteceu.\nToque para tentar novamente.',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: kPlainBlack,
+                  letterSpacing: -0.6,
+                  fontWeight: FontWeight.w500,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        );
       },
     );
   }

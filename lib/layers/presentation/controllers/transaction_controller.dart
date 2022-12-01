@@ -34,7 +34,7 @@ class TransactionController extends ChangeNotifier {
   TransactionEntity? get detailedTransaction => _detailedTransaction;
   double get balance => _balance;
 
-  void getTransactionsList(int pageNumber) async {
+  Future<void> getTransactionsList(int pageNumber) async {
     currentState = States.loading;
     notifyListeners();
     final _result = await _getTransactionListUsecase(pageNumber);
@@ -43,7 +43,9 @@ class TransactionController extends ChangeNotifier {
       currentState = States.error;
     }, (right) {
       final list = right;
+
       for (var transaction in list) {
+        if (_transactionList.contains(transaction)) return;
         _transactionList.add(transaction);
       }
       currentState = States.success;
