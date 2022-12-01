@@ -31,4 +31,41 @@ void main() {
     verify(() => mockObserver.didPop(any(), any()));
     await tester.pumpAndSettle();
   });
+
+  testWidgets('Widget renders correctly', (WidgetTester tester) async {
+    await tester.pumpWidget(MediaQuery(
+      data: MediaQueryData(),
+      child: MaterialApp(
+        home: Scaffold(body: CustomBackButton()),
+        theme: ThemeData(
+          primaryColor: Colors.black,
+          scaffoldBackgroundColor: Colors.blue,
+          textTheme: TextTheme(
+            button: TextStyle(
+              fontSize: 16,
+              color: Colors.red,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+      ),
+    ));
+
+    final BuildContext context = tester.element(find.byType(MaterialApp));
+    bool testIsInLightTheme() {
+      if (Theme.of(context).brightness == Brightness.light) {
+        return true;
+      }
+      return false;
+    }
+
+    expect(
+      testIsInLightTheme(),
+      true,
+      reason: "Theme was supposed to start on light mode",
+    );
+
+    expect(MediaQuery.of(context).size.height, isA<double>(),
+        reason: 'Screen size is a not a valid number');
+  });
 }
