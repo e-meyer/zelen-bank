@@ -22,7 +22,9 @@ void main() {
       ),
     );
 
-    expect(find.byType(IconButton), findsOneWidget);
+    var button = find.byType(IconButton);
+
+    expect(button, findsOneWidget);
     await tester.tap(find.byType(IconButton));
     await tester.pumpAndSettle();
 
