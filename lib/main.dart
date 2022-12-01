@@ -4,8 +4,16 @@ import 'core/injector/injector.dart';
 import 'core/theme/theme.dart';
 import 'core/utils/constants/route_constants.dart';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   await setupLocator();
 
   runApp(const ZelenBankApp());
