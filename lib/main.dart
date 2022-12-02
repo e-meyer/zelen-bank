@@ -19,7 +19,7 @@ void main() async {
   await setupLocator();
 
   runApp(ZelenBankApp());
-
+}
 
 class ZelenBankApp extends StatefulWidget {
   ZelenBankApp({super.key});
