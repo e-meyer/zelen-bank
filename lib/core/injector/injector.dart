@@ -1,5 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zelenbank/authentication/data/datasources/check_user_auth_status_datasource.dart';
+import 'package:zelenbank/authentication/data/datasources/remote/check_user_auth_status_datasource_impl.dart';
+import 'package:zelenbank/authentication/data/repositories/check_user_auth_status_repository_impl.dart';
+import 'package:zelenbank/authentication/domain/repositories/check_user_auth_status_repository.dart';
+import 'package:zelenbank/authentication/domain/usecases/check_user_auth_status_usecase.dart';
+import 'package:zelenbank/authentication/domain/usecases/check_user_auth_status_usecase_impl.dart';
+import 'package:zelenbank/authentication/presentation/controllers/auth_controller.dart';
 import 'package:zelenbank/core/http_client/http_client.dart';
 import 'package:zelenbank/core/http_client/http_client_interface.dart';
 import 'package:zelenbank/layers/data/datasources/change_balance_visibility_datasource.dart';
@@ -38,6 +47,8 @@ import 'package:http/http.dart' as http;
 final GetIt serviceLocator = GetIt.I;
 
 Future<void> setupLocator() async {
+  // TRANSACTIONS
+
   // Usecases
   serviceLocator.registerLazySingleton<GetCurrentBalanceUsecase>(
       () => GetCurrentBalanceUsecaseImpl(serviceLocator()));
@@ -97,4 +108,27 @@ Future<void> setupLocator() async {
   // Local
   serviceLocator
       .registerLazySingleton<SharedPreferences>(() => sharedPreferences);
+
+  // LOGIN
+  // Usecases
+  serviceLocator.registerLazySingleton<CheckUserAuthStatusUsecase>(
+      () => CheckUserAuthStatusUsecaseImpl(serviceLocator()));
+
+  // Repositories
+  serviceLocator.registerLazySingleton<CheckUserAuthStatusRepository>(
+      () => CheckUserAuthStatusRepositoryImpl(serviceLocator()));
+
+  // Datasources
+  serviceLocator.registerLazySingleton<CheckUserAuthStatusDatasource>(
+      () => CheckUserAuthStatusDatasourceImpl(serviceLocator()));
+
+  // Controllers
+  serviceLocator.registerLazySingleton<AuthController>(
+      () => AuthController(serviceLocator()));
+
+  // Firebase
+  serviceLocator
+      .registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
+  serviceLocator.registerLazySingleton<FirebaseFirestore>(
+      () => FirebaseFirestore.instance);
 }

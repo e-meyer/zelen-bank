@@ -9,7 +9,6 @@ class CheckUserAuthStatusRepositoryImpl
 
   @override
   bool call() {
-    // TODO: implement call
-    throw UnimplementedError();
+    return _checkUserAuthStatusDatasource();
   }
 }

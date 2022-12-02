@@ -11,12 +11,10 @@ class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
-  bool isLoggedIn() {
-    if (_firebaseAuth.currentUser?.uid != null) {
-      return true;
-    }
-    return false;
-  }
+  // * Already in clean architecture -> check_user_auth_status
+  // bool isLoggedIn() {
+  //   return _firebaseAuth.currentUser?.uid != null;
+  // }
 
   signInWithGoogle() async {
     bool result = false;
