@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:zelenbank/layers/presentation/ui/transaction_details/components/transaction_details_field_widget.dart';
@@ -15,17 +14,17 @@ void main() {
     (WidgetTester tester) async {
       await tester.pumpWidget(
         MediaQuery(
-          data: MediaQueryData(),
+          data: const MediaQueryData(),
           child: MaterialApp(
-            home: Scaffold(
-                body: const TransactionDetailsFieldWidget(
+            home: const Scaffold(
+                body: TransactionDetailsFieldWidget(
               fieldTitle: 'fieldTitle',
               fieldDescription: 'fieldDescription',
             )),
             theme: ThemeData(
               primaryColor: Colors.black,
               scaffoldBackgroundColor: Colors.blue,
-              textTheme: TextTheme(
+              textTheme: const TextTheme(
                 button: TextStyle(
                   fontSize: 16,
                   color: Colors.red,
