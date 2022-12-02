@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zelenbank/core/utils/constants/local_storage_constants.dart';
-import 'package:zelenbank/layers/data/datasources/get_balance_visibility_datasource.dart';
 import 'package:zelenbank/layers/data/datasources/local/get_balance_visibility_local_datasource_impl.dart';
 
 class MockSharedPreferences extends Mock implements SharedPreferences {}
@@ -17,7 +16,7 @@ void main() {
         GetBalanceVisibilityDatasourceImpl(mockSharedPreferences);
   });
 
-  final bool tIsBalanceVisible = true;
+  const bool tIsBalanceVisible = true;
 
   test(
       'Should return a bool (true or false) when looking for the cached balance visibility and the key exists',

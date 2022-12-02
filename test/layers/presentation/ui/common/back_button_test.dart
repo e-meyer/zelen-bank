@@ -17,7 +17,7 @@ void main() {
     final mockObserver = MockNavigatorObserver();
     await tester.pumpWidget(
       MaterialApp(
-        home: Scaffold(body: CustomBackButton()),
+        home: const Scaffold(body: CustomBackButton()),
         navigatorObservers: [mockObserver],
       ),
     );
@@ -34,13 +34,13 @@ void main() {
 
   testWidgets('Widget renders correctly', (WidgetTester tester) async {
     await tester.pumpWidget(MediaQuery(
-      data: MediaQueryData(),
+      data: const MediaQueryData(),
       child: MaterialApp(
-        home: Scaffold(body: CustomBackButton()),
+        home: const Scaffold(body: CustomBackButton()),
         theme: ThemeData(
           primaryColor: Colors.black,
           scaffoldBackgroundColor: Colors.blue,
-          textTheme: TextTheme(
+          textTheme: const TextTheme(
             button: TextStyle(
               fontSize: 16,
               color: Colors.red,

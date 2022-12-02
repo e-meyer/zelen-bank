@@ -41,13 +41,12 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
             SizedBox(
               width: screenSize.width * 0.35,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     'Seu saldo',
                     style: TextStyle(
-                      fontSize: 16,
-                      color: kPlainBlack,
+                      fontSize: 17,
+                      color: theme.textTheme.headline1?.color,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -63,7 +62,7 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
                               ? Icons.visibility
                               : Icons.visibility_off,
                           color: theme.primaryColor,
-                          size: 20,
+                          size: 21,
                         );
                       },
                     ),

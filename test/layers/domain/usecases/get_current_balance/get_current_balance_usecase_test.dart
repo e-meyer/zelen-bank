@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:zelenbank/core/errors/failures/generic_failure.dart';
 import 'package:zelenbank/layers/data/repositories/get_current_balance_repository_impl.dart';
-import 'package:zelenbank/layers/domain/repositories/get_current_balance_repository.dart';
 import 'package:zelenbank/layers/domain/usecases/get_current_balance_usecase/get_current_balance_usecase.dart';
 import 'package:zelenbank/layers/domain/usecases/get_current_balance_usecase/get_current_balance_usecase_impl.dart';
 

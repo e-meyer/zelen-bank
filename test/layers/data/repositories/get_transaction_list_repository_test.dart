@@ -2,12 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:zelenbank/core/errors/failures/generic_failure.dart';
-import 'package:zelenbank/layers/data/datasources/remote/get_transaction_by_id_remote_datasource_impl.dart';
 import 'package:zelenbank/layers/data/datasources/remote/get_transaction_list_remote_datasource_impl.dart';
-import 'package:zelenbank/layers/data/repositories/get_transaction_by_id_repository_impl.dart';
 import 'package:zelenbank/layers/data/repositories/get_transaction_list_repository_impl.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
-import 'package:zelenbank/layers/domain/repositories/get_transaction_by_id_repository.dart';
 import 'package:zelenbank/layers/domain/repositories/get_transaction_list_repository.dart';
 
 class MockGetTransactionListDatasource extends Mock
@@ -23,7 +20,7 @@ void main() {
         GetTransactionListRepositoryImpl(mockGetTransactionListDatasource);
   });
 
-  final int tPageNumber = 0;
+  const int tPageNumber = 0;
 
   final List<TransactionEntity> tTransactionList = [];
 

@@ -4,9 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:zelenbank/core/http_client/http_client.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:zelenbank/core/utils/constants/api_endpoints_constants.dart';
-import 'package:zelenbank/layers/data/datasources/dtos/transaction_dto.dart';
 import 'package:zelenbank/layers/data/datasources/remote/get_transaction_by_id_remote_datasource_impl.dart';
-import 'package:zelenbank/layers/data/datasources/remote/get_transaction_list_remote_datasource_impl.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 

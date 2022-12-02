@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class TransactionDetailsFieldWidget extends StatelessWidget {
   const TransactionDetailsFieldWidget({
+    super.key,
     required this.fieldTitle,
     required this.fieldDescription,
   });

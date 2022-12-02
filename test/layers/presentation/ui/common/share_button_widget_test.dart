@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:zelenbank/layers/presentation/ui/common/custom_button_widget.dart';
 
 void main() {
@@ -10,7 +9,7 @@ void main() {
   testWidgets('Test widget functionality', (WidgetTester tester) async {
     await tester.pumpWidget(
       MediaQuery(
-        data: MediaQueryData(),
+        data: const MediaQueryData(),
         child: MaterialApp(
           home: Scaffold(
             body: CustomButtonWidget(
@@ -33,7 +32,7 @@ void main() {
   testWidgets('Test widget rendering', (WidgetTester tester) async {
     await tester.pumpWidget(
       MediaQuery(
-        data: MediaQueryData(),
+        data: const MediaQueryData(),
         child: MaterialApp(
           home: Scaffold(
             body: CustomButtonWidget(

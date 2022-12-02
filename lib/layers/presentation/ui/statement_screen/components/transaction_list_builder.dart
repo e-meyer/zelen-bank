@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/timeline_divider_widget.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/transaction_card_widget.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/transaction_loading_widget.dart';
-import 'package:zelenbank/layers/presentation/ui/common/custom_alert_dialog.dart';
 
 import '../../../../../core/injector/injector.dart';
 import '../../../../domain/entities/transaction_entity.dart';
@@ -27,6 +25,7 @@ class _TransactionListBuilderState extends State<TransactionListBuilder> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
 
     return AnimatedBuilder(
@@ -111,12 +110,12 @@ class _TransactionListBuilderState extends State<TransactionListBuilder> {
           },
           child: SizedBox(
             height: size.height * 0.5,
-            child: const Center(
+            child: Center(
               child: Text(
                 'Algo errado aconteceu.\nToque para tentar novamente.',
                 style: TextStyle(
                   fontSize: 18,
-                  color: kPlainBlack,
+                  color: theme.textTheme.headline1?.color,
                   letterSpacing: -0.6,
                   fontWeight: FontWeight.w500,
                 ),

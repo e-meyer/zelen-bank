@@ -20,7 +20,7 @@ void main() {
         GetTransactionByIdRepositoryImpl(mockGetTransactionByIdDatasource);
   });
 
-  final String tTransactionId = 'ABC123';
+  const String tTransactionId = 'ABC123';
 
   final TransactionEntity tTransactionEntity = TransactionEntity(
     id: 'ABC123',

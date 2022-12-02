@@ -42,7 +42,7 @@ class _ZelenBankAppState extends State<ZelenBankApp> {
     return MaterialApp(
       title: 'Zelen Bank',
       debugShowCheckedModeBanner: false,
-      theme: CustomTheme.customtheme[Tema.lightTheme],
+      theme: CustomTheme.customtheme[Tema.darkTheme],
       onGenerateRoute: RouteGenerator.generateRoute,
       initialRoute: _authController.isLogged ? kStatementScreen : kLoginScreen,
     );

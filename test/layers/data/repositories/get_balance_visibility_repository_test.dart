@@ -19,7 +19,7 @@ void main() {
         mockGetBalanceVisibilityDatasourceImpl);
   });
 
-  final bool tIsBalanceVisible = true;
+  const bool tIsBalanceVisible = true;
 
   group('get_current_visibility_repository', () {
     test('Should return a bool from the local datasource', () async {
