@@ -34,7 +34,6 @@ class _ZelenBankAppState extends State<ZelenBankApp> {
   @override
   void initState() {
     _authController.isUserLoggedIn();
-    print('fdp');
     super.initState();
   }
 
