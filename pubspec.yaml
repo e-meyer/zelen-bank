@@ -25,6 +25,9 @@ dependencies:
   dartz: ^0.10.1
   test_coverage_badge: ^0.2.0
   firebase_core: ^2.3.0
+  firebase_auth: ^4.1.5
+  google_sign_in: ^5.4.2
+  cloud_firestore: ^4.1.0
 
 flutter_native_splash:
   image: 'assets/logo.png'

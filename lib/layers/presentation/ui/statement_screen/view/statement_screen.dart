@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zelenbank/core/firebase/auth/auth_service.dart';
 import 'package:zelenbank/core/injector/injector.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
@@ -44,7 +45,15 @@ class _StatementScreenState extends State<StatementScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      appBar: const CustomAppBarWidget(title: 'Extrato'),
+      appBar: CustomAppBarWidget(
+        title: 'Extrato',
+        trailing: InkWell(
+          onTap: () {
+            AuthService().signOut();
+          },
+          child: Icon(Icons.logout),
+        ),
+      ),
       body: RefreshIndicator(
         onRefresh: () async {
           await transactionController.getTransactionsList(pageController);

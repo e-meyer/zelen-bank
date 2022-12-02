@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zelenbank/core/firebase/auth/auth_service.dart';
 import 'package:zelenbank/core/utils/route_generator.dart';
 import 'core/injector/injector.dart';
 import 'core/theme/theme.dart';
@@ -27,8 +28,9 @@ class ZelenBankApp extends StatelessWidget {
       title: 'Zelen Bank',
       debugShowCheckedModeBanner: false,
       theme: CustomTheme.customtheme[Tema.lightTheme],
-      onGenerateRoute: RouteGenerator.generateRoute,
-      initialRoute: kStatementScreen,
+      // onGenerateRoute: RouteGenerator.generateRoute,
+      // initialRoute: AuthService().handleAuthState(),
+      home: AuthService().handleAuthState(),
     );
   }
 }
