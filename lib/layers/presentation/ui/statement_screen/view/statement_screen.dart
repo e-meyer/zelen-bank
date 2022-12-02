@@ -47,19 +47,8 @@ class _StatementScreenState extends State<StatementScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      appBar: CustomAppBarWidget(
+      appBar: const CustomAppBarWidget(
         title: 'Extrato',
-        trailing: InkWell(
-          onTap: () {
-            authController.signOutGoogle();
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              kLoginScreen,
-              (route) => false,
-            );
-          },
-          child: Icon(Icons.logout),
-        ),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
