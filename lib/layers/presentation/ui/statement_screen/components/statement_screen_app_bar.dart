@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../../../main.dart';
+import '../../../../../main.dart';
 
-class CustomAppBarWidget extends StatefulWidget implements PreferredSizeWidget {
-  const CustomAppBarWidget({
+class StatementAppBarWidget extends StatefulWidget
+    implements PreferredSizeWidget {
+  const StatementAppBarWidget({
     super.key,
-    this.leading,
     this.title,
     this.trailing,
   }) : preferredSize = const Size.fromHeight(kToolbarHeight);
 
   final String? title;
-  final Widget? leading;
   final Widget? trailing;
 
   @override
   final Size preferredSize;
 
   @override
-  State<CustomAppBarWidget> createState() => _CustomAppBarWidgetState();
+  State<StatementAppBarWidget> createState() => _StatementAppBarWidgetState();
 }
 
-class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
+class _StatementAppBarWidgetState extends State<StatementAppBarWidget> {
   ValueNotifier<bool> isThemeDark = ValueNotifier<bool>(false);
 
   toggleTheme() {
@@ -36,7 +35,16 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
       systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
       ),
-      leading: widget.leading,
+      leading: ValueListenableBuilder<bool>(
+        valueListenable: isThemeDark,
+        builder: (context, value, child) {
+          return IconButton(
+            icon: Icon(
+                isThemeDark.value ? Icons.lightbulb : Icons.lightbulb_outline),
+            onPressed: toggleTheme,
+          );
+        },
+      ),
       title: Text(
         widget.title ?? '',
       ),

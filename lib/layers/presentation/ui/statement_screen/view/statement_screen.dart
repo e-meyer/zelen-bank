@@ -9,6 +9,8 @@ import 'package:zelenbank/layers/presentation/ui/common/custom_app_bar_widget.da
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/current_balance_section.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/transaction_list_builder.dart';
 
+import '../components/statement_screen_app_bar.dart';
+
 class StatementScreen extends StatefulWidget {
   const StatementScreen({super.key});
 
@@ -47,8 +49,19 @@ class _StatementScreenState extends State<StatementScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      appBar: const CustomAppBarWidget(
+      appBar: StatementAppBarWidget(
         title: 'Extrato',
+        trailing: InkWell(
+          onTap: () {
+            authController.signOutGoogle();
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              kLoginScreen,
+              (route) => false,
+            );
+          },
+          child: Icon(Icons.logout),
+        ),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
