@@ -37,9 +37,9 @@ class TransactionController extends ChangeNotifier {
   Future<void> getTransactionsList(int pageNumber) async {
     currentState = States.loading;
     notifyListeners();
-    final _result = await _getTransactionListUsecase(pageNumber);
+    final result = await _getTransactionListUsecase(pageNumber);
 
-    _result.fold((left) {
+    result.fold((left) {
       currentState = States.error;
     }, (right) {
       final list = right;
@@ -58,9 +58,9 @@ class TransactionController extends ChangeNotifier {
     currentState = States.loading;
     notifyListeners();
 
-    final _result = await _getTransactionByIdUsecase(id);
+    final result = await _getTransactionByIdUsecase(id);
 
-    _result.fold((left) {
+    result.fold((left) {
       currentState = States.error;
     }, (right) {
       _detailedTransaction = right;
@@ -72,9 +72,9 @@ class TransactionController extends ChangeNotifier {
   void getCurrentBalance() async {
     currentState = States.loading;
     notifyListeners();
-    final _result = await _getCurrentBalanceUsecase();
+    final result = await _getCurrentBalanceUsecase();
 
-    _result.fold((left) {
+    result.fold((left) {
       currentState = States.error;
     }, (right) {
       _balance = right;

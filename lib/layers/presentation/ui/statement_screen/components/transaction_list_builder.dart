@@ -3,7 +3,6 @@ import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/timeline_divider_widget.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/transaction_card_widget.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/transaction_loading_widget.dart';
-import 'package:zelenbank/layers/presentation/ui/common/custom_alert_dialog.dart';
 
 import '../../../../../core/injector/injector.dart';
 import '../../../../domain/entities/transaction_entity.dart';
