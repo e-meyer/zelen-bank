@@ -28,9 +28,10 @@ class ZelenBankApp extends StatelessWidget {
       title: 'Zelen Bank',
       debugShowCheckedModeBanner: false,
       theme: CustomTheme.customtheme[Tema.lightTheme],
-      // onGenerateRoute: RouteGenerator.generateRoute,
-      // initialRoute: AuthService().handleAuthState(),
-      home: AuthService().handleAuthState(),
+      onGenerateRoute: RouteGenerator.generateRoute,
+      initialRoute:
+          AuthService().isLoggedIn() ? kStatementScreen : kLoginScreen,
+      // home: AuthService().handleAuthState(),
     );
   }
 }

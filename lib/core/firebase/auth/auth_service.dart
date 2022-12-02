@@ -11,25 +11,7 @@ class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
-  // Determine if the user is authenticated
-  handleAuthState() {
-    return StreamBuilder(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (context, snapshot) {
-        Future.delayed(Duration(milliseconds: 5));
-        print('fdp1 ${snapshot.data}');
-        if (snapshot.hasData && isSignIn()) {
-          print('fdp2');
-          return StatementScreen();
-        } else {
-          print('fdp3');
-          return LoginScreen();
-        }
-      },
-    );
-  }
-
-  bool isSignIn() {
+  bool isLoggedIn() {
     if (_firebaseAuth.currentUser?.uid != null) {
       return true;
     }

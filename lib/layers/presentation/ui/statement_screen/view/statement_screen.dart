@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zelenbank/core/firebase/auth/auth_service.dart';
 import 'package:zelenbank/core/injector/injector.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
+import 'package:zelenbank/core/utils/constants/route_constants.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
 import 'package:zelenbank/layers/presentation/ui/common/custom_app_bar_widget.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/current_balance_section.dart';
@@ -50,6 +51,7 @@ class _StatementScreenState extends State<StatementScreen> {
         trailing: InkWell(
           onTap: () {
             AuthService().signOut();
+            Navigator.pushNamed(context, kLoginScreen);
           },
           child: Icon(Icons.logout),
         ),
