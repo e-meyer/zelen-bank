@@ -8,10 +8,12 @@ class CustomAppBarWidget extends StatelessWidget
     super.key,
     this.leading,
     this.title,
+    this.trailing,
   }) : preferredSize = const Size.fromHeight(kToolbarHeight);
 
   final String? title;
   final Widget? leading;
+  final Widget? trailing;
 
   @override
   final Size preferredSize;
@@ -31,6 +33,9 @@ class CustomAppBarWidget extends StatelessWidget
           fontSize: 18,
         ),
       ),
+      actions: [
+        trailing != null ? trailing! : Container(),
+      ],
       centerTitle: true,
       elevation: 0.0,
     );

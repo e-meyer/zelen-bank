@@ -28,7 +28,7 @@ showAlertDialog(BuildContext context) {
             const Padding(
               padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
               child: Text(
-                'Something wrong happened. Close the app and open it again or try again later.',
+                'Something wrong happened. Retry or try again later.',
                 style: TextStyle(
                   fontSize: 18,
                   color: kPlainBlack,

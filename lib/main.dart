@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:zelenbank/authentication/presentation/controllers/auth_controller.dart';
+import 'package:zelenbank/core/firebase/auth/auth_service.dart';
 import 'package:zelenbank/core/utils/route_generator.dart';
 import 'core/injector/injector.dart';
 import 'core/theme/theme.dart';
@@ -16,11 +18,25 @@ void main() async {
 
   await setupLocator();
 
-  runApp(const ZelenBankApp());
+  runApp(ZelenBankApp());
+
+
+class ZelenBankApp extends StatefulWidget {
+  ZelenBankApp({super.key});
+
+  @override
+  State<ZelenBankApp> createState() => _ZelenBankAppState();
 }
 
-class ZelenBankApp extends StatelessWidget {
-  const ZelenBankApp({super.key});
+class _ZelenBankAppState extends State<ZelenBankApp> {
+  final AuthController _authController = serviceLocator.get<AuthController>();
+
+  @override
+  void initState() {
+    _authController.isUserLoggedIn();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,7 +44,7 @@ class ZelenBankApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: CustomTheme.customtheme[Tema.lightTheme],
       onGenerateRoute: RouteGenerator.generateRoute,
-      initialRoute: kStatementScreen,
+      initialRoute: _authController.isLogged ? kStatementScreen : kLoginScreen,
     );
   }
 }
