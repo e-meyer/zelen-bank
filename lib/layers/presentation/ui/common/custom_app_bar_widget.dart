@@ -25,11 +25,6 @@ class CustomAppBarWidget extends StatelessWidget
       leading: leading,
       title: Text(
         title ?? '',
-        style: const TextStyle(
-          color: kPlainBlack,
-          fontWeight: FontWeight.w600,
-          fontSize: 18,
-        ),
       ),
       centerTitle: true,
       elevation: 0.0,
