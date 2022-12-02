@@ -32,14 +32,20 @@ class _ZelenBankAppState extends State<ZelenBankApp> {
   final AuthController _authController = serviceLocator.get<AuthController>();
 
   @override
+  void initState() {
+    _authController.isUserLoggedIn();
+    print('fdp');
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Zelen Bank',
       debugShowCheckedModeBanner: false,
       theme: CustomTheme.customtheme[Tema.lightTheme],
       onGenerateRoute: RouteGenerator.generateRoute,
-      initialRoute:
-          _authController.isUserLoggedIn() ? kStatementScreen : kLoginScreen,
+      initialRoute: _authController.isLogged ? kStatementScreen : kLoginScreen,
       // home: AuthService().handleAuthState(),
     );
   }
