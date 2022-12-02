@@ -48,9 +48,8 @@ class AuthService {
             'profilePhotoUrl': user.photoURL,
           },
         );
-
-        result = true;
       }
+      result = true;
       return result;
       // Once signed in, returns the UserCredential
       // return await _firebaseAuth.signInWithCredential(credential);
@@ -60,7 +59,8 @@ class AuthService {
     return result;
   }
 
-  signOut() {
-    _firebaseAuth.signOut();
+  signOut() async {
+    await _firebaseAuth.signOut();
+    await GoogleSignIn().signOut();
   }
 }

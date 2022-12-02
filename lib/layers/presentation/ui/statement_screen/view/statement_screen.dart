@@ -51,7 +51,11 @@ class _StatementScreenState extends State<StatementScreen> {
         trailing: InkWell(
           onTap: () {
             AuthService().signOut();
-            Navigator.pushNamed(context, kLoginScreen);
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              kLoginScreen,
+              (route) => false,
+            );
           },
           child: Icon(Icons.logout),
         ),

@@ -22,8 +22,13 @@ class _LoginScreenState extends State<LoginScreen> {
             child: ElevatedButton(
           onPressed: () async {
             final result = await _authService.signInWithGoogle();
+            print(result);
             if (result) {
-              Navigator.pushNamed(context, kStatementScreen);
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                kStatementScreen,
+                (route) => false,
+              );
             }
           },
           child: Text('Login com google'),
