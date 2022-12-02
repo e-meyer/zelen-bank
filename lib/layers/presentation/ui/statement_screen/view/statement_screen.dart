@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zelenbank/authentication/presentation/controllers/auth_controller.dart';
 import 'package:zelenbank/core/firebase/auth/auth_service.dart';
 import 'package:zelenbank/core/injector/injector.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
@@ -18,7 +19,7 @@ class StatementScreen extends StatefulWidget {
 class _StatementScreenState extends State<StatementScreen> {
   final TransactionController transactionController =
       serviceLocator.get<TransactionController>();
-
+  final AuthController authController = serviceLocator.get<AuthController>();
   final ScrollController _scrollController = ScrollController();
 
   int pageController = 0;
@@ -50,7 +51,7 @@ class _StatementScreenState extends State<StatementScreen> {
         title: 'Extrato',
         trailing: InkWell(
           onTap: () {
-            AuthService().signOut();
+            authController.signOutGoogle();
             Navigator.pushNamedAndRemoveUntil(
               context,
               kLoginScreen,
