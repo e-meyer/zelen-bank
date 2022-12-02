@@ -7,6 +7,8 @@ import 'core/utils/constants/route_constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
+ValueNotifier<ThemeMode> tema = ValueNotifier(ThemeMode.system);
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -21,14 +23,22 @@ void main() async {
 
 class ZelenBankApp extends StatelessWidget {
   const ZelenBankApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Zelen Bank',
-      debugShowCheckedModeBanner: false,
-      theme: CustomTheme.customtheme[Tema.darkTheme],
-      onGenerateRoute: RouteGenerator.generateRoute,
-      initialRoute: kStatementScreen,
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: tema,
+      builder: (context, value, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'ZelenBank',
+          themeMode: tema.value,
+          theme: CustomTheme.customtheme[Tema.lightTheme],
+          darkTheme: CustomTheme.customtheme[Tema.darkTheme],
+          initialRoute: kStatementScreen,
+          onGenerateRoute: RouteGenerator.generateRoute,
+        );
+      },
     );
   }
 }
