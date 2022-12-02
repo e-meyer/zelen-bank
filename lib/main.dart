@@ -26,7 +26,7 @@ class ZelenBankApp extends StatelessWidget {
     return MaterialApp(
       title: 'Zelen Bank',
       debugShowCheckedModeBanner: false,
-      theme: CustomTheme.customtheme[Tema.lightTheme],
+      theme: CustomTheme.customtheme[Tema.darkTheme],
       onGenerateRoute: RouteGenerator.generateRoute,
       initialRoute: kStatementScreen,
     );
