@@ -19,7 +19,7 @@ void main() async {
   await setupLocator();
 
   runApp(ZelenBankApp());
-}
+
 
 class ZelenBankApp extends StatefulWidget {
   ZelenBankApp({super.key});
@@ -45,7 +45,6 @@ class _ZelenBankAppState extends State<ZelenBankApp> {
       theme: CustomTheme.customtheme[Tema.lightTheme],
       onGenerateRoute: RouteGenerator.generateRoute,
       initialRoute: _authController.isLogged ? kStatementScreen : kLoginScreen,
-      // home: AuthService().handleAuthState(),
     );
   }
 }
