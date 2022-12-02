@@ -109,7 +109,7 @@ class CustomTheme {
           letterSpacing: -0.5,
           color: kDarkThemeWhite,
           fontWeight: FontWeight.w600,
-          fontSize: 16,
+          fontSize: 19,
         ),
         subtitle1: TextStyle(
           color: kSubtitleColor,

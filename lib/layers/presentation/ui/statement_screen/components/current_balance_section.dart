@@ -94,7 +94,7 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
                         width: screenSize.width * 0.31,
                         child: Center(
                           child: Container(
-                            height: 3,
+                            height: 4.5,
                             color: theme.primaryColor,
                           ),
                         ),
