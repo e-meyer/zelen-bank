@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zelenbank/authentication/presentation/controllers/auth_controller.dart';
 import 'package:zelenbank/core/utils/route_generator.dart';
 import 'core/injector/injector.dart';
 import 'core/theme/theme.dart';
@@ -18,11 +19,24 @@ void main() async {
 
   await setupLocator();
 
-  runApp(const ZelenBankApp());
+  runApp(ZelenBankApp());
 }
 
-class ZelenBankApp extends StatelessWidget {
-  const ZelenBankApp({super.key});
+class ZelenBankApp extends StatefulWidget {
+  ZelenBankApp({super.key});
+
+  @override
+  State<ZelenBankApp> createState() => _ZelenBankAppState();
+}
+
+class _ZelenBankAppState extends State<ZelenBankApp> {
+  final AuthController _authController = serviceLocator.get<AuthController>();
+
+  @override
+  void initState() {
+    _authController.isUserLoggedIn();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +44,14 @@ class ZelenBankApp extends StatelessWidget {
       valueListenable: tema,
       builder: (context, value, child) {
         return MaterialApp(
+          title: 'Zelen Bank',
           debugShowCheckedModeBanner: false,
-          title: 'ZelenBank',
           themeMode: tema.value,
           theme: CustomTheme.customtheme[Tema.lightTheme],
           darkTheme: CustomTheme.customtheme[Tema.darkTheme],
-          initialRoute: kStatementScreen,
           onGenerateRoute: RouteGenerator.generateRoute,
+          initialRoute:
+              _authController.isLogged ? kStatementScreen : kLoginScreen,
         );
       },
     );

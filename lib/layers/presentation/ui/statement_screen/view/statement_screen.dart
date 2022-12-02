@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:zelenbank/authentication/presentation/controllers/auth_controller.dart';
+import 'package:zelenbank/core/firebase/auth/auth_service.dart';
 import 'package:zelenbank/core/injector/injector.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
+import 'package:zelenbank/core/utils/constants/route_constants.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
 import 'package:zelenbank/layers/presentation/ui/common/custom_app_bar_widget.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/current_balance_section.dart';
@@ -16,7 +19,7 @@ class StatementScreen extends StatefulWidget {
 class _StatementScreenState extends State<StatementScreen> {
   final TransactionController transactionController =
       serviceLocator.get<TransactionController>();
-
+  final AuthController authController = serviceLocator.get<AuthController>();
   final ScrollController _scrollController = ScrollController();
 
   int pageController = 0;
@@ -44,7 +47,20 @@ class _StatementScreenState extends State<StatementScreen> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      appBar: const CustomAppBarWidget(title: 'Extrato'),
+      appBar: CustomAppBarWidget(
+        title: 'Extrato',
+        trailing: InkWell(
+          onTap: () {
+            authController.signOutGoogle();
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              kLoginScreen,
+              (route) => false,
+            );
+          },
+          child: Icon(Icons.logout),
+        ),
+      ),
       body: RefreshIndicator(
         onRefresh: () async {
           await transactionController.getTransactionsList(pageController);
