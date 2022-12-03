@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:zelenbank/authentication/domain/entities/user_entity.dart';
 import 'package:zelenbank/authentication/domain/usecases/check_user_auth_status/check_user_auth_status_usecase.dart';
+import 'package:zelenbank/authentication/domain/usecases/get_current_user/get_current_user_usecase.dart';
 import 'package:zelenbank/authentication/domain/usecases/sign_in_with_google/sign_in_with_google_usecase.dart';
 import 'package:zelenbank/authentication/domain/usecases/sign_out/sign_out_google_usecase.dart';
 
@@ -9,6 +11,8 @@ class AuthController extends ChangeNotifier {
   final CheckUserAuthStatusUsecase _checkUserAuthStatusUsecase;
   final SignInWithGoogleUsecase _signInWithGoogleUsecase;
   final SignOutGoogleUsecase _signOutGoogleUsecase;
+  final GetCurrentUserUsecase _getCurrentUserUsecase;
+  late UserEntity currentUser;
   var isLogged = false;
   var loginState = LoginState.idle;
 
@@ -16,6 +20,7 @@ class AuthController extends ChangeNotifier {
     this._checkUserAuthStatusUsecase,
     this._signInWithGoogleUsecase,
     this._signOutGoogleUsecase,
+    this._getCurrentUserUsecase,
   );
 
   isUserLoggedIn() {
@@ -38,5 +43,10 @@ class AuthController extends ChangeNotifier {
 
   signOutGoogle() async {
     await _signOutGoogleUsecase();
+  }
+
+  getCurrentUser() {
+    currentUser = _getCurrentUserUsecase();
+    notifyListeners();
   }
 }
