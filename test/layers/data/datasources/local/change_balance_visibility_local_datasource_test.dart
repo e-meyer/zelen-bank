@@ -23,7 +23,7 @@ void main() {
       () async {
     // arrange
     when(() => mockSharedPreferences.setBool(
-            kSharedPreferencesKey, !tIsBalanceVisible))
+            kIsBalanceVisibleLocalStorageKey, !tIsBalanceVisible))
         .thenAnswer((_) async => !tIsBalanceVisible);
 
     // act
@@ -31,6 +31,6 @@ void main() {
 
     // assert
     verify(() => mockSharedPreferences.setBool(
-        kSharedPreferencesKey, !tIsBalanceVisible)).called(1);
+        kIsBalanceVisibleLocalStorageKey, !tIsBalanceVisible)).called(1);
   });
 }

@@ -22,7 +22,8 @@ void main() {
       'Should return a bool (true or false) when looking for the cached balance visibility and the key exists',
       () async {
     // arrange
-    when(() => mockSharedPreferences.containsKey(kSharedPreferencesKey))
+    when(() =>
+            mockSharedPreferences.containsKey(kIsBalanceVisibleLocalStorageKey))
         .thenAnswer((_) => true);
     when(() => mockSharedPreferences.getBool(any()))
         .thenAnswer((_) => tIsBalanceVisible);
@@ -31,7 +32,8 @@ void main() {
     final result = await getBalanceVisibilityDatasource();
 
     // assert
-    verify(() => mockSharedPreferences.getBool(kSharedPreferencesKey));
+    verify(
+        () => mockSharedPreferences.getBool(kIsBalanceVisibleLocalStorageKey));
     expect(result, isA<bool>());
   });
 
@@ -39,10 +41,11 @@ void main() {
       'Should return a bool (true) when looking for the cached balance visibility and the key doesnt exist',
       () async {
     // arrange
-    when(() => mockSharedPreferences.containsKey(kSharedPreferencesKey))
+    when(() =>
+            mockSharedPreferences.containsKey(kIsBalanceVisibleLocalStorageKey))
         .thenAnswer((_) => false);
     when(() => mockSharedPreferences.setBool(
-            kSharedPreferencesKey, tIsBalanceVisible))
+            kIsBalanceVisibleLocalStorageKey, tIsBalanceVisible))
         .thenAnswer((_) async => !tIsBalanceVisible);
 
     // act
@@ -50,7 +53,7 @@ void main() {
 
     // assert
     expect(result, true);
-    verify(() => mockSharedPreferences.setBool(kSharedPreferencesKey, true))
-        .called(1);
+    verify(() => mockSharedPreferences.setBool(
+        kIsBalanceVisibleLocalStorageKey, true)).called(1);
   });
 }

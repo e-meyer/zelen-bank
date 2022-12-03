@@ -5,6 +5,9 @@ import 'package:zelenbank/authentication/domain/usecases/get_current_user/get_cu
 import 'package:zelenbank/authentication/domain/usecases/sign_in_with_google/sign_in_with_google_usecase.dart';
 import 'package:zelenbank/authentication/domain/usecases/sign_out/sign_out_google_usecase.dart';
 
+import '../../domain/usecases/change_user_theme/change_user_theme_usecase.dart';
+import '../../domain/usecases/get_user_theme/get_user_theme_usecase.dart';
+
 enum LoginState { idle, loading, success, error }
 
 class AuthController extends ChangeNotifier {
@@ -12,15 +15,20 @@ class AuthController extends ChangeNotifier {
   final SignInWithGoogleUsecase _signInWithGoogleUsecase;
   final SignOutGoogleUsecase _signOutGoogleUsecase;
   final GetCurrentUserUsecase _getCurrentUserUsecase;
+  final GetUserThemeUsecase _getUserThemeUsecase;
+  final ChangeUserThemeUsecase _changeUserThemeUsecase;
   late UserEntity currentUser;
   var isLogged = false;
   var loginState = LoginState.idle;
+  var isUserThemeDark = false;
 
   AuthController(
     this._checkUserAuthStatusUsecase,
     this._signInWithGoogleUsecase,
     this._signOutGoogleUsecase,
     this._getCurrentUserUsecase,
+    this._getUserThemeUsecase,
+    this._changeUserThemeUsecase,
   );
 
   isUserLoggedIn() {
@@ -47,6 +55,17 @@ class AuthController extends ChangeNotifier {
 
   getCurrentUser() {
     currentUser = _getCurrentUserUsecase();
+    notifyListeners();
+  }
+
+  getUserThemeMode() {
+    isUserThemeDark = _getUserThemeUsecase();
+    notifyListeners();
+  }
+
+  changeUserThemeMode() async {
+    await _changeUserThemeUsecase(isUserThemeDark);
+    isUserThemeDark = !isUserThemeDark;
     notifyListeners();
   }
 }
