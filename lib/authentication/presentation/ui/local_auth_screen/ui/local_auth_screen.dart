@@ -132,33 +132,71 @@ class _LocalAuthScreenState extends State<LocalAuthScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Container(
         color: kAquaGreen,
-        height: MediaQuery.of(context).size.height,
-        width: double.infinity,
-        child: InkWell(
-          onTap: () async {
-            if (_availableBiometrics != null) {
-              final isUserAuthenticated = await _authenticateWithBiometrics();
-              if (isUserAuthenticated) {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, kStatementScreen, (route) => false);
-              }
-            } else {
-              final isUserAuthenticated = await _authenticate();
-              if (isUserAuthenticated) {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, kStatementScreen, (route) => false);
-              }
-            }
-          },
-          child: Center(
-            child: Icon(
-              Icons.fingerprint,
-              size: 300,
+        height: size.height,
+        width: size.width,
+        child: Stack(
+          children: [
+            Center(
+              child: Image.asset(
+                'assets/logo.png',
+                color: kPlainWhite,
+                height: 60,
+              ),
             ),
-          ),
+            InkWell(
+              onTap: () async {
+                if (_availableBiometrics != null) {
+                  final isUserAuthenticated =
+                      await _authenticateWithBiometrics();
+                  if (isUserAuthenticated) {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      kStatementScreen,
+                      (route) => false,
+                    );
+                  }
+                } else {
+                  final isUserAuthenticated = await _authenticate();
+                  if (isUserAuthenticated) {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      kStatementScreen,
+                      (route) => false,
+                    );
+                  }
+                }
+              },
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+                  child: Container(
+                    height: 50,
+                    width: size.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: kPlainWhite,
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Usar a senha do celular',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: kPlainBlack,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

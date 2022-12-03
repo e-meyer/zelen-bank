@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     RichText(
                       text: const TextSpan(
-                        text: 'Experience a fresh way to ',
+                        text: 'Uma nova maneira de \n',
                         style: TextStyle(
                           color: kPlainBlack,
                           fontWeight: FontWeight.w600,
@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         children: [
                           TextSpan(
-                            text: 'manage money',
+                            text: 'gerenciar dinheiro',
                             style: TextStyle(
                               color: kAquaGreen,
                               fontWeight: FontWeight.w600,
