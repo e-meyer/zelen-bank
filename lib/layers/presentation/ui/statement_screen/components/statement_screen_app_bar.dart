@@ -8,8 +8,10 @@ class StatementAppBarWidget extends StatefulWidget
     super.key,
     this.title,
     this.trailing,
+    this.leading,
   }) : preferredSize = const Size.fromHeight(kToolbarHeight);
 
+  final Widget? leading;
   final String? title;
   final Widget? trailing;
 
@@ -21,30 +23,13 @@ class StatementAppBarWidget extends StatefulWidget
 }
 
 class _StatementAppBarWidgetState extends State<StatementAppBarWidget> {
-  ValueNotifier<bool> isThemeDark = ValueNotifier<bool>(false);
-
-  toggleTheme() {
-    isThemeDark.value = !isThemeDark.value;
-    // aqui ficara funcao para trocar tema
-    tema.value = isThemeDark.value ? ThemeMode.dark : ThemeMode.light;
-  }
-
   @override
   Widget build(BuildContext context) {
     return AppBar(
       systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
       ),
-      leading: ValueListenableBuilder<bool>(
-        valueListenable: isThemeDark,
-        builder: (context, value, child) {
-          return IconButton(
-            icon: Icon(
-                isThemeDark.value ? Icons.lightbulb : Icons.lightbulb_outline),
-            onPressed: toggleTheme,
-          );
-        },
-      ),
+      leading: widget.leading,
       title: Text(
         widget.title ?? '',
       ),
