@@ -7,6 +7,7 @@ import 'package:zelenbank/core/utils/constants/route_constants.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
 import 'package:zelenbank/layers/presentation/ui/common/custom_app_bar_widget.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/current_balance_section.dart';
+import 'package:zelenbank/layers/presentation/ui/statement_screen/components/custom_drawer_widget.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/components/transaction_list_builder.dart';
 
 import '../components/statement_screen_app_bar.dart';
@@ -23,13 +24,16 @@ class _StatementScreenState extends State<StatementScreen> {
       serviceLocator.get<TransactionController>();
   final AuthController authController = serviceLocator.get<AuthController>();
   final ScrollController _scrollController = ScrollController();
+  var scaffoldKey = GlobalKey<ScaffoldState>();
 
   int pageController = 0;
 
   @override
   void initState() {
     super.initState();
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      authController.getCurrentUser();
       transactionController.getTransactionsList(pageController);
       _scrollController.addListener(() {
         if (_scrollController.position.atEdge) {
@@ -48,20 +52,15 @@ class _StatementScreenState extends State<StatementScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
+      key: scaffoldKey,
       backgroundColor: theme.scaffoldBackgroundColor,
+      drawer: CustomDrawerWidget(),
       appBar: StatementAppBarWidget(
-        title: 'Extrato',
-        trailing: InkWell(
-          onTap: () {
-            authController.signOutGoogle();
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              kLoginScreen,
-              (route) => false,
-            );
-          },
-          child: Icon(Icons.logout),
+        leading: IconButton(
+          onPressed: () => scaffoldKey.currentState?.openDrawer(),
+          icon: Icon(Icons.menu),
         ),
+        title: 'Extrato',
       ),
       body: RefreshIndicator(
         onRefresh: () async {

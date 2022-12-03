@@ -90,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (_authController.loginState == LoginState.success) {
                           Navigator.pushNamedAndRemoveUntil(
                             context,
-                            kStatementScreen,
+                            kLocalAuthScreen,
                             (route) => false,
                           );
                         } else if (_authController.loginState ==

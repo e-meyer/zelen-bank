@@ -4,19 +4,25 @@ import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zelenbank/authentication/data/datasources/check_user_auth_status_datasource.dart';
+import 'package:zelenbank/authentication/data/datasources/get_current_user_datasource.dart';
 import 'package:zelenbank/authentication/data/datasources/remote/check_user_auth_status_datasource_impl.dart';
+import 'package:zelenbank/authentication/data/datasources/remote/get_current_user_datasource_impl.dart';
 import 'package:zelenbank/authentication/data/datasources/remote/sign_in_with_google_datasource_impl.dart';
 import 'package:zelenbank/authentication/data/datasources/remote/sign_out_google_datasource_impl.dart';
 import 'package:zelenbank/authentication/data/datasources/sign_in_with_google_datasource.dart';
 import 'package:zelenbank/authentication/data/datasources/sign_out_google_datasource.dart';
 import 'package:zelenbank/authentication/data/repositories/check_user_auth_status_repository_impl.dart';
+import 'package:zelenbank/authentication/data/repositories/get_current_user_repository_impl.dart';
 import 'package:zelenbank/authentication/data/repositories/sign_in_with_google_repository_impl.dart';
 import 'package:zelenbank/authentication/data/repositories/sign_out_google_repository_impl.dart';
 import 'package:zelenbank/authentication/domain/repositories/check_user_auth_status_repository.dart';
+import 'package:zelenbank/authentication/domain/repositories/get_current_user_repository.dart';
 import 'package:zelenbank/authentication/domain/repositories/sign_in_with_google_repository.dart';
 import 'package:zelenbank/authentication/domain/repositories/sign_out_google_repository.dart';
 import 'package:zelenbank/authentication/domain/usecases/check_user_auth_status/check_user_auth_status_usecase.dart';
 import 'package:zelenbank/authentication/domain/usecases/check_user_auth_status/check_user_auth_status_usecase_impl.dart';
+import 'package:zelenbank/authentication/domain/usecases/get_current_user/get_current_user_usecase.dart';
+import 'package:zelenbank/authentication/domain/usecases/get_current_user/get_current_user_usecase_impl.dart';
 import 'package:zelenbank/authentication/domain/usecases/sign_in_with_google/sign_in_with_google_usecase.dart';
 import 'package:zelenbank/authentication/domain/usecases/sign_in_with_google/sign_in_with_google_usecase_impl.dart';
 import 'package:zelenbank/authentication/domain/usecases/sign_out/sign_out_google_usecase.dart';
@@ -122,7 +128,7 @@ Future<void> setupLocator() async {
   serviceLocator
       .registerLazySingleton<SharedPreferences>(() => sharedPreferences);
 
-  // LOGIN -------------------------------------------------------------
+  // AUTHENTICATION ----------------------------------------------------------
 
   // Usecases
   serviceLocator.registerLazySingleton<CheckUserAuthStatusUsecase>(
@@ -131,6 +137,8 @@ Future<void> setupLocator() async {
       () => SignInWithGoogleUsecaseImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<SignOutGoogleUsecase>(
       () => SignOutGoogleUsecaseImpl(serviceLocator()));
+  serviceLocator.registerLazySingleton<GetCurrentUserUsecase>(
+      () => GetCurrentUserUsecaseImpl(serviceLocator()));
 
   // Repositories
   serviceLocator.registerLazySingleton<CheckUserAuthStatusRepository>(
@@ -139,6 +147,8 @@ Future<void> setupLocator() async {
       () => SignInWithGoogleRepositoryImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<SignOutGoogleRepository>(
       () => SignOutGoogleRepositoryImpl(serviceLocator()));
+  serviceLocator.registerLazySingleton<GetCurrentUserRepository>(
+      () => GetCurrentUserRepositoryImpl(serviceLocator()));
 
   // Datasources
   serviceLocator.registerLazySingleton<CheckUserAuthStatusDatasource>(
@@ -147,9 +157,12 @@ Future<void> setupLocator() async {
       () => SignInWithGoogleDatasourceImpl(serviceLocator(), serviceLocator()));
   serviceLocator.registerLazySingleton<SignOutGoogleDatasource>(
       () => SignOutGoogleDatasourceImpl(serviceLocator(), serviceLocator()));
+  serviceLocator.registerLazySingleton<GetCurrentUserDatasource>(
+      () => GetCurrentUserDatasourceImpl(serviceLocator()));
 
   // Controllers
   serviceLocator.registerLazySingleton<AuthController>(() => AuthController(
+        serviceLocator(),
         serviceLocator(),
         serviceLocator(),
         serviceLocator(),

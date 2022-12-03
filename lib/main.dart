@@ -35,6 +35,9 @@ class _ZelenBankAppState extends State<ZelenBankApp> {
   @override
   void initState() {
     _authController.isUserLoggedIn();
+    if (_authController.isLogged) {
+      _authController.getCurrentUser();
+    }
     super.initState();
   }
 
@@ -51,7 +54,7 @@ class _ZelenBankAppState extends State<ZelenBankApp> {
           darkTheme: CustomTheme.customtheme[Tema.darkTheme],
           onGenerateRoute: RouteGenerator.generateRoute,
           initialRoute:
-              _authController.isLogged ? kStatementScreen : kLoginScreen,
+              _authController.isLogged ? kLocalAuthScreen : kLoginScreen,
         );
       },
     );
