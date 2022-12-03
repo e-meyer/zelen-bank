@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zelenbank/authentication/presentation/controllers/auth_controller.dart';
 import 'package:zelenbank/core/utils/route_generator.dart';
+import 'core/firebase/notification/firebase_notification_service.dart';
 import 'core/injector/injector.dart';
 import 'core/theme/theme.dart';
 import 'core/utils/constants/route_constants.dart';
@@ -29,7 +30,8 @@ class ZelenBankApp extends StatefulWidget {
 
 class _ZelenBankAppState extends State<ZelenBankApp> {
   final AuthController _authController = serviceLocator.get<AuthController>();
-
+  final FirebaseMessagingService _messagingService =
+      serviceLocator.get<FirebaseMessagingService>();
   @override
   void initState() {
     _authController.getUserThemeMode();
@@ -37,6 +39,7 @@ class _ZelenBankAppState extends State<ZelenBankApp> {
     if (_authController.isLogged) {
       _authController.getCurrentUser();
     }
+    _messagingService.initialize();
     super.initState();
   }
 
