@@ -83,6 +83,11 @@ class TransactionController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void addTransaction(TransactionEntity transaction) {
+    _transactionList.add(transaction);
+    notifyListeners();
+  }
+
   void getBalanceVisibility() async {
     isBalanceVisible = await _getBalanceVisibilityUsecase();
     notifyListeners();
