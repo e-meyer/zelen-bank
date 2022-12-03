@@ -15,7 +15,13 @@ class RouteGenerator {
       case kLoginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case kStatementScreen:
-        return MaterialPageRoute(builder: (_) => const StatementScreen());
+        return AnimatedRoute(StatementScreen());
+      // return PageRouteBuilder(
+      //   pageBuilder: (_, __, ___) => StatementScreen(),
+      //   transitionsBuilder: (_, a, __, c) =>
+      //       FadeTransition(opacity: a, child: c),
+      // );
+      // return MaterialPageRoute(builder: (_) => const StatementScreen());
       case kTransactionDetailsScreen:
         return MaterialPageRoute(
             builder: (_) => TransactionDetails(args.toString()));
@@ -38,4 +44,23 @@ class RouteGenerator {
       );
     });
   }
+}
+
+class AnimatedRoute extends PageRouteBuilder {
+  final Widget widget;
+
+  AnimatedRoute(this.widget)
+      : super(
+          pageBuilder: (context, animation, secondaryAnimation) => widget,
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            var begin = Offset(0.0, 1.0);
+            var end = Offset.zero;
+            var tween = Tween(begin: begin, end: end);
+            var offsetAnimation = animation.drive(tween);
+            return SlideTransition(
+              position: offsetAnimation,
+              child: child,
+            );
+          },
+        );
 }
