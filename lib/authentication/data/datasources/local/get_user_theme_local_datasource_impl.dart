@@ -9,10 +9,8 @@ class GetUserThemeLocalDatasourceImpl implements GetUserThemeDatasource {
   @override
   bool call() {
     if (_sharedPreferences.containsKey(kIsUserThemeDarkLocalStorageKey)) {
-      print(_sharedPreferences.getBool(kIsUserThemeDarkLocalStorageKey)!);
       return _sharedPreferences.getBool(kIsUserThemeDarkLocalStorageKey)!;
     }
-    print('fdp');
     _sharedPreferences.setBool(kIsUserThemeDarkLocalStorageKey, false);
     return false;
   }
