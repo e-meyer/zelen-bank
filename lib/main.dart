@@ -8,8 +8,6 @@ import 'core/utils/constants/route_constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-ValueNotifier<ThemeMode> tema = ValueNotifier(ThemeMode.system);
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -34,6 +32,7 @@ class _ZelenBankAppState extends State<ZelenBankApp> {
 
   @override
   void initState() {
+    _authController.getUserThemeMode();
     _authController.isUserLoggedIn();
     if (_authController.isLogged) {
       _authController.getCurrentUser();
@@ -43,13 +42,15 @@ class _ZelenBankAppState extends State<ZelenBankApp> {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<ThemeMode>(
-      valueListenable: tema,
-      builder: (context, value, child) {
+    return AnimatedBuilder(
+      animation: _authController,
+      builder: (context, child) {
         return MaterialApp(
           title: 'Zelen Bank',
           debugShowCheckedModeBanner: false,
-          themeMode: tema.value,
+          themeMode: _authController.isUserThemeDark
+              ? ThemeMode.dark
+              : ThemeMode.light,
           theme: CustomTheme.customtheme[Tema.lightTheme],
           darkTheme: CustomTheme.customtheme[Tema.darkTheme],
           onGenerateRoute: RouteGenerator.generateRoute,
