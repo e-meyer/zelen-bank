@@ -30,4 +30,14 @@ class TransactionEntity extends Equatable {
         targetName,
         bankName
       ];
+
+  TransactionEntity.fromJson(Map<String, dynamic> json)
+      : id = json['name'],
+        createdAt = json['createdAt'],
+        amount = json['amount'],
+        transactionType = 'PIXCASHOUT',
+        description = json['description'],
+        targetName = json['receiver'],
+        bankName = json['bankname'],
+        authentication = json['authentication'];
 }
