@@ -17,20 +17,19 @@ class CustomDrawerWidget extends StatefulWidget {
 }
 
 class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
-  ValueNotifier<bool> isThemeDark = ValueNotifier<bool>(false);
   final AuthController authController = serviceLocator.get<AuthController>();
   bool light = true;
 
-  toggleTheme() {
-    isThemeDark.value = !isThemeDark.value;
-    // aqui ficara funcao para trocar tema
-    if (tema.value == ThemeMode.system || tema.value == ThemeMode.light) {
-      tema.value = ThemeMode.dark;
-    } else {
-      tema.value = ThemeMode.light;
-    }
-    print(tema.value);
-  }
+  // toggleTheme() {
+  //   isThemeDark.value = !isThemeDark.value;
+  //   // aqui ficara funcao para trocar tema
+  //   if (tema.value == ThemeMode.system || tema.value == ThemeMode.light) {
+  //     tema.value = ThemeMode.dark;
+  //   } else {
+  //     tema.value = ThemeMode.light;
+  //   }
+  //   print(tema.value);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -71,29 +70,26 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
               ),
             ),
           ),
-          ValueListenableBuilder<bool>(
-            valueListenable: isThemeDark,
-            builder: (context, value, child) {
-              return ListTile(
-                minLeadingWidth: 0,
-                leading: Icon(
-                  tema.value != ThemeMode.dark
-                      ? Icons.sunny
-                      : Icons.wb_twighlight,
-                  color: kAquaGreen,
-                ),
-                onTap: () {
-                  toggleTheme();
-                },
-                title: Text(
-                  '${isThemeMode()} Theme',
-                  style: TextStyle(
-                    fontSize: 16,
-                    letterSpacing: -0.3,
-                  ),
-                ),
-              );
+          ListTile(
+            minLeadingWidth: 0,
+            leading: Icon(
+              authController.isUserThemeDark
+                  ? Icons.sunny
+                  : Icons.wb_twighlight,
+              color: kAquaGreen,
+            ),
+            onTap: () {
+              setState(() {
+                authController.changeUserThemeMode();
+              });
             },
+            title: Text(
+              '${isThemeMode()} Theme',
+              style: TextStyle(
+                fontSize: 16,
+                letterSpacing: -0.3,
+              ),
+            ),
           ),
           ListTile(
             minLeadingWidth: 0,
@@ -155,7 +151,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
   }
 
   String isThemeMode() {
-    if (tema.value == ThemeMode.system || tema.value == ThemeMode.light) {
+    if (!authController.isUserThemeDark) {
       return 'Light';
     }
     return 'Dark';

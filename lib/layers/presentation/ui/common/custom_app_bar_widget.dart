@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../../../main.dart';
 
 class CustomAppBarWidget extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBarWidget({
@@ -22,14 +21,6 @@ class CustomAppBarWidget extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
-  ValueNotifier<bool> isThemeDark = ValueNotifier<bool>(false);
-
-  toggleTheme() {
-    isThemeDark.value = !isThemeDark.value;
-    // aqui ficara funcao para trocar tema
-    tema.value = isThemeDark.value ? ThemeMode.dark : ThemeMode.light;
-  }
-
   @override
   Widget build(BuildContext context) {
     return AppBar(
