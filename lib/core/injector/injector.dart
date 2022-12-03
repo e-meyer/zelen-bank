@@ -40,6 +40,8 @@ import 'package:zelenbank/authentication/domain/usecases/sign_in_with_google/sig
 import 'package:zelenbank/authentication/domain/usecases/sign_out/sign_out_google_usecase.dart';
 import 'package:zelenbank/authentication/domain/usecases/sign_out/sign_out_google_usecase_impl.dart';
 import 'package:zelenbank/authentication/presentation/controllers/auth_controller.dart';
+import 'package:zelenbank/core/firebase/notification/firebase_notification_service.dart';
+import 'package:zelenbank/core/firebase/notification/notification_service.dart';
 import 'package:zelenbank/core/http_client/http_client.dart';
 import 'package:zelenbank/core/http_client/http_client_interface.dart';
 import 'package:zelenbank/layers/data/datasources/change_balance_visibility_datasource.dart';
@@ -200,4 +202,6 @@ Future<void> setupLocator() async {
   serviceLocator.registerLazySingleton<FirebaseFirestore>(
       () => FirebaseFirestore.instance);
   serviceLocator.registerLazySingleton<GoogleSignIn>(() => GoogleSignIn());
+  serviceLocator.registerLazySingleton<FirebaseMessagingService>(
+      () => FirebaseMessagingService(NotificationService()));
 }
