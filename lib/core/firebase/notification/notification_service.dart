@@ -2,7 +2,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest_all.dart' as tz;
-import 'package:zelenbank/core/firebase/notification/custom_notification.dart';
+import 'package:zelenbank/layers/domain/entities/notification_entity.dart';
 
 class NotificationService {
   late FlutterLocalNotificationsPlugin localNotificationsPlugin;
@@ -37,7 +37,6 @@ class NotificationService {
 
   _initializeNotifications() async {
     const android = AndroidInitializationSettings('@mipmap/ic_launcher');
-    // Fazer: macOs, iOS, Linux...
     await localNotificationsPlugin.initialize(
       const InitializationSettings(
         android: android,

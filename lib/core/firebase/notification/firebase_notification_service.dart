@@ -1,7 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'notification_service.dart';
-import 'package:zelenbank/core/firebase/notification/custom_notification.dart';
+import 'package:zelenbank/layers/domain/entities/notification_entity.dart';
 
 class FirebaseMessagingService {
   final NotificationService _notificationService;
