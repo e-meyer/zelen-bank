@@ -26,6 +26,10 @@ dependencies:
   test_coverage_badge: ^0.2.0
   firebase_core: ^2.3.0
   firebase_auth: ^4.1.5
+  firebase_messaging: ^14.1.3
+  flutter_local_notifications:  ^9.4.0
+  flutter_notifications: ^0.0.1
+  flutter_native_timezone: ^2.0.0
   google_sign_in: ^5.4.2
   cloud_firestore: ^4.1.0
   flutter_svg: ^1.1.6
