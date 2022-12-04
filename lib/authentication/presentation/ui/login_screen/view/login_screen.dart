@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zelenbank/authentication/presentation/controllers/auth_controller.dart';
 import 'package:zelenbank/core/firebase/auth/auth_service.dart';
 import 'package:zelenbank/core/injector/injector.dart';
-import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 import 'package:zelenbank/core/utils/constants/route_constants.dart';
 import 'package:zelenbank/layers/presentation/ui/common/custom_alert_dialog.dart';
+import 'package:zelenbank/authentication/presentation/ui/components/login_well_render.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -100,46 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           showAlertDialog(context);
                         }
                       },
-                      child: Container(
-                        height: 56,
-                        decoration: BoxDecoration(
-                          color: kLightGrey,
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.fromBorderSide(
-                            BorderSide(
-                              color: kTimelineColor,
-                            ),
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: SvgPicture.asset(
-                                'assets/google-icon.svg',
-                                height: 26,
-                              ),
-                            ),
-                            Container(
-                              width: 1,
-                              color: kTimelineColor,
-                            ),
-                            Expanded(
-                              flex: 5,
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
-                                child: Text(
-                                  'Entrar com Google',
-                                  style: TextStyle(
-                                    color: kPlainBlack,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      child: LoginButton(),
                     ),
                   ],
                 ),
