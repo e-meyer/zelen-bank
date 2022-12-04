@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:zelenbank/core/injector/injector.dart';
-import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
 
 class CurrentBalanceSection extends StatefulWidget {

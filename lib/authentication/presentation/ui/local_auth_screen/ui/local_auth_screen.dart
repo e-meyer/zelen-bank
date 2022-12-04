@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
@@ -16,7 +17,7 @@ class LocalAuthScreen extends StatefulWidget {
 class _LocalAuthScreenState extends State<LocalAuthScreen> {
   final AuthController authController = serviceLocator.get<AuthController>();
   LocalAuthentication auth = LocalAuthentication();
-  _SupportState _supportState = _SupportState.unknown;
+  final _SupportState _supportState = _SupportState.unknown;
   bool? _canCheckBiometrics;
   List<BiometricType>? _availableBiometrics;
   bool _isAuthenticating = false;
@@ -38,7 +39,9 @@ class _LocalAuthScreenState extends State<LocalAuthScreen> {
       canCheckBiometrics = await auth.canCheckBiometrics;
     } on PlatformException catch (e) {
       canCheckBiometrics = false;
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
     if (!mounted) {
       return;
@@ -55,7 +58,9 @@ class _LocalAuthScreenState extends State<LocalAuthScreen> {
       availableBiometrics = await auth.getAvailableBiometrics();
     } on PlatformException catch (e) {
       availableBiometrics = <BiometricType>[];
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
     if (!mounted) {
       return;
@@ -112,7 +117,9 @@ class _LocalAuthScreenState extends State<LocalAuthScreen> {
         _isAuthenticating = false;
       });
     } on PlatformException catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       setState(() {
         _isAuthenticating = false;
       });
@@ -182,7 +189,7 @@ class _LocalAuthScreenState extends State<LocalAuthScreen> {
                       borderRadius: BorderRadius.circular(100),
                       color: kPlainWhite,
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Usar a senha do celular',
                         style: TextStyle(

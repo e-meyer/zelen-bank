@@ -18,11 +18,11 @@ void main() async {
 
   await setupLocator();
 
-  runApp(ZelenBankApp());
+  runApp(const ZelenBankApp());
 }
 
 class ZelenBankApp extends StatefulWidget {
-  ZelenBankApp({super.key});
+  const ZelenBankApp({super.key});
 
   @override
   State<ZelenBankApp> createState() => _ZelenBankAppState();

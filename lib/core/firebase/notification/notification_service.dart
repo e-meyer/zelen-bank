@@ -46,9 +46,7 @@ class NotificationService {
   }
 
   _onSelectNotification(String? payload) {
-    if (payload != null && payload.isNotEmpty) {
-      //TODO: IMPLEMENT NOTIFICATION CLICK ACTION
-    }
+    if (payload != null && payload.isNotEmpty) {}
   }
 
   showNotificationScheduled(

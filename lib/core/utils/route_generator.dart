@@ -15,7 +15,7 @@ class RouteGenerator {
       case kLoginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case kStatementScreen:
-        return AnimatedRoute(StatementScreen());
+        return AnimatedRoute(const StatementScreen());
       // return PageRouteBuilder(
       //   pageBuilder: (_, __, ___) => StatementScreen(),
       //   transitionsBuilder: (_, a, __, c) =>
@@ -53,7 +53,7 @@ class AnimatedRoute extends PageRouteBuilder {
       : super(
           pageBuilder: (context, animation, secondaryAnimation) => widget,
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            var begin = Offset(0.0, 1.0);
+            var begin = const Offset(0.0, 1.0);
             var end = Offset.zero;
             var tween = Tween(begin: begin, end: end);
             var offsetAnimation = animation.drive(tween);

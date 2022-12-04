@@ -14,7 +14,7 @@ class LoginButton extends StatelessWidget {
       decoration: BoxDecoration(
         color: kLightGrey,
         borderRadius: BorderRadius.circular(5),
-        border: Border.fromBorderSide(
+        border: const Border.fromBorderSide(
           BorderSide(
             color: kTimelineColor,
           ),
@@ -33,7 +33,7 @@ class LoginButton extends StatelessWidget {
             width: 1,
             color: kTimelineColor,
           ),
-          Expanded(
+          const Expanded(
             flex: 5,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),

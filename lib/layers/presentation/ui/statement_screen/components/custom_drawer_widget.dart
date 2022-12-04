@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 
 import '../../../../../authentication/presentation/controllers/auth_controller.dart';
 import '../../../../../core/injector/injector.dart';
 import '../../../../../core/utils/constants/route_constants.dart';
-import '../../../../../main.dart';
 
 class CustomDrawerWidget extends StatefulWidget {
   const CustomDrawerWidget({super.key});
@@ -61,7 +58,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                   ),
                   Text(
                     authController.currentUser.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       letterSpacing: -0.3,
                     ),
@@ -85,7 +82,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
             },
             title: Text(
               '${isThemeMode()} Theme',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
                 letterSpacing: -0.3,
               ),
@@ -93,7 +90,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
           ),
           ListTile(
             minLeadingWidth: 0,
-            leading: Icon(
+            leading: const Icon(
               Icons.fingerprint,
               color: kAquaGreen,
             ),
@@ -104,7 +101,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                 letterSpacing: -0.3,
               ),
             ),
-            trailing: Text('On'),
+            trailing: const Text('On'),
             onTap: () {},
           ),
           Expanded(
@@ -123,7 +120,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Icon(
                         Icons.logout,
                         color: Colors.red,

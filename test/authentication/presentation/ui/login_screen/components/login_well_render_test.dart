@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:zelenbank/authentication/presentation/ui/components/login_button.dart';
+import 'package:zelenbank/authentication/presentation/ui/components/login_well_render.dart';
 
 void main() {
-  LoginButton();
+  const LoginButton();
 
   testWidgets(
     'Widget renders correctly',
     (WidgetTester tester) async {
       await tester.pumpWidget(
-        MediaQuery(
-          data: const MediaQueryData(),
+        const MediaQuery(
+          data: MediaQueryData(),
           child: MaterialApp(
-            home: const Scaffold(body: LoginButton()),
+            home: Scaffold(body: LoginButton()),
           ),
         ),
       );

@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:zelenbank/authentication/presentation/ui/login_screen/view/login_screen.dart';
-import 'package:zelenbank/layers/presentation/ui/statement_screen/view/statement_screen.dart';
 
 class AuthService {
   // final FirebaseAuth _firebaseAuth;
@@ -52,7 +50,9 @@ class AuthService {
       // Once signed in, returns the UserCredential
       // return await _firebaseAuth.signInWithCredential(credential);
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
     return result;
   }

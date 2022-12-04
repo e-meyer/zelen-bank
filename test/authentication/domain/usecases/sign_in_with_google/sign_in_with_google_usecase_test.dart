@@ -19,7 +19,7 @@ void main() {
         SignInWithGoogleUsecaseImpl(mockSignInWithGoogleRepository);
   });
 
-  final bool tUserSignedIn = true;
+  const bool tUserSignedIn = true;
 
   group('sign_in_with_google_usecase', () {
     test(
@@ -27,13 +27,13 @@ void main() {
         () async {
       // arrange
       when(() => mockSignInWithGoogleRepository())
-          .thenAnswer((_) async => Right(tUserSignedIn));
+          .thenAnswer((_) async => const Right(tUserSignedIn));
       // act
       final response = await signInWithGoogleUsecase();
 
       // assert
       expect(response, isA<Right>());
-      expect(response, Right(true));
+      expect(response, const Right(true));
       verify(() => mockSignInWithGoogleRepository()).called(1);
     });
 
@@ -42,13 +42,13 @@ void main() {
         () async {
       // arrange
       when(() => mockSignInWithGoogleRepository())
-          .thenAnswer((_) async => Right(!tUserSignedIn));
+          .thenAnswer((_) async => const Right(!tUserSignedIn));
       // act
       final response = await signInWithGoogleUsecase();
 
       // assert
       expect(response, isA<Right>());
-      expect(response, Right(false));
+      expect(response, const Right(false));
       verify(() => mockSignInWithGoogleRepository()).called(1);
     });
 

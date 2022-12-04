@@ -32,13 +32,13 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(25),
                 bottomRight: Radius.circular(25),
               ),
               child: Container(
-                color: Color(0xFF008073),
-                padding: EdgeInsets.only(top: 30),
+                color: const Color(0xFF008073),
+                padding: const EdgeInsets.only(top: 30),
                 height: size.height * 0.7,
                 width: size.width,
                 child: Column(
@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               height: size.height * 0.3,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -101,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           showAlertDialog(context);
                         }
                       },
-                      child: LoginButton(),
+                      child: const LoginButton(),
                     ),
                   ],
                 ),

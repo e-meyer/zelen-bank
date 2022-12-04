@@ -39,9 +39,9 @@ class AuthController extends ChangeNotifier {
   signInWithGoogle() async {
     loginState = LoginState.idle;
     notifyListeners();
-    final _result = await _signInWithGoogleUsecase();
+    final result = await _signInWithGoogleUsecase();
 
-    _result.fold((l) {
+    result.fold((l) {
       loginState = LoginState.error;
     }, (r) {
       loginState = LoginState.success;
