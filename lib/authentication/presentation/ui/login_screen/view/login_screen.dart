@@ -6,7 +6,9 @@ import 'package:zelenbank/core/firebase/auth/auth_service.dart';
 import 'package:zelenbank/core/injector/injector.dart';
 import 'package:zelenbank/core/utils/constants/route_constants.dart';
 import 'package:zelenbank/layers/presentation/ui/common/custom_alert_dialog.dart';
-import 'package:zelenbank/authentication/presentation/ui/components/login_well_render.dart';
+import 'package:zelenbank/authentication/presentation/ui/login_screen/components/login_well_render.dart';
+
+import '../components/login_text_box.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -64,27 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    RichText(
-                      text: const TextSpan(
-                        text: 'Uma nova maneira de \n',
-                        style: TextStyle(
-                          color: kPlainBlack,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 24,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: 'gerenciar dinheiro',
-                            style: TextStyle(
-                              color: kAquaGreen,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 24,
-                            ),
-                          ),
-                        ],
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
+                    const LoginTextBox(),
                     InkWell(
                       onTap: () async {
                         await _authController.signInWithGoogle();
