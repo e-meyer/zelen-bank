@@ -27,7 +27,9 @@ class TransactionCardWidget extends StatelessWidget {
         arguments: transactionEntity.id,
       ),
       child: Container(
-        color: isTransactionTypePix() ? kLightGrey : kPlainWhite,
+        color: isTransactionTypePix()
+            ? theme.backgroundColor
+            : theme.scaffoldBackgroundColor,
         width: screenSize.width,
         height: isFirstWidget ? 76 : 90,
         child: Stack(

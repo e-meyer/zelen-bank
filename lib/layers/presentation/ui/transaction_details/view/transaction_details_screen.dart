@@ -38,6 +38,7 @@ class _TransactionDetailsState extends State<TransactionDetails> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: const CustomAppBarWidget(leading: CustomBackButton()),
       body: AnimatedBuilder(
@@ -65,7 +66,7 @@ class _TransactionDetailsState extends State<TransactionDetails> {
                     RepaintBoundary(
                       key: previewContainer,
                       child: Container(
-                        color: kPlainWhite,
+                        color: theme.scaffoldBackgroundColor,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           child: Column(

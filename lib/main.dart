@@ -57,8 +57,8 @@ class _ZelenBankAppState extends State<ZelenBankApp> {
           theme: CustomTheme.customtheme[Tema.lightTheme],
           darkTheme: CustomTheme.customtheme[Tema.darkTheme],
           onGenerateRoute: RouteGenerator.generateRoute,
-          initialRoute:
-              _authController.isLogged ? kLocalAuthScreen : kLoginScreen,
+          initialRoute: kStatementScreen,
+          // _authController.isLogged ? kLocalAuthScreen : kLoginScreen,
         );
       },
     );

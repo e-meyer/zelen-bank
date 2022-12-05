@@ -42,23 +42,24 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(100),
                     child: SizedBox(
-                      height: 85,
-                      width: 85,
-                      child: Image.network(
-                        authController.currentUser.profilePhotoUrl,
-                        errorBuilder: (context, error, stackTrace) {
-                          return SvgPicture.asset(
-                            'assets/person_photo_placeholder.svg',
-                            fit: BoxFit.fitHeight,
-                          );
-                        },
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
+                        height: 85,
+                        width: 85,
+                        child: // Image.network(
+                            // authController.currentUser.profilePhotoUrl,
+                            //errorBuilder: (context, error, stackTrace) {
+                            // return
+                            SvgPicture.asset(
+                          'assets/person_photo_placeholder.svg',
+                          fit: BoxFit.fitHeight,
+                        )
+                        //},
+                        //fit: BoxFit.fitHeight,
+                        //),
+                        ),
                   ),
-                  Text(
-                    authController.currentUser.name,
-                    style: const TextStyle(
+                  const Text(
+                    'Nome user', //authController.currentUser.name,
+                    style: TextStyle(
                       fontSize: 16,
                       letterSpacing: -0.3,
                     ),
