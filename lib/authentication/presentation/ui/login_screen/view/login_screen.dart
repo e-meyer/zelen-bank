@@ -23,7 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -39,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 bottomRight: Radius.circular(25),
               ),
               child: Container(
-                color: const Color(0xFF008073),
+                color: kDarkGreen,
                 padding: const EdgeInsets.only(top: 30),
                 height: size.height * 0.7,
                 width: size.width,
