@@ -6,6 +6,7 @@ import 'package:zelenbank/authentication/presentation/controllers/auth_controlle
 import 'package:zelenbank/core/injector/injector.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 import 'package:zelenbank/core/utils/constants/route_constants.dart';
+import 'package:zelenbank/layers/presentation/ui/common/custom_alert_dialog.dart';
 
 class LocalAuthScreen extends StatefulWidget {
   const LocalAuthScreen({super.key});
@@ -56,6 +57,7 @@ class _LocalAuthScreenState extends State<LocalAuthScreen> {
     late List<BiometricType> availableBiometrics;
     try {
       availableBiometrics = await auth.getAvailableBiometrics();
+      // print('$availableBiometrics fdp');
     } on PlatformException catch (e) {
       availableBiometrics = <BiometricType>[];
       if (kDebugMode) {
@@ -157,15 +159,19 @@ class _LocalAuthScreenState extends State<LocalAuthScreen> {
             ),
             InkWell(
               onTap: () async {
-                if (_availableBiometrics != null) {
-                  final isUserAuthenticated =
-                      await _authenticateWithBiometrics();
-                  if (isUserAuthenticated) {
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      kStatementScreen,
-                      (route) => false,
-                    );
+                if (_availableBiometrics != null &&
+                    _availableBiometrics!.isNotEmpty) {
+                  print(_availableBiometrics);
+                  if (_availableBiometrics!.contains(BiometricType.strong)) {
+                    final isUserAuthenticated =
+                        await _authenticateWithBiometrics();
+                    if (isUserAuthenticated) {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        kStatementScreen,
+                        (route) => false,
+                      );
+                    }
                   }
                 } else {
                   final isUserAuthenticated = await _authenticate();
