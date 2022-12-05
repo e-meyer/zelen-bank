@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "1071995498026-6mtdo73moip79mtlv10kkjgpcsvl17pb.apps.googleusercontent.com",
+          "client_id": "1071995498026-vqha987ku8i34h602ukg560nf61u2h5b.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.zelenbank",
-            "certificate_hash": "f6b9f21edcc497555b2c6d0bba73aeb60c18cb23"
+            "certificate_hash": "0854263bd33810354a1a9df453e65608e3a2b371"
           }
         },
         {
