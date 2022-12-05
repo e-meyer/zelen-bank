@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zelenbank/authentication/presentation/ui/local_auth_screen/ui/local_auth_screen.dart';
+import 'package:zelenbank/authentication/presentation/ui/local_auth_screen/view/local_auth_screen.dart';
 import 'package:zelenbank/authentication/presentation/ui/login_screen/view/login_screen.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 import 'package:zelenbank/core/utils/constants/route_constants.dart';
