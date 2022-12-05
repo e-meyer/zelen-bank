@@ -29,10 +29,6 @@ class LoginButton extends StatelessWidget {
               height: 26,
             ),
           ),
-          Container(
-            width: 1,
-            color: kTimelineColor,
-          ),
           const Expanded(
             flex: 5,
             child: Padding(
