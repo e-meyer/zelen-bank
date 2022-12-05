@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    const LoginTextBox(),
+                    LoginTextBox('Uma nova maneira de', 'gerenciar dinheiro'),
                     InkWell(
                       onTap: () async {
                         await _authController.signInWithGoogle();
