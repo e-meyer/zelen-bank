@@ -18,17 +18,6 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
   final AuthController authController = serviceLocator.get<AuthController>();
   bool light = true;
 
-  // toggleTheme() {
-  //   isThemeDark.value = !isThemeDark.value;
-  //   // aqui ficara funcao para trocar tema
-  //   if (tema.value == ThemeMode.system || tema.value == ThemeMode.light) {
-  //     tema.value = ThemeMode.dark;
-  //   } else {
-  //     tema.value = ThemeMode.light;
-  //   }
-  //   print(tema.value);
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -43,23 +32,22 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(100),
                     child: SizedBox(
-                        height: 85,
-                        width: 85,
-                        child: // Image.network(
-                            // authController.currentUser.profilePhotoUrl,
-                            //errorBuilder: (context, error, stackTrace) {
-                            // return
-                            SvgPicture.asset(
-                          'assets/person_photo_placeholder.svg',
-                          fit: BoxFit.fitHeight,
-                        )
-                        //},
-                        //fit: BoxFit.fitHeight,
-                        //),
-                        ),
+                      height: 85,
+                      width: 85,
+                      child: Image.network(
+                        authController.currentUser.profilePhotoUrl,
+                        errorBuilder: (context, error, stackTrace) {
+                          return SvgPicture.asset(
+                            'assets/person_photo_placeholder.svg',
+                            fit: BoxFit.fitHeight,
+                          );
+                        },
+                        fit: BoxFit.fitHeight,
+                      ),
+                    ),
                   ),
-                  const Text(
-                    'Nome user', //authController.currentUser.name,
+                  Text(
+                    authController.currentUser.name,
                     style: TextStyle(
                       fontSize: 16,
                       letterSpacing: -0.3,
@@ -83,7 +71,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
               });
             },
             title: Text(
-              '${isThemeMode()} Theme',
+              'Tema ${isThemeMode()}',
               style: const TextStyle(
                 fontSize: 16,
                 letterSpacing: -0.3,
@@ -92,12 +80,13 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
           ),
           ListTile(
               minLeadingWidth: 0,
-              leading: const Icon(
-                Icons.comment_bank,
+              leading: SvgPicture.asset(
+                'assets/institution.svg',
                 color: kAquaGreen,
+                height: 26,
               ),
               title: const Text(
-                'Banco próximo',
+                'Bancos próximos',
                 style: TextStyle(
                   fontSize: 16,
                   letterSpacing: -0.3,
@@ -116,7 +105,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
               color: kAquaGreen,
             ),
             title: const Text(
-              'Always ask for fingerprint',
+              'Requisitar biometria',
               style: TextStyle(
                 fontSize: 16,
                 letterSpacing: -0.3,
@@ -170,9 +159,9 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
 
   String isThemeMode() {
     if (!authController.isUserThemeDark) {
-      return 'Light';
+      return 'Claro';
     }
-    return 'Dark';
+    return 'Escuro';
   }
 }
 // ValueListenableBuilder<bool>(
