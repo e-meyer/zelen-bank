@@ -1,11 +1,11 @@
-class Bank {
+class MapEntity {
   String nome;
   String endereco;
   String foto;
   double latitude;
   double longitude;
 
-  Bank({
+  MapEntity({
     required this.nome,
     required this.endereco,
     required this.foto,

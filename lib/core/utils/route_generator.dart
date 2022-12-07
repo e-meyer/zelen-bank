@@ -6,6 +6,8 @@ import 'package:zelenbank/core/utils/constants/route_constants.dart';
 import 'package:zelenbank/layers/presentation/ui/statement_screen/view/statement_screen.dart';
 import 'package:zelenbank/layers/presentation/ui/transaction_details/view/transaction_details_screen.dart';
 
+import '../../layers/presentation/ui/map_screen/view/map_screen.dart';
+
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -14,6 +16,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const LocalAuthScreen());
       case kLoginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
+      case kBankLocation:
+        return MaterialPageRoute(builder: (_) => const MapScreen());
       case kStatementScreen:
         return AnimatedRoute(const StatementScreen());
       // return PageRouteBuilder(

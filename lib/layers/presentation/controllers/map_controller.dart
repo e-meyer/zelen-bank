@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:zelenbank/layers/domain/repositories/bank_repository.dart';
-import 'package:zelenbank/layers/presentation/ui/statement_screen/components/bank_details.dart';
-import 'package:zelenbank/layers/presentation/ui/statement_screen/view/bank_screen.dart';
+import 'package:zelenbank/core/map/map_locations.dart';
+import 'package:zelenbank/layers/presentation/ui/map_screen/components/map_location_details_widget.dart';
+import 'package:zelenbank/layers/presentation/ui/map_screen/view/map_screen.dart';
 
-class BanksController extends ChangeNotifier {
+class MapController extends ChangeNotifier {
   double lat = 0.0;
   double long = 0.0;
   String erros = '';
@@ -16,25 +16,30 @@ class BanksController extends ChangeNotifier {
 
   onMapCreated(GoogleMapController gmc) async {
     _mapsController = gmc;
-    getPosicao();
-    loadBanks();
+    await getPosicao();
+    await loadBanks();
   }
 
   loadBanks() {
-    final banks = BankRepository().banks;
+    final banks = MapRepository().banks;
     banks.forEach((bank) async {
       markers.add(
         Marker(
+          infoWindow: InfoWindow(
+            title: 'Zelen Bank',
+            snippet:
+                'ioasdbg oaduigboudag doua gboadui bfgouadbf ouadb oufbaduo',
+          ),
           markerId: MarkerId(bank.nome),
           position: LatLng(bank.latitude, bank.longitude),
           icon: await BitmapDescriptor.fromAssetImage(
             const ImageConfiguration(),
-            'images/posto.png',
+            'assets/bank_map_icon.png',
           ),
           onTap: () => {
             showModalBottomSheet(
               context: appKey.currentState!.context,
-              builder: (context) => BankDetails(bank: bank),
+              builder: (context) => MapLocationDetailsWidget(map: bank),
             )
           },
         ),

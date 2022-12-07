@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
-import 'package:zelenbank/layers/presentation/ui/statement_screen/view/bank_screen.dart';
+import 'package:zelenbank/layers/presentation/ui/map_screen/view/map_screen.dart';
 
 import '../../../../../authentication/presentation/controllers/auth_controller.dart';
 import '../../../../../core/injector/injector.dart';
@@ -104,11 +104,9 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                 ),
               ),
               onTap: () {
-                Navigator.push(
+                Navigator.pushNamed(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const Bank(),
-                  ),
+                  kBankLocation,
                 );
               }),
           ListTile(

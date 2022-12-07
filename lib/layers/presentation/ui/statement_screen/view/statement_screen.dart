@@ -30,7 +30,9 @@ class _StatementScreenState extends State<StatementScreen> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      //authController.getCurrentUser();
+      // if (authController.isLogged) {
+      //   authController.getCurrentUser();
+      // }
       transactionController.getTransactionsList(pageController);
       _scrollController.addListener(() {
         if (_scrollController.position.atEdge) {

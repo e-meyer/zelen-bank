@@ -36,7 +36,6 @@ dependencies:
   google_fonts: ^3.0.1
   google_sign_in: ^5.4.2
   google_maps_flutter: ^2.2.1
-  provider: ^5.0.0
   geolocator: ^9.0.2
   flutter_config: ^2.0.0
 
