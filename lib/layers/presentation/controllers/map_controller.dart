@@ -33,6 +33,12 @@ class MapController extends ChangeNotifier {
           ),
           onTap: () => {
             showModalBottomSheet(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+              ),
               context: appKey.currentState!.context,
               builder: (context) => MapLocationDetailsWidget(map: location),
             )

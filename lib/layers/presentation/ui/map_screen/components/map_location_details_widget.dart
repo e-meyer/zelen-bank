@@ -9,10 +9,16 @@ class MapLocationDetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       children: [
-        Image.network(map.foto,
-            height: 250,
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover),
+        ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+          child: Image.network(map.foto,
+              height: 250,
+              width: MediaQuery.of(context).size.width,
+              fit: BoxFit.cover),
+        ),
         Padding(
           padding: const EdgeInsets.only(top: 24, left: 24),
           child: Text(
