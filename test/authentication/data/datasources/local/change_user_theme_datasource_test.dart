@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zelenbank/authentication/data/datasources/change_user_theme_datasource.dart';
 import 'package:zelenbank/authentication/data/datasources/local/change_user_theme_local_datasource_impl.dart';
 import 'package:zelenbank/core/utils/constants/local_storage_constants.dart';
-import 'package:zelenbank/layers/data/datasources/local/change_balance_visibility_local_datasource_impl.dart';
 
 class MockSharedPreferences extends Mock implements SharedPreferences {}
 
