@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 
 class CustomBackButton extends StatelessWidget {
   const CustomBackButton({super.key});

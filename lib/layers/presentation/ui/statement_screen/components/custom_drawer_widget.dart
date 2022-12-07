@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
-import 'package:zelenbank/layers/presentation/ui/map_screen/view/map_screen.dart';
-
 import '../../../../../authentication/presentation/controllers/auth_controller.dart';
 import '../../../../../core/injector/injector.dart';
 import '../../../../../core/utils/constants/route_constants.dart';
@@ -48,7 +46,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                   ),
                   Text(
                     authController.currentUser.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       letterSpacing: -0.3,
                     ),

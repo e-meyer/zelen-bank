@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:zelenbank/core/share_image/share_image.dart';
-import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 import 'package:zelenbank/layers/presentation/ui/common/back_button.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:zelenbank/layers/domain/entities/map_entity.dart';
 import 'package:zelenbank/layers/domain/entities/notification_entity.dart';
 
 void main() {
