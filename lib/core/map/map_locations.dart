@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:zelenbank/layers/domain/entities/map_entity.dart';
 
 class MapRepository extends ChangeNotifier {
-  final List<MapEntity> _banks = [
+  final List<MapEntity> _mapLocationList = [
     MapEntity(
       nome: 'Banco Zelen Unidade Central',
-      endereco: 'R. Mal. Floriano, 895 - Centro, Santa Cruz do Sul - RS',
+      endereco: 'R. Júlio de Castilhos, 301 - Centro, Santa Cruz do Sul - RS',
       foto: 'https://i.ibb.co/QMgdgrJ/1.png',
-      latitude: -29.7193881,
-      longitude: -49.2624613,
+      latitude: -29.717273,
+      longitude: -52.428323,
     ),
     MapEntity(
       nome: 'Banco Zelen Unidade Universitária',
@@ -26,5 +26,5 @@ class MapRepository extends ChangeNotifier {
     ),
   ];
 
-  List<MapEntity> get banks => _banks;
+  List<MapEntity> get maps => _mapLocationList;
 }
