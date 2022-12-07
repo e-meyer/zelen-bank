@@ -1,14 +1,14 @@
 class MapEntity {
-  String nome;
-  String endereco;
-  String foto;
+  String name;
+  String address;
+  String picture;
   double latitude;
   double longitude;
 
   MapEntity({
-    required this.nome,
-    required this.endereco,
-    required this.foto,
+    required this.name,
+    required this.address,
+    required this.picture,
     required this.latitude,
     required this.longitude,
   });

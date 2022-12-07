@@ -25,7 +25,7 @@ class MapController extends ChangeNotifier {
     banks.forEach((location) async {
       markers.add(
         Marker(
-          markerId: MarkerId(location.nome),
+          markerId: MarkerId(location.name),
           position: LatLng(location.latitude, location.longitude),
           icon: await BitmapDescriptor.fromAssetImage(
             const ImageConfiguration(),
