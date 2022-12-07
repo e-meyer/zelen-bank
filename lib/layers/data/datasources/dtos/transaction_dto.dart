@@ -46,7 +46,4 @@ class TransactionDto extends TransactionEntity {
           : null,
     );
   }
-
-  factory TransactionDto.fromJson(String source) =>
-      TransactionDto.fromMap(json.decode(source) as Map<String, dynamic>);
 }

@@ -1,12 +1,8 @@
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zelenbank/core/utils/constants/local_storage_constants.dart';
-import 'package:zelenbank/layers/data/datasources/change_balance_visibility_datasource.dart';
-import 'package:zelenbank/layers/data/datasources/get_balance_visibility_datasource.dart';
 import 'package:zelenbank/layers/data/datasources/local/change_balance_visibility_local_datasource_impl.dart';
-import 'package:zelenbank/layers/data/datasources/local/get_balance_visibility_local_datasource_impl.dart';
 
 class MockSharedPreferences extends Mock implements SharedPreferences {}
 
@@ -21,13 +17,13 @@ void main() {
         ChangeBalanceVisibilityLocalDatasourceImpl(mockSharedPreferences);
   });
 
-  final bool tIsBalanceVisible = true;
+  const bool tIsBalanceVisible = true;
 
   test('Should change the cached value of the variable passed as parameter',
       () async {
     // arrange
     when(() => mockSharedPreferences.setBool(
-            kSharedPreferencesKey, !tIsBalanceVisible))
+            kIsBalanceVisibleLocalStorageKey, !tIsBalanceVisible))
         .thenAnswer((_) async => !tIsBalanceVisible);
 
     // act
@@ -35,6 +31,6 @@ void main() {
 
     // assert
     verify(() => mockSharedPreferences.setBool(
-        kSharedPreferencesKey, !tIsBalanceVisible)).called(1);
+        kIsBalanceVisibleLocalStorageKey, !tIsBalanceVisible)).called(1);
   });
 }

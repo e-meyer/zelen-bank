@@ -9,6 +9,7 @@ class ChangeBalanceVisibilityLocalDatasourceImpl
 
   @override
   Future<void> call(bool isBalanceVisible) async {
-    await sharedPreferences.setBool(kSharedPreferencesKey, !isBalanceVisible);
+    await sharedPreferences.setBool(
+        kIsBalanceVisibleLocalStorageKey, !isBalanceVisible);
   }
 }

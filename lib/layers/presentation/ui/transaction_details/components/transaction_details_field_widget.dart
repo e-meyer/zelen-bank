@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class TransactionDetailsFieldWidget extends StatelessWidget {
   const TransactionDetailsFieldWidget({
-    Key? key,
+    super.key,
     required this.fieldTitle,
     required this.fieldDescription,
-  }) : super(key: key);
+  });
 
   final String fieldTitle;
   final String fieldDescription;

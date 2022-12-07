@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
-import '../../../fixtures/fixture_reader.dart';
 
 void main() {
   final tTransactionEntity = TransactionEntity(

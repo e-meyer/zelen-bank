@@ -1,1 +1,2 @@
-const String kSharedPreferencesKey = 'isBalanceVisible';
+const String kIsBalanceVisibleLocalStorageKey = 'isBalanceVisible';
+const String kIsUserThemeDarkLocalStorageKey = 'isUserThemeDark';

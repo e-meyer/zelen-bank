@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:zelenbank/core/share_image/share_image.dart';
-import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 import 'package:zelenbank/layers/domain/entities/transaction_entity.dart';
 import 'package:zelenbank/layers/presentation/ui/common/back_button.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
@@ -38,6 +37,7 @@ class _TransactionDetailsState extends State<TransactionDetails> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: const CustomAppBarWidget(leading: CustomBackButton()),
       body: AnimatedBuilder(
@@ -65,7 +65,7 @@ class _TransactionDetailsState extends State<TransactionDetails> {
                     RepaintBoundary(
                       key: previewContainer,
                       child: Container(
-                        color: kPlainWhite,
+                        color: theme.scaffoldBackgroundColor,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           child: Column(

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class CustomButtonWidget extends StatelessWidget {
   final GlobalKey<State<StatefulWidget>> previewContainer;
-  final Function()? onTap;
+  final Function() onTap;
   final String label;
   const CustomButtonWidget({
     super.key,
     required this.previewContainer,
-    this.onTap,
+    required this.onTap,
     required this.label,
   });
 

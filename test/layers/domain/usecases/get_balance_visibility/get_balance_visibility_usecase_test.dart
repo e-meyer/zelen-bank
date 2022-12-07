@@ -1,13 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:zelenbank/layers/data/repositories/get_balance_visibility_resository_impl.dart';
-import 'package:zelenbank/layers/domain/repositories/get_balance_visibility_resository.dart';
-import 'package:zelenbank/layers/domain/repositories/get_current_balance_repository.dart';
 import 'package:zelenbank/layers/domain/usecases/get_balance_visibility/get_balance_visibility_usecase.dart';
 import 'package:zelenbank/layers/domain/usecases/get_balance_visibility/get_balance_visibility_usecase_impl.dart';
-import 'package:zelenbank/layers/domain/usecases/get_current_balance_usecase/get_current_balance_usecase.dart';
-import 'package:zelenbank/layers/domain/usecases/get_current_balance_usecase/get_current_balance_usecase_impl.dart';
 
 class MockGetBalanceVisibilityRepository extends Mock
     implements GetBalanceVisibilityRepositoryImpl {}

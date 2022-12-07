@@ -1,37 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 
-class CustomAppBarWidget extends StatelessWidget
-    implements PreferredSizeWidget {
+class CustomAppBarWidget extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBarWidget({
     super.key,
     this.leading,
     this.title,
+    this.trailing,
   }) : preferredSize = const Size.fromHeight(kToolbarHeight);
 
   final String? title;
   final Widget? leading;
+  final Widget? trailing;
 
   @override
   final Size preferredSize;
 
+  @override
+  State<CustomAppBarWidget> createState() => _CustomAppBarWidgetState();
+}
+
+class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
       systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
       ),
-      leading: leading,
+      leading: widget.leading,
       title: Text(
-        title ?? '',
-        style: const TextStyle(
-          color: kPlainBlack,
-          fontWeight: FontWeight.w600,
-          fontSize: 18,
-        ),
+        widget.title ?? '',
       ),
       centerTitle: true,
+      actions: [
+        widget.trailing != null ? widget.trailing! : Container(),
+      ],
       elevation: 0.0,
     );
   }

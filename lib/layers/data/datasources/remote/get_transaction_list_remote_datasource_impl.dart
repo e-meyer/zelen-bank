@@ -38,7 +38,7 @@ class GetTransactionListRemoteDatasourceImpl
       }
 
       return Left(GeneralFailure('Error'));
-    } on Exception catch (e) {
+    } on Exception {
       return Left(GeneralFailure('Error'));
     }
   }

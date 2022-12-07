@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:zelenbank/core/injector/injector.dart';
-import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 import 'package:zelenbank/layers/presentation/controllers/transaction_controller.dart';
 
 class CurrentBalanceSection extends StatefulWidget {
@@ -41,13 +40,12 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
             SizedBox(
               width: screenSize.width * 0.35,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     'Seu saldo',
                     style: TextStyle(
-                      fontSize: 16,
-                      color: kPlainBlack,
+                      fontSize: 17,
+                      color: theme.textTheme.headline1?.color,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -63,7 +61,7 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
                               ? Icons.visibility
                               : Icons.visibility_off,
                           color: theme.primaryColor,
-                          size: 20,
+                          size: 21,
                         );
                       },
                     ),
@@ -95,7 +93,7 @@ class _CurrentBalanceSectionState extends State<CurrentBalanceSection> {
                         width: screenSize.width * 0.31,
                         child: Center(
                           child: Container(
-                            height: 3,
+                            height: 4.5,
                             color: theme.primaryColor,
                           ),
                         ),
