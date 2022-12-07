@@ -7,7 +7,7 @@ enum Themes {
 }
 
 class CustomTheme {
-  static final customtheme = {
+  static final customTheme = {
     Themes.lightTheme: ThemeData(
       brightness: Brightness.light,
       appBarTheme: const AppBarTheme(
