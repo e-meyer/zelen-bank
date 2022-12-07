@@ -63,6 +63,7 @@ class _StatementScreenState extends State<StatementScreen> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
+          await transactionController.getCurrentBalance();
           await transactionController.getTransactionsList(pageController);
         },
         color: kAquaGreen,

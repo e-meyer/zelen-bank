@@ -105,6 +105,7 @@ class _TransactionListBuilderState extends State<TransactionListBuilder> {
         }
         return InkWell(
           onTap: () async {
+            await transactionController.getCurrentBalance();
             await transactionController
                 .getTransactionsList(widget.pageController);
           },
