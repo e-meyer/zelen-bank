@@ -44,6 +44,7 @@ class AuthController extends ChangeNotifier {
     result.fold((l) {
       loginState = LoginState.error;
     }, (r) {
+      isLogged = true;
       loginState = LoginState.success;
     });
     notifyListeners();
@@ -64,8 +65,8 @@ class AuthController extends ChangeNotifier {
   }
 
   changeUserThemeMode() async {
-    await _changeUserThemeUsecase(isUserThemeDark);
     isUserThemeDark = !isUserThemeDark;
     notifyListeners();
+    await _changeUserThemeUsecase(isUserThemeDark);
   }
 }

@@ -69,7 +69,7 @@ class TransactionController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getCurrentBalance() async {
+  Future<void> getCurrentBalance() async {
     currentState = States.loading;
     notifyListeners();
     final result = await _getCurrentBalanceUsecase();
