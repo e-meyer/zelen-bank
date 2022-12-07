@@ -33,7 +33,7 @@ class NotificationService {
     );
   }
 
-  showLocalNotification(CustomNotification notification) {
+  showLocalNotification(NotificationEntity notification) {
     localNotificationsPlugin.show(
       notification.id,
       notification.title,

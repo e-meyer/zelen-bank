@@ -33,7 +33,7 @@ class FirebaseMessagingService {
 
       if (notification != null && android != null) {
         _notificationService.showLocalNotification(
-          CustomNotification(
+          NotificationEntity(
             id: android.hashCode,
             title: notification.title!,
             body: notification.body!,
