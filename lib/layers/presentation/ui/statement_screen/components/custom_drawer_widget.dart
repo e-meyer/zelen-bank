@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
+import 'package:zelenbank/layers/presentation/ui/statement_screen/view/bank_screen.dart';
 
 import '../../../../../authentication/presentation/controllers/auth_controller.dart';
 import '../../../../../core/injector/injector.dart';
@@ -89,6 +90,27 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
               ),
             ),
           ),
+          ListTile(
+              minLeadingWidth: 0,
+              leading: const Icon(
+                Icons.comment_bank,
+                color: kAquaGreen,
+              ),
+              title: const Text(
+                'Banco próximo',
+                style: TextStyle(
+                  fontSize: 16,
+                  letterSpacing: -0.3,
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Bank(),
+                  ),
+                );
+              }),
           ListTile(
             minLeadingWidth: 0,
             leading: const Icon(
