@@ -13,7 +13,7 @@ class MapLocationDetailsWidget extends StatelessWidget {
     return Wrap(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),

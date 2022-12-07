@@ -23,7 +23,7 @@ class LoginTextBox extends StatelessWidget {
         children: [
           TextSpan(
             text: '$secondText',
-            style: TextStyle(
+            style: const TextStyle(
               color: kAquaGreen,
               fontWeight: FontWeight.w600,
               fontSize: 24,
