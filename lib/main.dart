@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
+import 'package:provider/provider.dart';
 import 'package:zelenbank/authentication/presentation/controllers/auth_controller.dart';
 import 'package:zelenbank/core/utils/route_generator.dart';
+import 'package:zelenbank/layers/domain/repositories/bank_repository.dart';
 import 'core/firebase/notification/firebase_notification_service.dart';
 import 'core/injector/injector.dart';
 import 'core/theme/theme.dart';
@@ -11,14 +14,19 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await FlutterConfig.loadEnvVariables();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
   await setupLocator();
 
-  runApp(const ZelenBankApp());
+  runApp(
+    ChangeNotifierProvider<BankRepository>(
+      create: (_) => BankRepository(),
+      child: const ZelenBankApp(),
+    ),
+  );
 }
 
 class ZelenBankApp extends StatefulWidget {
