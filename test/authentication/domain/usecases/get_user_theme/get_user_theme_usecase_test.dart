@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:zelenbank/authentication/domain/repositories/get_user_theme_repository.dart';
+import 'package:zelenbank/authentication/data/repositories/get_user_theme_repository_impl.dart';
 import 'package:zelenbank/authentication/domain/usecases/get_user_theme/get_user_theme_usecase.dart';
 import 'package:zelenbank/authentication/domain/usecases/get_user_theme/get_user_theme_usecase_impl.dart';
 
 class MockGetUserThemeRepository extends Mock
-    implements GetUserThemeRepository {}
+    implements GetUserThemeRepositoryImpl {}
 
 void main() {
   late MockGetUserThemeRepository mockGetUserThemeRepository;

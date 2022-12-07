@@ -1,13 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:zelenbank/authentication/domain/repositories/sign_in_with_google_repository.dart';
+import 'package:zelenbank/authentication/data/repositories/sign_in_with_google_repository_impl.dart';
 import 'package:zelenbank/authentication/domain/usecases/sign_in_with_google/sign_in_with_google_usecase.dart';
 import 'package:zelenbank/authentication/domain/usecases/sign_in_with_google/sign_in_with_google_usecase_impl.dart';
 import 'package:dartz/dartz.dart';
 import 'package:zelenbank/core/errors/failures/generic_failure.dart';
 
 class MockSignInWithGoogleRepository extends Mock
-    implements SignInWithGoogleRepository {}
+    implements SignInWithGoogleRepositoryImpl {}
 
 void main() {
   late MockSignInWithGoogleRepository mockSignInWithGoogleRepository;
