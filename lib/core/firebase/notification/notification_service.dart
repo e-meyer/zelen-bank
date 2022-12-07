@@ -11,7 +11,7 @@ class NotificationService {
   NotificationService() {
     localNotificationsPlugin = FlutterLocalNotificationsPlugin();
     _setupAndroidDetails();
-    _setupNotifications();
+    _initializeNotifications();
   }
 
   _setupAndroidDetails() {
@@ -24,47 +24,12 @@ class NotificationService {
     );
   }
 
-  _setupNotifications() async {
-    await _setupTimezone();
-    await _initializeNotifications();
-  }
-
-  Future<void> _setupTimezone() async {
-    tz.initializeTimeZones();
-    final String timeZoneName = await FlutterNativeTimezone.getLocalTimezone();
-    tz.setLocalLocation(tz.getLocation(timeZoneName));
-  }
-
   _initializeNotifications() async {
-    const android = AndroidInitializationSettings('@mipmap/ic_launcher');
+    const android = AndroidInitializationSettings('notification_icon');
     await localNotificationsPlugin.initialize(
       const InitializationSettings(
         android: android,
       ),
-      onSelectNotification: _onSelectNotification,
-    );
-  }
-
-  _onSelectNotification(String? payload) {
-    if (payload != null && payload.isNotEmpty) {}
-  }
-
-  showNotificationScheduled(
-      CustomNotification notification, Duration duration) {
-    final date = DateTime.now().add(duration);
-
-    localNotificationsPlugin.zonedSchedule(
-      notification.id,
-      notification.title,
-      notification.body,
-      tz.TZDateTime.from(date, tz.local),
-      NotificationDetails(
-        android: androidDetails,
-      ),
-      payload: notification.payload,
-      androidAllowWhileIdle: true,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 
@@ -78,13 +43,5 @@ class NotificationService {
       ),
       payload: notification.payload,
     );
-  }
-
-  checkForNotifications() async {
-    final details =
-        await localNotificationsPlugin.getNotificationAppLaunchDetails();
-    if (details != null && details.didNotificationLaunchApp) {
-      _onSelectNotification(details.payload);
-    }
   }
 }
