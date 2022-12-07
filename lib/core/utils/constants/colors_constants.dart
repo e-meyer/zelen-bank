@@ -11,7 +11,7 @@ const Color kSubtitleColor = Color(0xFF828282);
 
 const Color kDarkThemeOne = Color(0xFF0D0D0E);
 const Color kDarkThemeTwo = Color.fromARGB(255, 31, 31, 31);
-const Color kDarkThemeWhite = Color.fromARGB(209, 255, 252, 252);
+const Color kDarkThemeWhite = Color.fromARGB(174, 255, 252, 252);
 
 const MaterialColor white = MaterialColor(
   0xFFFFFFFF,

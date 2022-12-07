@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:zelenbank/authentication/presentation/controllers/auth_controller.dart';
 import 'package:zelenbank/core/utils/route_generator.dart';
 import 'core/firebase/notification/firebase_notification_service.dart';
@@ -11,14 +12,16 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await FlutterConfig.loadEnvVariables();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
   await setupLocator();
 
-  runApp(const ZelenBankApp());
+  runApp(
+    const ZelenBankApp(),
+  );
 }
 
 class ZelenBankApp extends StatefulWidget {
@@ -57,8 +60,8 @@ class _ZelenBankAppState extends State<ZelenBankApp> {
           theme: CustomTheme.customtheme[Tema.lightTheme],
           darkTheme: CustomTheme.customtheme[Tema.darkTheme],
           onGenerateRoute: RouteGenerator.generateRoute,
-          initialRoute:
-              _authController.isLogged ? kLocalAuthScreen : kLoginScreen,
+          initialRoute: kStatementScreen,
+          // _authController.isLogged ? kLocalAuthScreen : kLoginScreen,
         );
       },
     );
