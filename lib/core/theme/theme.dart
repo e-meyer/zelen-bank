@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:zelenbank/core/utils/constants/colors_constants.dart';
 
-enum Tema {
+enum Themes {
   lightTheme,
   darkTheme,
 }
 
 class CustomTheme {
   static final customtheme = {
-    Tema.lightTheme: ThemeData(
+    Themes.lightTheme: ThemeData(
       brightness: Brightness.light,
       appBarTheme: const AppBarTheme(
         toolbarTextStyle: TextStyle(
@@ -68,7 +68,7 @@ class CustomTheme {
         ),
       ),
     ),
-    Tema.darkTheme: ThemeData(
+    Themes.darkTheme: ThemeData(
       appBarTheme: const AppBarTheme(
         color: kDarkThemeOne,
         titleTextStyle: TextStyle(
